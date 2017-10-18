@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tqy.dao.PictureMapper">
+    
+    <update id="addPicture" parameterType="com.tqy.bean.Picture">
+        update sys_picture set 
+        pic_name=#{picName},
+        pic_type=#{picType},
+        year=#{year},
+        month=#{month},
+        des=#{describe},
+        day=#{day} 
+        where pic_id=#{picId}
+    </update>
+    
+    <delete id="deletePicture">
+        delete from sys_picture where pic_id=#{p_id}
+    </delete>
+
+    <update id="updatePicture" parameterType="com.tqy.bean.Picture">
+        update sys_picture set 
+        pic_name=#{picName},
+        pic_type=#{picType},
+        year=#{year},
+        month=#{month},
+        day=#{day},
+        url=#{url},
+        des=#{desc}
+        where pic_id=#{picId}
+    </update>
+    
+    <select id="getPicture" parameterType="Integer" resultType="com.tqy.bean.Picture">
+        select * from sys_picture where pic_id=#{p_id} 
+    </select>
+    
+    <select id="getPictures" resultType="com.tqy.bean.Picture">
+        select * from sys_picture
+    </select>
+    
+    <select id="getPictureByDateAndType" parameterType="com.tqy.bean.Picture" resultType="com.tqy.bean.Picture">
+        select * from sys_picture where pic_type=#{picType} and year=#{year} and month=#{month} and day=#{day}
+    </select>
+    
+    <select id="getPictureByDate" parameterType="com.tqy.bean.Picture" resultType="com.tqy.bean.Picture">
+        select * from sys_picture where year=#{year} and month=#{month} and day=#{day}
+    </select>
+    
+    <select id="getPictureByType" resultType="com.tqy.bean.Picture">
+        select * from sys_picture where pic_type = #{pic_type} order by pic_id DESC
+    </select>
+</mapper>
