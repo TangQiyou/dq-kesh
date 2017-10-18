@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>testPage</title>
+</head>
+<body>
+          参数1：<input type="text" id="parameter"><br>
+    <!--  <form id="form2" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" accept="image/gif,image/jpeg,image/jpeg,image/png">
+          <input type="submit" value="xxx">
+    </form>-->
+    
+	<button id="testButton">提交</button><br>
+	<a onclick="test1()">aaa</a>
+	<img src="../img/102/20171015102.jpg">
+	
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="test.js"></script>
+	<script type="text/javascript">
+
+    $("#testButton").click(function(){
+        $.ajax({
+           type:"get",
+           url:"../back/picture",
+           data:"id="+1,
+           contentType:"application/json;charser=utf-8",
+           success:function(returnData){
+              alert(returnData.code);
+           },
+           error:function(data){
+               alert("未收到服务端响应，请稍后再试");
+           }
+        });
+    });
+    
+
+</script>
+</body>
+
+
+</html>
+

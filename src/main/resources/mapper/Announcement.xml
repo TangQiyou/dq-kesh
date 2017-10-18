@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tqy.dao.AnnouncementMapper">
+    
+    <insert id="addAnnouncement">
+        insert into sys_announcement (ann_title,ann_content,ann_time)
+        values(#{annTitle},#{annContent},#{annTime})
+    </insert>
+    
+    <delete id="deleteAnnouncement">
+        delete from sys_announcement where ann_id=#{id}
+    </delete>
+
+    <update id="updateAnnouncement" parameterType="com.tqy.bean.Announcement">
+        update sys_announcement set ann_title=#{annTitle},
+        ann_content=#{annContent} where ann_id=#{annId}
+    </update>
+    
+    <select id="getAnnouncement" parameterType="Integer" resultType="com.tqy.bean.Announcement">
+        select * from sys_announcement where ann_id=#{id} 
+    </select>
+    
+    <select id="getAnnouncements" resultType="com.tqy.bean.Announcement">
+        select * from sys_announcement order by ann_id DESC
+    </select>
+</mapper>
