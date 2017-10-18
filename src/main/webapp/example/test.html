@@ -12,18 +12,22 @@
     </form>-->
     
 	<button id="testButton">提交</button><br>
-	<a onclick="test1()">aaa</a>
-	<img src="../img/102/20171015102.jpg">
+	<!-- <img src="../img/102/20171015102.jpg"> -->
 	
 	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="test.js"></script>
 	<script type="text/javascript">
 
     $("#testButton").click(function(){
+    	jsonData={
+    		"picType":103,
+    		"year":2017,
+    		"month":10,
+    		"day":16
+    	}
         $.ajax({
-           type:"get",
-           url:"../back/picture",
-           data:"id="+1,
+           type:"post",
+           url:"../back/getPictureByDateAndType",
+           data:JSON.stringify(jsonData),
            contentType:"application/json;charser=utf-8",
            success:function(returnData){
               alert(returnData.code);
@@ -37,7 +41,5 @@
 
 </script>
 </body>
-
-
 </html>
 

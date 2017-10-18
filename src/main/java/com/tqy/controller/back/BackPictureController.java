@@ -1,6 +1,7 @@
 package com.tqy.controller.back;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,15 +61,25 @@ public class BackPictureController {
 		return picture != null ? Msg.success().add("picture", picture) : Msg.fail();
 	}
 	
+	/**
+	 * 默认返回种类ID为101的第一页图片
+	 * @param map 包含 pn 页数，pic_type:图片种类对应的值
+	 * @return 包含指定页、种类的Msg
+	 */
 	@ResponseBody
-	@RequestMapping(value="/getPictureByType",method=RequestMethod.GET)
-	public Msg getPictures(@PathVariable("pn")Integer pn){
-		PageHelper.startPage(pn, 5);
-		List<Picture> list = pictureService.getPictures();
+	@RequestMapping(value="/getPictureByType",method=RequestMethod.POST)
+	public Msg getPictureByType(@RequestBody Map<String, Object> map){
+		PageHelper.startPage(map.get("pn")==null?1:Integer.parseInt(map.get("pn").toString()), 5);
+		List<Picture> list = pictureService.getPictureByType(map.get("picType")==null?101:Integer.parseInt(map.get("picType").toString()));
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		PageInfo pageInfo = new PageInfo(list, 5);
 		return pageInfo != null ? Msg.success().add("pageInfo", pageInfo) : Msg.fail();
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value="/getPictureByDateAndType",method=RequestMethod.POST)
+	public Msg getPictureByDateAndType(@RequestBody Picture picture){
+		Picture returnPicture = pictureService.getPictureByDateAndType(picture);
+		return returnPicture != null ? Msg.success().add("picture", returnPicture) : Msg.fail();
+	}
 }

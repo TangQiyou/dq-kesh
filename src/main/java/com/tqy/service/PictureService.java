@@ -95,7 +95,7 @@ public class PictureService {
 		return returnList;
 	}
 	
-	public List<Picture> getPictureByType(String pic_type){
+	public List<Picture> getPictureByType(int pic_type){
 		List<Picture> returnList = pictureMapper.getPictureByType(pic_type);
 		return returnList;
 	}
