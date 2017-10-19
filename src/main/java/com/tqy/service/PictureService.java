@@ -34,7 +34,7 @@ public class PictureService {
 		String des = code.getCodeDesc();
 		String describe = picture.getYear()+"年"+picture.getMonth()+"月"+picture.getDay()+"日"+des;
 		picture.setDes(describe.toString());
-		System.out.println(picture);
+		//System.out.println(picture);
 		int flag = pictureMapper.addPicture(picture);
 		return flag == 1 ? true : false; 
 	}
@@ -42,7 +42,7 @@ public class PictureService {
 	public Map<String, Integer> addOnlyPicture(MultipartFile file, Integer pic_type){
 		long startTime = System.currentTimeMillis();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd HH:MM:ss");
-		System.out.println("开始开始时间："+format.format(new Date()));
+		System.out.println("开始时间："+format.format(new Date()));
 		int pic_id = -1;
 		try {
 			OutputStream os = new FileOutputStream(PathUtil.getRealPath()+"/src/main/webapp/img/"+pic_type+"/"+file.getOriginalFilename());
@@ -57,6 +57,7 @@ public class PictureService {
 			Picture picture = new Picture();
 			picture.setPicType(pic_type);
 			picture.setUrl("../img/"+pic_type+"/"+file.getOriginalFilename());
+			picture.setPicName(file.getOriginalFilename());
 			try {
 				pictureMapper.addOnlyPicture(picture);
 				pic_id = picture.getPicId();
@@ -83,10 +84,14 @@ public class PictureService {
 	}
 	
 	public boolean updatePicture(Picture picture){
+		Picture oldPicture = pictureMapper.getPicture(picture.getPicId());
+		if (oldPicture.getPicType() != picture.getPicType()){
+			picture.setUrl("../img/"+oldPicture.getPicName());
+		}
 		Code code = codeMapper.getCodeByvalue(picture.getPicType());
 		String des = code.getCodeDesc();
-		String describe = picture.getYear()+"年"+picture.getMonth()+"月"+picture.getDay()+des;
-		picture.setDes(describe);
+		String describtion = picture.getYear()+"年"+picture.getMonth()+"月"+picture.getDay()+des;
+		picture.setDes(describtion);
 		int flag = pictureMapper.updatePicture(picture);
 		return flag == 1 ? true : false;
 	}

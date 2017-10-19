@@ -3,16 +3,14 @@
 <mapper namespace="com.tqy.dao.PictureMapper">
     
     <insert id="addOnlyPicture" useGeneratedKeys="true" keyProperty="picId" parameterType="com.tqy.bean.Picture">
-        insert into sys_picture (pic_type,url) values (#{picType},#{url})
+        insert into sys_picture (pic_name,pic_type,url) values (#{picName},#{picType},#{url})
     </insert>
     
     <update id="addPicture" parameterType="com.tqy.bean.Picture">
-        update sys_picture set 
-        pic_name=#{picName},
-        pic_type=#{picType},
+        update sys_picture set
         year=#{year},
         month=#{month},
-        des=#{describe},
+        des=#{des},
         day=#{day} 
         where pic_id=#{picId}
     </update>
@@ -29,7 +27,7 @@
         month=#{month},
         day=#{day},
         url=#{url},
-        des=#{desc}
+        des=#{des}
         where pic_id=#{picId}
     </update>
     

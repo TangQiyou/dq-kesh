@@ -35,7 +35,7 @@ public class BackPictureController {
 		Msg msg = Msg.success();
 		int pic_id = map.get("pic_id");
 		msg.add("pic_id", pic_id);
-		msg.add("totalTime", map.get("totalTime"));
+		msg.add("totalTime", map.get("totalTime").toString()+"ms");
 		return pic_id != -1 ? msg : Msg.fail();
 	}
 	

@@ -11,7 +11,8 @@
         <input type="text" name="picType">
         <input type="submit" value="上传">
     </form>
-    
+    <br>
+    <br>
 	<button id="testButton">提交</button><br>
 	<!-- <img src="../img/102/20171015102.jpg"> -->
 	
@@ -19,10 +20,19 @@
 	<script type="text/javascript">
 
     $("#testButton").click(function(){
+    	var jsonData={
+    		    "picId":13,
+    		    "picName":"test",
+    		    "picType":105,
+    		     "year":2016,
+    		     "month":3,
+    		     "day":2,
+    		     "des":"xxx"
+    		};
         $.ajax({
-           type:"get",
-           url:"../web/getOneOfEveryType",
-           //data:JSON.stringify(jsonData),
+           type:"put",
+           url:"../back/picture",
+           data:JSON.stringify(jsonData),
            contentType:"application/json;charser=utf-8",
            success:function(returnData){
               alert(returnData.code);
