@@ -22,4 +22,6 @@ public interface PictureMapper {
 	public List<Picture> getPictureByDate(Picture picture);
 	
 	public List<Picture> getPictureByType(int pic_type);
+	
+	public Picture getOneOfEveryType(int pic_type);
 }

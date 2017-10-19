@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -112,6 +113,20 @@ public class PictureService {
 	
 	public List<Picture> getPictureByType(int pic_type){
 		List<Picture> returnList = pictureMapper.getPictureByType(pic_type);
+		return returnList;
+	}
+	
+	public List<Picture> getOneOfEveryType(){
+		List<Code> codes = codeMapper.getCodeByType("pic_type");
+		List<Picture> returnList = new ArrayList<>();
+		Picture picture = new Picture();
+		for (Code code:codes){
+			picture = pictureMapper.getOneOfEveryType(code.getCodeValue());
+			if(picture != null){
+				returnList.add(picture);
+			}
+			picture = null;
+		}
 		return returnList;
 	}
 }

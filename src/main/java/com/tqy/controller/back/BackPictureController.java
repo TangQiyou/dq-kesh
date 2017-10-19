@@ -88,4 +88,6 @@ public class BackPictureController {
 		Picture returnPicture = pictureService.getPictureByDateAndType(picture);
 		return returnPicture != null ? Msg.success().add("picture", returnPicture) : Msg.fail();
 	}
+	
+	
 }

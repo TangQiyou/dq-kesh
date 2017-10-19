@@ -53,4 +53,11 @@ public class WebPictureController {
 		List<Picture> list = pictureService.getPictureByDate(picture);
 		return list != null ? Msg.success().add("list", list) : Msg.fail();
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getOneOfEveryType",method=RequestMethod.GET)
+	public Msg getOneOfEveryType(){
+		List<Picture> list = pictureService.getOneOfEveryType();
+		return list != null ? Msg.success().add("list", list) : Msg.fail();		
+	}
 }

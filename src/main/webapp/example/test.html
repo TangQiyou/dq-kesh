@@ -19,16 +19,10 @@
 	<script type="text/javascript">
 
     $("#testButton").click(function(){
-    	jsonData={
-    		"picType":103,
-    		"year":2017,
-    		"month":10,
-    		"day":16
-    	}
         $.ajax({
-           type:"post",
-           url:"../back/getPictureByDateAndType",
-           data:JSON.stringify(jsonData),
+           type:"get",
+           url:"../web/getOneOfEveryType",
+           //data:JSON.stringify(jsonData),
            contentType:"application/json;charser=utf-8",
            success:function(returnData){
               alert(returnData.code);

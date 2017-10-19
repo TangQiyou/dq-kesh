@@ -52,4 +52,8 @@
     <select id="getPictureByType" resultType="com.tqy.bean.Picture">
         select * from sys_picture where pic_type = #{pic_type} order by pic_id DESC
     </select>
+    
+    <select id="getOneOfEveryType" resultType="com.tqy.bean.Picture">
+        select * from sys_picture where pic_type = #{pic_type} limit 1
+    </select>
 </mapper>
