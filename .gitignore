@@ -1,0 +1,11 @@
+
+.project
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+target/classes/dbconfig.properties
+target/classes/applicationContext.xml
+.classpath
+target/classes/mybatis-config.xml
+target/classes/log4j.properties
+target/classes/log4j.properties
+target/classes/springmvc.xml
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
