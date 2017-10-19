@@ -3,7 +3,11 @@ package com.tqy.service;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,12 +38,13 @@ public class PictureService {
 		return flag == 1 ? true : false; 
 	}
 	
-	public boolean addOnlyPicture(MultipartFile file){
-		Boolean flag = false;
+	public Map<String, Integer> addOnlyPicture(MultipartFile file, Integer pic_type){
 		long startTime = System.currentTimeMillis();
-		System.out.println("开始时间："+startTime);	
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd HH:MM:ss");
+		System.out.println("开始开始时间："+format.format(new Date()));
+		int pic_id = -1;
 		try {
-			OutputStream os = new FileOutputStream(PathUtil.getRealPath()+"/dq-kesh/WebContent/img/101/"+file.getOriginalFilename());
+			OutputStream os = new FileOutputStream(PathUtil.getRealPath()+"/src/main/webapp/img/"+pic_type+"/"+file.getOriginalFilename());
 			InputStream is = file.getInputStream();
 			int temp;
 			while ((temp=is.read())!=(-1)){
@@ -48,17 +53,27 @@ public class PictureService {
 			os.flush();
 			os.close();
 			is.close();
-			flag = true;
+			Picture picture = new Picture();
+			picture.setPicType(pic_type);
+			picture.setUrl("../img/"+pic_type+"/"+file.getOriginalFilename());
+			try {
+				pictureMapper.addOnlyPicture(picture);
+				pic_id = picture.getPicId();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("上传文件失败");
-		} finally {
-			flag=true;
 		}
 		long endTime = System.currentTimeMillis();
-		System.out.println("结束时间："+endTime);
+		long totalTime = endTime-startTime;
+		System.out.println("结束时间："+format.format(new Date()));
 		System.out.println("程序运行时间："+String.valueOf(endTime-startTime)+"ms");
-		return flag;
+		Map<String, Integer> map = new HashMap<>();
+		map.put("pic_id", pic_id);
+		map.put("totalTime", Integer.valueOf(String.valueOf(totalTime)));
+		return map;
 	}
 	
 	public boolean deletePicture(int p_id){

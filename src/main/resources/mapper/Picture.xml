@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tqy.dao.PictureMapper">
     
+    <insert id="addOnlyPicture" useGeneratedKeys="true" keyProperty="picId" parameterType="com.tqy.bean.Picture">
+        insert into sys_picture (pic_type,url) values (#{picType},#{url})
+    </insert>
+    
     <update id="addPicture" parameterType="com.tqy.bean.Picture">
         update sys_picture set 
         pic_name=#{picName},

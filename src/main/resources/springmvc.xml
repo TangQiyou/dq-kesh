@@ -25,4 +25,11 @@
 	<!-- 能支持springMVC更高级的一些功能，JSR303校验，快捷的AJAX请求... -->
 	<mvc:annotation-driven></mvc:annotation-driven>
 	
+	<!-- 实现文件上传功能 -->
+    <bean id="multipartResolver" 
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <!-- 图片最大大小为4MB -->
+        <property name="maxUploadSize" value="4096000"></property>
+    </bean>
 </beans>

@@ -1,6 +1,7 @@
 package com.tqy.controller.back;
 
 import java.util.List;
+
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,16 @@ public class BackPictureController {
 	@Autowired
 	PictureService pictureService;
 	
+	
 	@ResponseBody
 	@RequestMapping(value="/addOnlyPicture",method=RequestMethod.POST)
-	public Msg addOnlyPicture(@RequestParam("file") MultipartFile file){
-		boolean flag = pictureService.addOnlyPicture(file);
-		return flag ? Msg.success():Msg.fail();
+	public Msg addOnlyPicture(@RequestParam("file") MultipartFile file,@RequestParam("picType") Integer pic_type){
+		Map<String, Integer> map = pictureService.addOnlyPicture(file,pic_type);
+		Msg msg = Msg.success();
+		int pic_id = map.get("pic_id");
+		msg.add("pic_id", pic_id);
+		msg.add("totalTime", map.get("totalTime"));
+		return pic_id != -1 ? msg : Msg.fail();
 	}
 	
 	@ResponseBody
