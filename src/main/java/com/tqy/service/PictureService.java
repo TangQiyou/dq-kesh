@@ -72,7 +72,7 @@ public class PictureService {
 		long totalTime = endTime-startTime;
 		System.out.println("结束时间："+format.format(new Date()));
 		System.out.println("程序运行时间："+String.valueOf(endTime-startTime)+"ms");
-		Map<String, Integer> map = new HashMap<>();
+		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("pic_id", pic_id);
 		map.put("totalTime", Integer.valueOf(String.valueOf(totalTime)));
 		return map;
@@ -123,7 +123,7 @@ public class PictureService {
 	
 	public List<Picture> getOneOfEveryType(){
 		List<Code> codes = codeMapper.getCodeByType("pic_type");
-		List<Picture> returnList = new ArrayList<>();
+		List<Picture> returnList = new ArrayList<Picture>();
 		Picture picture = new Picture();
 		for (Code code:codes){
 			picture = pictureMapper.getOneOfEveryType(code.getCodeValue());
