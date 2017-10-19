@@ -18,21 +18,12 @@
 	
 	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
-
+    
     $("#testButton").click(function(){
-    	var jsonData={
-    		    "picId":13,
-    		    "picName":"test",
-    		    "picType":105,
-    		     "year":2016,
-    		     "month":3,
-    		     "day":2,
-    		     "des":"xxx"
-    		};
         $.ajax({
-           type:"put",
-           url:"../back/picture",
-           data:JSON.stringify(jsonData),
+           type:"get",
+           url:"../public/getCodeByType",
+           data:"code_type="+"pic_type",
            contentType:"application/json;charser=utf-8",
            success:function(returnData){
               alert(returnData.code);

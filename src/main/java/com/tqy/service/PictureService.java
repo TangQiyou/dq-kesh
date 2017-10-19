@@ -1,8 +1,5 @@
 package com.tqy.service;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +15,7 @@ import com.tqy.bean.Code;
 import com.tqy.bean.Picture;
 import com.tqy.dao.CodeMapper;
 import com.tqy.dao.PictureMapper;
-import com.tqy.util.PathUtil;
+import com.tqy.util.PictureUtil;
 
 @Service
 public class PictureService {
@@ -41,53 +38,61 @@ public class PictureService {
 	
 	public Map<String, Integer> addOnlyPicture(MultipartFile file, Integer pic_type){
 		long startTime = System.currentTimeMillis();
+		int pic_id = -1;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("pic_id", pic_id);
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd HH:MM:ss");
 		System.out.println("开始时间："+format.format(new Date()));
-		int pic_id = -1;
+		boolean flag = PictureUtil.uploadPicture(file, pic_type);
+		if (!flag){
+			return map;
+		}
+		Picture picture = new Picture();
+		picture.setPicType(pic_type);
+		picture.setUrl("../img/"+pic_type+"/"+file.getOriginalFilename());
+		picture.setPicName(file.getOriginalFilename());
 		try {
-			OutputStream os = new FileOutputStream(PathUtil.getRealPath()+"/src/main/webapp/img/"+pic_type+"/"+file.getOriginalFilename());
-			InputStream is = file.getInputStream();
-			int temp;
-			while ((temp=is.read())!=(-1)){
-				os.write(temp);
-			}
-			os.flush();
-			os.close();
-			is.close();
-			Picture picture = new Picture();
-			picture.setPicType(pic_type);
-			picture.setUrl("../img/"+pic_type+"/"+file.getOriginalFilename());
-			picture.setPicName(file.getOriginalFilename());
-			try {
-				pictureMapper.addOnlyPicture(picture);
-				pic_id = picture.getPicId();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			pictureMapper.addOnlyPicture(picture);
+			pic_id = picture.getPicId();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("上传文件失败");
 		}
 		long endTime = System.currentTimeMillis();
 		long totalTime = endTime-startTime;
 		System.out.println("结束时间："+format.format(new Date()));
 		System.out.println("程序运行时间："+String.valueOf(endTime-startTime)+"ms");
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("pic_id", pic_id);
 		map.put("totalTime", Integer.valueOf(String.valueOf(totalTime)));
+		map.put("pic_id", pic_id);
 		return map;
 	}
 	
 	public boolean deletePicture(int p_id){
+		Picture picture = pictureMapper.getPicture(p_id);
+		boolean deleteOnTheDiskFlag = PictureUtil.deletePictureOnTheDisk(picture.getPicType(), picture.getUrl().substring(11));
+		if (!deleteOnTheDiskFlag){
+			return false;
+		}
 		int flag = pictureMapper.deletePicture(p_id);
 		return flag == 1 ? true : false; 
 	}
 	
 	public boolean updatePicture(Picture picture){
+		//查询修改前的图片属性，好做对比
 		Picture oldPicture = pictureMapper.getPicture(picture.getPicId());
+		boolean transFlag = false;
+		boolean deleteFlag = false;
+		//如果种类发生了变化，需要改变存的路径,然后将文件复制到新路径，最后删除原文件
 		if (oldPicture.getPicType() != picture.getPicType()){
-			picture.setUrl("../img/"+oldPicture.getPicName());
+			String realPicName = oldPicture.getUrl().substring(11);
+			transFlag = PictureUtil.transferPicture(oldPicture.getPicType(), picture.getPicType(), realPicName);
+			if (!transFlag) return false;
+			deleteFlag = PictureUtil.deletePictureOnTheDisk(oldPicture.getPicType(), realPicName);
+			if (!deleteFlag) return false;
+			picture.setUrl("../img/"+picture.getPicType()+"/"+realPicName);
+		} else {
+			picture.setUrl(oldPicture.getUrl());
 		}
+		//设置其他属性
 		Code code = codeMapper.getCodeByvalue(picture.getPicType());
 		String des = code.getCodeDesc();
 		String describtion = picture.getYear()+"年"+picture.getMonth()+"月"+picture.getDay()+des;

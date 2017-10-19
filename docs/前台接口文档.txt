@@ -1,0 +1,63 @@
+=====================Picture=====================
+des:根据ID查询一个图片的详细信息
+type:"get"
+url:"../web/getPictureById",
+data:"p_id="+p_id
+returnData:一个Msg类，code=1表示成功，code=2表示失败，图片信息存在于Msg中
+
+des:首页的显示方法
+type:"get"
+url:"../web/getOneOfEveryType"
+data:无
+returnData:每种类型返回一个图
+
+jsonData={
+	"picType":101,
+	"year":2017,
+	"month":10,
+	"day":16
+}
+des:根据图片的种类、年、月、日查询图片信息
+type:"post"
+url:"../web/getPictureByDateAndType"
+data:JSON.stringify(jsonData)
+returnData:一个包含符合指定查询条件图片的Msg
+
+jsonData={
+	"year":2017,
+	"month":10,
+	"day":15
+}
+des:根据年月日查询某一天的所有种类的图片
+type:"post"
+url:"../web/getPictureByDate"
+data:JSON.stringify(jsonData)
+returnData:一个包含某天图片List的Msg
+
+
+=====================Announcement=====================
+des:查询最新的5条公告信息显示在首页
+type:"get"
+url:"../web/announcements"
+data:无
+returnData:一个包含五条最新公告信息的Msg
+
+des:查询最新的10条公告信息显示在公告主页
+type:"get"
+url:"../web/announcements2"
+data:"pn="+pn(pn表示页数)
+returnData:一个包含10条最新公告信息的Msg
+
+des:根据公告ID查询详细信息
+type:"get"
+url:"../web/announcement"
+data:"a_id="+a_id
+returnData:一个包含一条公告信息的Msg
+
+
+=====================PictureType=====================
+des:查询图片的所有种类，在具体查询时写入select框中
+type:"get"
+url:"../public/getCodeByType"
+data:"code_type="+"pic_type"(这里暂时写死)
+returnData:包含了所有的图片种类信息的Msg
