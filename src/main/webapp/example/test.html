@@ -20,10 +20,14 @@
 	<script type="text/javascript">
     
     $("#testButton").click(function(){
+    	var jsonData={
+    			"adminAccount":"admin",
+    			"adminPwd":"123456"
+    	}
         $.ajax({
-           type:"get",
-           url:"../public/getCodeByType",
-           data:"code_type="+"pic_type",
+           type:"post",
+           url:"../back/login",
+           data:JSON.stringify(jsonData),
            contentType:"application/json;charser=utf-8",
            success:function(returnData){
               alert(returnData.code);

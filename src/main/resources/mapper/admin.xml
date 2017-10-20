@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tqy.dao.AdminMapper">
+    
+    <select id="adminLogin" resultType="com.tqy.bean.Admin">
+        select * from sys_admin where admin_account=#{adminAccount} and admin_pwd=#{adminPwd}
+    </select>
+    
+    <update id="setLoginTime" parameterType="com.tqy.bean.Admin">
+        update sys_admin set admin_last_time=#{adminLastTime} where admin_id=#{adminId}
+    </update>
+</mapper>

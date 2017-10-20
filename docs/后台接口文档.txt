@@ -83,8 +83,8 @@ returnData:一个包含添加结果的Msg
 
 des:删除一个公告
 type:"delete"
-url:"../back/announcement"
-data:"id="+id(仅仅是数字)
+url:"../back/announcement/"+ID
+data:无
 returnData:一个包含删除结果的Msg
 
 jsonData={
@@ -117,3 +117,14 @@ type:"get"
 url:"../public/getCodeByType"
 data:"code_type="+"pic_type"(这里暂时写死)
 returnData:包含了所有的图片种类信息的Msg
+
+=====================Admin=====================
+    	var jsonData={
+    			"adminAccount":"admin",
+    			"adminPwd":"123456"
+    	}
+des:管理员登录
+type:"POST"
+url:"../back/login"
+           data:JSON.stringify(jsonData),
+returnData:包含了登录管理员ID的Msg
