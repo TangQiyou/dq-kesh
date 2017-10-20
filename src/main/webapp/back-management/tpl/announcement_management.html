@@ -1,0 +1,76 @@
+<div ng-controller="AnnouncementManagementCtrl">
+    <div class="wrapper-md bg-light b-b">
+        <h1 class="m-n font-thin h3">公告管理</h1>
+    </div>
+    <div class="wrapper-md ng-scope">
+        <div id="toast-container" ng-class="config.position"
+             toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"
+             class="ng-scope toast-top-right"><!-- ngRepeat: toaster in toasters --></div>
+        <div class="panel panel-default">
+            <div class="row wrapper">
+                <div class="col-sm-10">
+                    <div>
+                        <button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-click="add()"><i
+                                class="fa fa-plus"></i>添加
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group col-sm-2" style="right: 1%">
+                    <input id="_keyword" type="text" class="form-control input-sm w-sm inline m-r" ng-model="keyword"/>
+                    <span class="input-group-btn">
+                            <button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-click="loadData()">搜索</button>
+                    </span>
+                </div>
+            </div>
+            <div>
+                <!-- 表格 -->
+                <table class="table table-striped b-t m-b-none">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div id='content'>
+                        <!-- ngRepeat: nav in items -->
+                        <tr ng-repeat="item in announcements">
+                            <td class="ng-binding">{{$index+1}}</td>
+                            <td class="ng-binding">{{item.annTitle}}</td>
+                            <td class="ng-binding">{{item.annTime}}</td>
+                            <td>
+                                <button class="btn btn-success m-b-xs btn-sm" ng-click="update(item)">
+                                    <i class="m-r-xs fa fa-pencil fa-fw"></i>修改
+                                </button>
+                                <button class="btn btn-danger m-b-xs btn-sm" ng-click="delete(item)">
+                                    <i class="m-r-xs fa fa-times fa-fw"></i>删除
+                                </button>
+                            </td>
+                        </tr>
+                    </div>
+                    </tbody>
+                </table>
+                <!-- 分页控件 -->
+                <div>
+                    <ul class="pager">
+                        <button class="btn m-b-xs w-xs btn-default btn-rounded" ng-disabled="currentPage <= 1"
+                                ng-click="Previous()">上一页
+                        </button>
+                        <li>
+                            &nbsp;<input style="border: none;width: 14px;" type="text" ng-blur="goToPage()"
+                                         ng-model="currentPage">&nbsp;/&nbsp;{{totalPage}}
+                        </li>
+                        <button class="btn m-b-xs w-xs btn-default btn-rounded" ng-disabled="currentPage >= totalPage"
+                                ng-click="Next()">下一页
+                        </button>
+                    </ul>
+                </div>
+                <!-- 分页控件 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+

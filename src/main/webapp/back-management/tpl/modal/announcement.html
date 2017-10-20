@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ title }}</h3>
+</div>
+<div>
+    <form name="myForm" novalidate>
+        <div class="modal-body">
+            <div class="form-group ">
+                <label>标题</label>
+                <input type="text" class="form-control" name="item_name" ng-model="announcement.annTitle" required>
+            </div>
+            <div class="form-group">
+                <label>内容</label>
+                <editor id="editor" config="announcement"></editor>
+            </div>
+            <div class="form-group">
+                <label>时间</label>
+                <div class="input-append date form_datetime form-control">
+                    <input size="16" type="text" ng-model="announcement.annTime" value="" readonly=""
+                           style="width: 100%;border: 0;" required=""
+                           class="ng-pristine ng-invalid ng-invalid-required ng-touched">
+                    <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+                <script type="text/javascript">
+                    $(".form_datetime").datetimepicker({
+                        format: "yyyy-mm-dd hh:ii:ss"
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()" ng-disabled='myForm.$invalid'>确定</button>
+            <button class="btn btn-default" ng-click="cancel()">取消</button>
+        </div>
+    </form>
+</div>
