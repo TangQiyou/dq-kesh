@@ -6,12 +6,12 @@ app.controller('SigninFormController', ['$scope', '$http',  function ($scope, $h
     	$scope.data = [];
     	$.ajax({
 			type:"post", 
-		 	url:"../loginAdmin",
+		 	url:"../back/login",
 			contentType:"application/json;charser=utf-8",
 			data:JSON.stringify($scope.user),
 			success:function(data){
 				$scope.data = angular.fromJson(data);
-				if($scope.data.success){
+				if($scope.data.code==1){
 					window.location="index.html";
 				}
 			} 

@@ -12,6 +12,8 @@ app.controller('AnnouncementManagementCtrl', ['$scope', '$modal','resource','toa
         }).then(function (result) {
             if (result.code==1) {
                 $scope.announcements = result.extend.pageInfo.list;
+                $scope.totalPage = result.extend.pageInfo.pages;
+
             } else {
                 toaster.pop('info', '提示','获取失败');
             }
@@ -133,7 +135,7 @@ app.controller('AnnouncementManagementCtrl', ['$scope', '$modal','resource','toa
         });
         modalInstance.result.then(function (result) {
             $scope.item = result;
-            resource.delete('../back/announcement/'+$scope.item.id).then(function (result) {
+            resource.delete('../back/announcement/'+$scope.item.annId).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '删除公告成功');
                     $scope.loadData();

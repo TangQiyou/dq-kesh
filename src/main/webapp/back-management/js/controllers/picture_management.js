@@ -4,7 +4,7 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
     $scope.pageSize = 10;
     $scope.pictures = {};
     $scope.types = {};
-    $scope.falg = true;
+    $scope.flag = true;
 
     $scope.loadType = function () {
         resource.get('../public/getCodeByType',{code_type:"pic_type"}).then(function (result) {
@@ -25,7 +25,8 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
         }).then(function (result) {
         if (result.code==1) {
             $scope.pictures = result.extend.pageInfo.list;
-            $scope.falg = false;
+            $scope.totalPage = result.extend.pageInfo.pages;
+            $scope.flag = false;
         } else {
             toaster.pop('info', '提示', '查找失败');
         }
@@ -39,7 +40,7 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
         } else {
             $scope.currentPage--;
         }
-        $scope.loadData();
+        $scope.loadData($scope.type);
     }
     //下一页
     $scope.Next = function () {
@@ -48,7 +49,7 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
         } else {
             $scope.currentPage++;
         }
-        $scope.loadData();
+        $scope.loadData($scope.type);
     };
     //页面跳转
     $scope.goToPage = function () {
@@ -62,9 +63,24 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
             $scope.currentPage = 1;
             toaster.pop('info', '提示', '请填写正确的页码');
         }
-        $scope.loadData();
+        $scope.loadData($scope.type);
 
     };
+    $scope.search = function (searchYear,searchMonth,searchDay,selectedType) {
+        resource.post('../back/getPictureByDateAndType', {
+            year:searchYear,
+            month:searchMonth,
+            day:searchDay,
+            picType:selectedType.codeValue
+        }).then(function (result) {
+            if (result.code==1) {
+                toaster.pop('info', '提示', '查询成功');
+                $scope.pictures = result.extend;
+            } else {
+                toaster.pop('info', '提示',  '添加公告失败');
+            }
+        });
+    }
     $scope.add = function () {
         $scope.picture = {};
         var modalInstance = $modal.open({
