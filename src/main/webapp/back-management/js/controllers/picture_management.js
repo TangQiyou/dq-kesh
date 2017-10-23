@@ -4,6 +4,7 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
     $scope.pageSize = 10;
     $scope.pictures = {};
     $scope.types = {};
+    $scope.type = {};
     $scope.flag = true;
 
     $scope.loadType = function () {
@@ -19,6 +20,9 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
 	   };
     $scope.loadType();
     $scope.loadData = function (type) {
+    	if ($scope.type != type){
+    		$scope.currentPage = 1;
+    	}
     	$scope.type = type;
         resource.post('../back/getPictureByType', {
         	picType:type.codeValue,
