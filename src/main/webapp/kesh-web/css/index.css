@@ -1,0 +1,201 @@
+
+
+#header,#content  {
+			height: auto;
+			overflow: hidden;
+			width: 100%;
+			}
+	.header-title {height: 60px;
+					width: 100%;
+					margin:0 auto;
+					line-height: 60px;
+					text-align: center;
+					font-size: 25px;
+					color: white;
+					background-color: black;}
+	.header-container {width: 100%;
+						margin:0 auto;}
+	.header-container .header-wrap{
+					width: 1250px;
+					height: 500px;
+					margin:0 auto;
+					background-size:cover;
+					background-repeat:no-repeat;
+				}
+	
+	.header-wrap .type-wrap,.data-time,.search-btn{
+			float: left;
+			margin-top: 200px;
+			margin-right: 0;}
+
+	.header-wrap .data-time input{
+			width: 400px;
+			height: 40px;
+			padding:0;
+			text-indent: 20px;
+			margin-left: 275px;
+			border-color: black white black black;}
+	.type-wrap select {
+			width: 125px;
+			height: 40px;
+			border-color: black;
+			border-width: 2px;}
+	.header-wrap .search-btn .search-data {
+			width: 100px;
+			height: 40px;
+			color: white;
+			border: none;
+			border-radius: 0;
+			background-color: black;
+			outline: none;}
+	.header-bottom {
+			height: 10px;
+			width: 100%;
+			background-color: black
+			}
+
+	/*图形精选样式*/
+
+	.data-display {
+			width: 1250px;
+			margin:0 auto;
+			height: 180px;
+		}
+	.data-display .img-wrap {
+			float: left;
+			height: 170px;
+			width: 235px;
+			overflow: hidden;
+			margin-right: 17px;
+			border-radius: 3px;
+	}
+	.data-display .img-wrap img{
+			height: 170px;
+			width: 240px;
+	}
+	
+	/*图形数据样式*/
+	.add-data-class {
+		padding: 0;
+	}
+	.content-wrap,.container{
+			width: 1250px;
+			margin:0 auto;
+			height: auto;
+			padding:0;
+			overflow: hidden;position: relative;
+	}
+	.data-wrap {
+			height: auto;
+			overflow: hidden;
+			width: auto;
+			float: left;
+			margin-left: 15px;
+			margin-top: 20px;
+			box-shadow: 0 0 5px #CCCCCC;
+			border-radius: 5px;
+		}
+	.data-wrap .img-wrap {
+			width: auto;
+			height: auto;
+			padding: 15px;
+			overflow: hidden;
+		}
+	.data-wrap .img-wrap img{
+			width:250px;
+			height: auto;
+		}
+	.introduction-wrap {
+			padding: 10px;
+			width: 250px;
+			overflow: hidden;
+		}
+	.introduction-wrap hr{
+			margin-top: 10px;
+			margin-bottom: 10px;
+	}
+	.introduction-wrap .type-name {
+			font-family: "SimSun";
+			font-size: 25px;
+			color: #E0E0E0;
+	}
+	.introduction-wrap .name {
+			font-size: 16px;
+			margin-bottom: 10px;
+	}
+	.introduction-wrap .create-time {
+			font-size: 12px;
+	}
+
+	/*公告样式*/
+
+	.announcement {
+			width: 320px;
+			height: auto;
+			position: fixed;
+			top: 100px;
+			color: white;
+			overflow: hidden;
+			
+	}
+	.hide-show,.pull{float: left;}
+	.hide-show {padding-bottom: 20px;
+				background-color: rgba(0,0,0,0.5);}
+	.announcement-wrap .announcement-titles {
+			width: 270px;
+			height: 350px;
+			overflow: hidden;
+			padding: 30px 20px 30px 10px;
+			font-size: 14px;
+			
+	}
+	.announcement-titles hr{margin-top: 5px;margin-bottom: 10px;}
+	.announcement-wrap .pull {	
+			height: 100px;
+			width: 30px;
+			font-size: 18px;
+			text-align: center;
+			cursor: pointer;
+			background-color: rgba(0,0,0,0.8);
+		}
+	.announcement-wrap .pull .glyphicon{
+			font-size: 23px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+	.hide-show .get-more {
+			width: 270px;
+			height: 30px;
+			line-height: 30px;
+			text-align: left;
+			padding-bottom: 20px;
+			background-color: rgba(0,0,0,0.8);
+			cursor: pointer;
+	}
+	.get-more .glyphicon{margin-left: 30px;}
+	
+
+.cutline {
+			height: 55px;
+			line-height: 55px;
+			text-align: center;
+			width: 1250px;
+			color: #ccc;
+			margin:0 auto;
+	}
+.footer {
+			width: 100%;
+			height: 80px;
+			background-color: black;
+			line-height: 80px;
+			color: white;
+			text-align: center;
+			font-size: 18px;
+	}
+@media screen and (max-width: 1251px) {
+
+		#header,#content,.announcement {width: 1250px;}
+		.footer {width: 1250px;}
+	}
+
+	

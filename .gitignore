@@ -13,3 +13,4 @@ target/classes/log4j.properties
 target/classes/mapper/Picture.xml
 target/classes/mapper/Announcement.xml
 target/classes/dbconfig.properties
+target/classes/mapper/admin.xml

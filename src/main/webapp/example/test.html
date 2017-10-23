@@ -20,15 +20,16 @@
 	<script type="text/javascript">
     
     $("#testButton").click(function(){
-    	var jsonData={
-    			"adminAccount":"admin",
-    			"adminPwd":"123456"
-    	}
+    	//var formData = new FormData($("#form2")[0]);
         $.ajax({
-           type:"post",
-           url:"../back/login",
-           data:JSON.stringify(jsonData),
+           type:"delete",
+           url:"../back/picture/"+35,
+           //data:formData,
            contentType:"application/json;charser=utf-8",
+           //async: false,
+          // cache: false,
+           //contentType: false,
+           //processData: false,
            success:function(returnData){
               alert(returnData.code);
            },

@@ -16,7 +16,7 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
                 toaster.pop('info', '提示', result.msg);
             }
         })
-      };
+	   };
     $scope.loadType();
     $scope.loadData = function (type) {
     	$scope.type = type;
