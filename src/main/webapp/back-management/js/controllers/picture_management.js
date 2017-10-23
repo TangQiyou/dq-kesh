@@ -82,7 +82,7 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
                 toaster.pop('info', '提示', '查询成功');
                 $scope.pictures = result.extend;
             } else {
-                toaster.pop('info', '提示',  '查询失败');
+                toaster.pop('info', '提示', '查询失败');
             }
         });
     }
@@ -164,12 +164,11 @@ app.controller('PictureCtrl', ['$scope', '$modalInstance', 'picture','type','app
     $scope.picture = picture;
     $scope.type = type;
     appService.codeValue = $scope.type.codeValue;
-<<<<<<< HEAD
-    $scope.picture.pic_type = $scope.type.codeValue;
-    $scope.picture.picName = "?";
-=======
+    
     $scope.picture.picType = $scope.type.codeValue;
->>>>>>> e0eb95191c2d51f9a63d0932bb80da7676574e8e
+    $scope.picture.picName = "?";
+    
+    $scope.picture.picType = $scope.type.codeValue;
     $scope.$on('picture', function (e, d) {
         $scope.picture.picId = d;
     }); 
@@ -213,7 +212,7 @@ app.controller('FileUploadCtrl', ['$scope', 'FileUploader', 'toaster', '$http', 
         }).success(function (result) {
             if (result.code==1) {
                 $scope.$emit('picture', result.extend.pic_id);
-                toaster.pop('success', '提示', '上传成功');
+                toaster.pop('success', '提示', '上传成功, 耗时  '+result.extend.totalTime);
             } else {
                 toaster.pop('error', '提示', '上传失败');
             }

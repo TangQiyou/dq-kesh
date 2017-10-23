@@ -51,7 +51,7 @@
                         <!-- ngRepeat: nav in items -->
                         <tr ng-repeat="item in pictures">
                             <td class="ng-binding">{{$index+1}}</td>
-                            <td><img ng-src="{{item.url}}" alt="" class="img-thumbnail thumb-xl"></td>
+                            <td><img ng-src="{{item.url}}" alt="" class="img-thumbnail thumb-xl" ng-click="display(item)"></td>
                             <td class="ng-binding">{{item.picName}}</td>
                             <td class="ng-binding">{{item.year}}</td>
                             <td class="ng-binding">{{item.month}}</td>

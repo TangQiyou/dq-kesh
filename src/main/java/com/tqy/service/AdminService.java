@@ -22,14 +22,10 @@ public class AdminService {
 		Map<String, Object> map = new HashMap<String,Object>();
 		if (admin2 == null){
 			map.put("id",-1);
+			map.put("lastTime", "");
 		} else{
 			map.put("id",admin2.getAdminId());
-		}
-		String time = admin2.getAdminLastTime();
-		if (time == null){
-			map.put("lastTime", null);
-		} else {
-			map.put("lastTime", time);
+			map.put("lastTime", admin2.getAdminLastTime());
 		}
 		return map;
 	}
