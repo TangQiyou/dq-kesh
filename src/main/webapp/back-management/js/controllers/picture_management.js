@@ -21,7 +21,8 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
     $scope.loadData = function (type) {
     	$scope.type = type;
         resource.post('../back/getPictureByType', {
-        	picType:type.codeValue
+        	picType:type.codeValue,
+        	pn:$scope.currentPage
         }).then(function (result) {
         if (result.code==1) {
             $scope.pictures = result.extend.pageInfo.list;
@@ -77,10 +78,26 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
                 toaster.pop('info', '提示', '查询成功');
                 $scope.pictures = result.extend;
             } else {
-                toaster.pop('info', '提示',  '添加公告失败');
+                toaster.pop('info', '提示',  '查询失败');
             }
         });
     }
+  //点击图片查看大图
+    $scope.display = function (item) {
+        $scope.item = item;
+        var modalInstance = $modal.open({
+            templateUrl: 'tpl/modal/display.html',
+            controller: 'DisplayModalCtrl',
+            backdrop: 'static',
+            size: 'lg',
+            resolve: {
+                data: function () {
+                    return item;
+                }
+            }
+        });
+    }
+    
     $scope.add = function () {
         $scope.picture = {};
         var modalInstance = $modal.open({
@@ -99,12 +116,12 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
         });
         modalInstance.result.then(function (result) {
             $scope.item = result;
-            resource.post('../back/announcement', $scope.item).then(function (result) {
+            resource.post('../back/picture', $scope.item).then(function (result) {
                 if (result.code==1) {
-                    toaster.pop('info', '提示', '添加公告成功');
-                    $scope.loadData();
+                    toaster.pop('info', '提示', '添加图片成功');
+                    $scope.loadData($scope.type);
                 } else {
-                    toaster.pop('info', '提示',  '添加公告失败');
+                    toaster.pop('info', '提示',  '添加图片失败');
                 }
             });
         });
@@ -130,7 +147,7 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
             resource.delete('../back/picture/'+$scope.item.picId).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '删除图片成功');
-                    $scope.loadData();
+                    $scope.loadData($scope.type);
                 } else {
                     toaster.pop('info', '提示',  '删除图片失败');
                 }
@@ -144,8 +161,8 @@ app.controller('PictureCtrl', ['$scope', '$modalInstance', 'picture','type','app
     $scope.type = type;
     appService.codeValue = $scope.type.codeValue;
     $scope.$on('picture', function (e, d) {
-        $scope.picture.url = d;
-    });
+        $scope.picture.pic_id = d;
+    }); 
 
     $scope.ok = function () {
         $modalInstance.close($scope.picture);
@@ -184,8 +201,8 @@ app.controller('FileUploadCtrl', ['$scope', 'FileUploader', 'toaster', '$http', 
             transformRequest: angular.identity,
             enctype:"multipart/form-data"
         }).success(function (result) {
-            if (result.code==0) {
-                $scope.$emit('picture', result.pic_id);
+            if (result.code==1) {
+                $scope.$emit('picture', result.extend.pic_id);
                 toaster.pop('success', '提示', '上传成功');
             } else {
                 toaster.pop('error', '提示', '上传失败');
@@ -207,5 +224,13 @@ app.controller('DeleteModalCtrl', ['$scope', '$modalInstance', 'data', 'content'
 app.service("appService", [function(){
     this.codeValue="";
   }]);
+//图片大图显示弹框
+app.controller('DisplayModalCtrl', ['$scope', '$modalInstance', 'data', function ($scope, $modalInstance, data) {
+    $scope.item = data;
+
+    $scope.ok = function () {
+        $modalInstance.close($scope.data);
+    };
+}]);
 
 
