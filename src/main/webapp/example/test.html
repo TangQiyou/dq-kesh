@@ -22,8 +22,8 @@
     $("#testButton").click(function(){
     	//var formData = new FormData($("#form2")[0]);
         $.ajax({
-           type:"delete",
-           url:"../back/picture/"+35,
+           type:"get",
+           url:"../web/getAllPicture",
            //data:formData,
            contentType:"application/json;charser=utf-8",
            //async: false,

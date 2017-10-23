@@ -13,9 +13,9 @@ public class ListenThread extends Thread {
 				e.printStackTrace();
 			}
 			
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String time = format.format(new Date());
-			System.out.println("当前时间："+time);
+			//SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			//String time = format.format(new Date());
+			//System.out.println("当前时间："+time);
 		}
 	}
 }

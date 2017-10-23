@@ -54,4 +54,8 @@
     <select id="getOneOfEveryType" resultType="com.tqy.bean.Picture">
         select * from sys_picture where pic_type = #{pic_type} limit 1
     </select>
+    
+    <select id="getAllPicture" resultType="com.tqy.bean.Picture">
+        select * from sys_picture
+    </select>
 </mapper>

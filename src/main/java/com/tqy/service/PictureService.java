@@ -139,4 +139,9 @@ public class PictureService {
 		}
 		return returnList;
 	}
+	
+	public List<Picture> getAllPicture(){
+		List<Picture> list = pictureMapper.getAllPicture();
+		return list;
+	}
 }
