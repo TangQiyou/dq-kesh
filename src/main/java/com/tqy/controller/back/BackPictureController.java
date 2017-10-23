@@ -43,7 +43,6 @@ public class BackPictureController {
 	@RequestMapping(value="/picture",method=RequestMethod.POST)
 	public Msg addPicture(@RequestBody Picture picture){
 		boolean flag = pictureService.addPicture(picture);
-		System.out.println(picture);
 		return flag ? Msg.success():Msg.fail();
 	}
 	
