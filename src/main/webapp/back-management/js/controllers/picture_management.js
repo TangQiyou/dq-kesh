@@ -164,8 +164,9 @@ app.controller('PictureCtrl', ['$scope', '$modalInstance', 'picture','type','app
     $scope.picture = picture;
     $scope.type = type;
     appService.codeValue = $scope.type.codeValue;
+    $scope.picture.picType = $scope.type.codeValue;
     $scope.$on('picture', function (e, d) {
-        $scope.picture.pic_id = d;
+        $scope.picture.picId = d;
     }); 
 
     $scope.ok = function () {
