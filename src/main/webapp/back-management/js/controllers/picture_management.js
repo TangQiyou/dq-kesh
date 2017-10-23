@@ -180,7 +180,7 @@ app.controller('FileUploadCtrl', ['$scope', 'FileUploader', 'toaster', '$http', 
             method: 'POST',
             url: "../back/addOnlyPicture",
             data: fd,
-            headers: {'Content-Type': false},
+            headers: {'Content-Type': undefined},
             transformRequest: angular.identity,
             enctype:"multipart/form-data"
         }).success(function (result) {
