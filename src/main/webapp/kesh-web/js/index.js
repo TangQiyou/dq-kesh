@@ -12,7 +12,7 @@ $(window).ready(function(){
 		    width:'toggle'
 		 },"slow");
 	});
-
+ 
 	  $(".content-wrap").mpmansory(
 	    {
 	      childrenClass: 'data-wrap', // default is a div
@@ -29,7 +29,7 @@ $(window).ready(function(){
   	// 调用函数
   	getAnnouncement();//获取公告
   	getDataType();//获取数据类型
-
+  	$(".content-wrap").append('<div class="notfindData">请选择需要查询的数据</div>');
   	$(".search-data").unbind('click');
   	$(".search-data").bind('click',function(){
 
@@ -48,9 +48,13 @@ $(window).ready(function(){
 
   			getDataByDate(); //根据日期获取数据
   		}
+  		if($(".data-type").find("option:selected").val() != "" && $("input[name='data-time']").val() == ""){
+
+  			getDataByType(); //根据类型获取数据
+  		}
   		if($(".data-type").find("option:selected").val() != "" && $("input[name='data-time']").val() != ""){
 
-  			getDataByDateAndType();
+  			getDataByDateAndType(); //根据日期和种类查询数据
   		}
   		
 
@@ -155,9 +159,66 @@ $(window).ready(function(){
 
 							console.log(list.picType);
 
-							var pic = '<div class="data-wrap"><div class="img-wrap"><img src="'+
-										list.url+'"/></div><div class="introduction-wrap"><div class="type-name">'+
-										list.picType+'</div><hr><div class="name">'+list.describe+
+							var pic = '<div class="data-wrap"><div class="img-wrap"><a href="details.html?picId='+
+										list.picId+'"><img src="'+
+										list.url+'"/></a></div><div class="introduction-wrap"><div class="type-name">'+
+										list.typeName+'</div><hr><div class="name">'+list.des+
+										'</div><div class="create-time">'+list.creatTime+'</div></div></div>';
+							
+							$(".content-wrap").append(pic);
+
+							// 此处获取数据类型接口
+							
+						})
+					}else{
+
+						$(".content-wrap").append('<div class="notfindData">未查询到该时间段的数据，请重新选择</div>');
+					
+					}
+					
+				}else{
+					
+					$(".content-wrap").append('<div class="notfindData">未查询到该时间段的数据，请重新选择</div>');
+					
+				}
+
+				
+			}
+			,error:function(jqXHR, textStatus, errorThrown){
+				 console.log(jqXHR);
+				 console.log(errorThrown);
+				 console.log(textStatus);
+			}
+
+		})
+	}
+
+	// 根据类型获取数据
+	function getDataByType(){
+
+		$.ajax({
+			type:"get",
+			url:"../web/getPictureByType",
+			data:"picType="+$(".data-type").find("option:selected").val(),
+			dataType:"json",
+			contentType:"application/json;charser=utf-8",
+			success:function(data){
+				var data = eval(data);
+				console.log(data);
+
+			
+				if(data.code == '1'){
+
+					if(data.extend.pictures.length !=0){
+
+						$.each(data.extend.pictures,function(i,list){
+
+							console.log(list.picId);
+
+							var pic = '<div class="data-wrap"><div class="img-wrap"><a href="details.html?picId='+
+										list.picId+'"><img src="'+
+										list.url+'"/></a></div><div class="introduction-wrap"><div class="type-name">'+
+										list.typeName+'</div><hr><div class="name">'+list.des+
 										'</div><div class="create-time">'+list.creatTime+'</div></div></div>';
 							
 							$(".content-wrap").append(pic);
@@ -210,12 +271,14 @@ $(window).ready(function(){
 			
 				if(data.code == '1'){
 
-					var pic = '<div class="data-wrap"><div class="img-wrap"><img src="'+
-								data.extend.returnPicture.url+'"/></div><div class="introduction-wrap"><div class="type-name">'+
-								data.extend.returnPicture.picType+'</div><hr><div class="name">'+data.extend.returnPicture.describe+
-								'</div><div class="create-time">'+data.extend.returnPicture.creatTime+'</div></div></div>';
 					
-					$(".content-wrap").append(pic);
+					//var pic = '<div class="data-wrap"><div class="img-wrap"><a href="details.html?picId='+
+					//			data.extend.returnPicture.picId+'"><img src="'+
+					//			data.extend.returnPicture.url+'"/></a></div><div class="introduction-wrap"><div class="type-name">'+
+					//			data.extend.returnPicture.typeName+'</div><hr><div class="name">'+data.extend.returnPicture.des+
+					//			'</div><div class="create-time">'+data.extend.returnPicture.creatTime+'</div></div></div>';
+					//$(".content-wrap").append(pic);
+					window.location.href = "details.html?picId="+data.extend.returnPicture.picId;
 
 					
 				}else{
@@ -233,27 +296,6 @@ $(window).ready(function(){
 
 		})
 	}
-
-	// 根据类型picType获取数据类型
-	// function getTypeByTypeId(pictype,callback()){
-
-	// 	$.ajax({
-
-	// 		type:"get",
-	// 		url:"../web/getPictureById",
-	// 		data:"id="+pictype,
-	// 		dataType:"json",
-	// 		success:function(data){
-
-	// 			var data = eval(data);
-	// 			console.log(data);
-	// 		},error:function(jqXHR, textStatus, errorThrown){
-	// 			 console.log(jqXHR);
-	// 			 console.log(errorThrown);
-	// 			 console.log(textStatus);
-	// 		}
-	// 	})
-	// }
 
 
 })
