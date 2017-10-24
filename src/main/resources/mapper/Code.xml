@@ -6,7 +6,11 @@
         select * from sys_code where code_value = #{code_value}
     </select>
     
-    <select id="getCodeByType" resultType="com.tqy.bean.Code">
+    <select id="getCodesByType" resultType="com.tqy.bean.Code">
         select * from sys_code where code_type=#{codeType}
+    </select>
+    
+    <select id="getNameByValue" resultType="java.lang.String">
+        select code_name from sys_code where code_value = #{value}
     </select>
 </mapper>

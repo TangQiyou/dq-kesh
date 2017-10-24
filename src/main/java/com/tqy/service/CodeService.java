@@ -14,8 +14,15 @@ public class CodeService {
 	@Autowired
 	CodeMapper codeMapper;
 	
-	public List<Code> getCodeByType(String code_type){
-		List<Code> list = codeMapper.getCodeByType(code_type);
+	public List<Code> getCodesByType(String code_type){
+		System.out.println("xxx"+code_type);
+		List<Code> list = codeMapper.getCodesByType(code_type);
+		System.out.println("xxxxxx"+list);
 		return list;
+	}
+	
+	public String getNameByValue(int value){
+		String name = codeMapper.getNameByValue(value);
+		return name;
 	}
 }

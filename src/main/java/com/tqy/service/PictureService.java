@@ -101,37 +101,52 @@ public class PictureService {
 		return flag == 1 ? true : false;
 	}
 	
+	
+	//==============================================================================
 	public Picture getPicture(int p_id){
 		Picture picture = pictureMapper.getPicture(p_id);
+		picture.setTypeName(codeMapper.getCodeByvalue(picture.getPicType()).getCodeDesc());
 		return picture;
 	}
 	
 	public List<Picture> getPictures(){
 		List<Picture> list = pictureMapper.getPictures();
+		for (Picture p : list){
+			p.setTypeName(codeMapper.getCodeByvalue(p.getPicType()).getCodeDesc());
+		}
 		return list;
 	}
 	
 	public Picture getPictureByDateAndType(Picture picture){
 		Picture returnPicture = pictureMapper.getPictureByDateAndType(picture);
+		String typeName = codeMapper.getCodeByvalue(picture.getPicType()).getCodeDesc();
+		returnPicture.setTypeName(typeName);
 		return returnPicture;
 	}
 	
 	public List<Picture> getPictureByDate(Picture picture){
-		List<Picture> returnList = pictureMapper.getPictureByDate(picture);
-		return returnList;
+		List<Picture> list = pictureMapper.getPictureByDate(picture);
+		for (Picture p : list){
+			p.setTypeName(codeMapper.getCodeByvalue(p.getPicType()).getCodeDesc());
+		}
+		return list;
 	}
 	
 	public List<Picture> getPictureByType(int pic_type){
-		List<Picture> returnList = pictureMapper.getPictureByType(pic_type);
-		return returnList;
+		List<Picture> list = pictureMapper.getPictureByType(pic_type);
+		for (Picture p : list){
+			p.setTypeName(codeMapper.getCodeByvalue(p.getPicType()).getCodeDesc());
+		}
+		return list;
 	}
 	
 	public List<Picture> getOneOfEveryType(){
-		List<Code> codes = codeMapper.getCodeByType("pic_type");
+		List<Code> codes = codeMapper.getCodesByType("pic_type");
 		List<Picture> returnList = new ArrayList<Picture>();
 		Picture picture = new Picture();
 		for (Code code:codes){
 			picture = pictureMapper.getOneOfEveryType(code.getCodeValue());
+			picture.setTypeName(codeMapper.getCodeByvalue(picture.getPicType()).getCodeDesc());
 			if(picture != null){
 				returnList.add(picture);
 			}
@@ -142,6 +157,9 @@ public class PictureService {
 	
 	public List<Picture> getAllPicture(){
 		List<Picture> list = pictureMapper.getAllPicture();
+		for (Picture p : list){
+			p.setTypeName(codeMapper.getCodeByvalue(p.getPicType()).getCodeDesc());
+		}
 		return list;
 	}
 }

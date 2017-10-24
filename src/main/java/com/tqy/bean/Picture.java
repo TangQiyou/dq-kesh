@@ -10,6 +10,14 @@ public class Picture {
 	private String creatTime;
 	private String url;
 	private String des;
+	private String typeName;
+	
+	public String getTypeName() {
+		return typeName;
+	}
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
 	public int getPicId() {
 		return picId;
 	}
@@ -68,10 +76,10 @@ public class Picture {
 	public String toString() {
 		return "Picture [picId=" + picId + ", picName=" + picName + ", picType=" + picType + ", year=" + year
 				+ ", month=" + month + ", day=" + day + ", creatTime=" + creatTime + ", url=" + url + ", des=" + des
-				+ "]";
+				+ ", typeName=" + typeName + "]";
 	}
 	public Picture(int picId, String picName, int picType, int year, int month, int day, String creatTime, String url,
-			String des) {
+			String des, String typeName) {
 		super();
 		this.picId = picId;
 		this.picName = picName;
@@ -82,10 +90,12 @@ public class Picture {
 		this.creatTime = creatTime;
 		this.url = url;
 		this.des = des;
+		this.typeName = typeName;
 	}
 	public Picture() {
 		super();
 	}
+
 	
 	
 }

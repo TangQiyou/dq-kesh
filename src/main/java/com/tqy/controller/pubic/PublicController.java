@@ -23,7 +23,15 @@ public class PublicController {
 	@ResponseBody
 	@RequestMapping(value="/getCodeByType",method=RequestMethod.GET)
 	public Msg getCodeByType(@RequestParam("code_type")String code_type){
-		List<Code> list = codeService.getCodeByType(code_type);
+		List<Code> list = codeService.getCodesByType(code_type);
 		return list != null ? Msg.success().add("list", list) : Msg.fail();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getCodeNameByValue",method=RequestMethod.GET)
+	public Msg getCodeNameByValue(@RequestParam("codeValue")Integer codeValue){
+		String codeName = codeService.getNameByValue(codeValue);
+		System.out.println(codeName);
+		return codeName != null ? Msg.success().add("codeName", codeName) : Msg.fail();
 	}
 }
