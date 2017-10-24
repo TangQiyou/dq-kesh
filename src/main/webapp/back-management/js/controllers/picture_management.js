@@ -88,8 +88,8 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
                     toaster.pop('info', '提示', '查询成功');
                     $scope.flag = true;
                     $scope.currentPage = 1;
-                    $scope.totalPage = result.extend.pages
-                    $scope.pictures = result.extend.list;
+                    $scope.pictures = result.extend.pageInfo.list;
+                    $scope.totalPage = result.extend.pageInfo.pages;
                 } else {
                     toaster.pop('info', '提示', '查询失败');
                 }
@@ -105,8 +105,8 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
                     toaster.pop('info', '提示', '查询成功');
                     $scope.flag = true;
                     $scope.currentPage = 1;
-                    $scope.totalPage = result.extend.pages
-                    $scope.pictures = result.extend;
+                    $scope.pictures = result.extend.pageInfo.list;
+                    $scope.totalPage = result.extend.pageInfo.pages;
                 } else {
                     toaster.pop('info', '提示', '查询失败');
                 }
