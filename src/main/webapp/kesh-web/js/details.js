@@ -26,17 +26,17 @@ $(window).ready(function(){
    getDataDetails($id);
 
    // 获取前一天图形
-   $(".preday").unbind('click');
-   $(".preday").bind('click',function(){
+   // $(".preday").unbind('click');
+   // $(".preday").bind('click',function(){
+   	$(".details-container").on("click",".preday",function(){
 
    		window.location.href = "details.html?picId="+($id-1);
-   });
+   	})
 
-   $(".nextday").unbind('click');
-   $(".nextday").bind('click',function(){
-
+	$(".details-container").on("click",".nextday",function(){
+   		
    		window.location.href = "details.html?picId="+($id*1+1);
-   });
+   	})
    function getDataDetails(id){
 	   $.ajax({
 
@@ -55,7 +55,13 @@ $(window).ready(function(){
 								data.extend.picture.url+'"/></div><div class="introduction-wrap"><div class="type-name">'+
 								data.extend.picture.typeName+'</div><hr><p class="tips"> 图形介绍：</p><div class="name">'+
 								data.extend.picture.des+'</div><p class="tips">制作时间：</p><div class="create-time">'+
-								data.extend.picture.creatTime+'</div></div></div>';
+								data.extend.picture.creatTime+'</div></div></div><div class="btns"><button class="btn btn-default preday">'+
+								'<span class="glyphicon glyphicon-hand-left"></span>前一天</button><button class="btn btn-default nextday">后一天'+
+								'<span class="glyphicon glyphicon-hand-right"></span></button></div>';
+					
+					
+					
+				
 
 					$(".details-container").append(detail);
 

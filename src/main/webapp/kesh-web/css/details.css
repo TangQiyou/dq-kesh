@@ -69,7 +69,8 @@
 
 	}
 	.data-wrap .img-wrap img{
-		width: 700px;
+		width: 600px;
+		height: auto;
 		padding: 15px;
 
 	}
@@ -79,7 +80,7 @@
 	}
 
 	.introduction-wrap {
-		width: 300px;
+		width: 400px;
 		height: 100%;
 	}
 
@@ -91,7 +92,7 @@
 			font-family: "SimSun";
 			font-size: 35px;
 			margin-top: 20px;
-			color: #E0E0E0;
+			<!--color: #E0E0E0;-->
 	}
 	.introduction-wrap .name {
 			font-size: 25px;
@@ -117,24 +118,23 @@
 
 	.btns {
 		width: 1250px;
-		height: 100px;
+		height: auto;
 		margin:0 auto;
-		margin-top: 20px;
 		margin-bottom: 30px;
 
 	}
 	.btns .btn {
-		height: 50px;
-		width: 200px;
+		height: 40px;
+		width: 150px;
 		font-size: 20px;
-		
+		margin-top: 30px;
 		
 	}
 	.btns .preday{
-		margin-left: 300px;
+		margin-left: 50px;
 	}
 	.btns .nextday{
-		margin-left: 150px;
+		margin-left: 50px;
 	}
 	.btns .btn .glyphicon {
 		font-size: 20px;
