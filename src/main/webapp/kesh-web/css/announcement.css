@@ -48,6 +48,9 @@
 		font-family: "SimSun";
 		font-weight: 700;
 	}
+	.announcement-container .all-annc a{font-family: "SimSun";
+										font-weight: 700;
+										color: black;}
 	.announcement-container .acc-list li a{color: black;}
 	.announcement-container .acc-list li a:active{color:red;}
 	.announcement-container .acc-list li a:hover{color:red;}

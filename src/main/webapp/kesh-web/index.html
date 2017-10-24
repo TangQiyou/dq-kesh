@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="jquery/jquery.datetimepicker.css">
+	<link rel="stylesheet" type="text/css" href="sweetalert/sweetalert.css">
 </head>
 <style type="text/css">
 	* {padding: 0;margin:0;font-family: "Microsoft Yahei";}
@@ -23,15 +24,15 @@
 		</div>
 		<div class="header-wrap">
 			<div class="data-time">
-				<input type="text" class="datetimepicker" id="datetimepicker" placeholder="请选择时间" />
+				<input type="text" name='data-time' class="datetimepicker" id="datetimepicker" placeholder="请选择时间" />
 			</div>
 			<div class="type-wrap">
 				<select class="data-type">
-					<option value="">类型</option>
+					<!-- <option value="">选择类型</option>
 					<option value="降水">降水</option>
 					<option value="降水">降水</option>
 					<option value="降水">降水</option>
-					<option value="降水">降水</option>
+					<option value="降水">降水</option> -->
 				</select>
 			</div>
 			<div class="search-btn">
@@ -68,7 +69,10 @@
 		</div>
 		<div class="container">
 		<div class="content-wrap ">
-			<div class="data-wrap">
+			<!-- <div class="notfindData">
+				未查询到该时间段的数据，请重新选择
+			</div> -->
+			<!-- <div class="data-wrap">
 				<div class="img-wrap">
 					<img src="demo/30.jpg"/>
 				</div>
@@ -247,7 +251,7 @@
 						2017-10-22
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		</div>
 	</div>
@@ -257,15 +261,15 @@
 	<div class="announcement-wrap">
 		<div class="hide-show">
 			<div class="announcement-titles">
-				<p>北京首条中低速磁悬浮列车今年底开通试运营</p><hr>
-				<p>北京首条中低速磁悬浮列车今年底开通试运营</p><hr>
-				<p>北京首条中低速磁悬浮列车今年底开通试运营</p><hr>
-				<p>北京首条中低速磁悬浮列车今年底开通试运营</p><hr>
-				<p>北京首条中低速磁悬浮列车今年底开通试运营</p><hr>
+				<!-- <p><a href='announcement.html'>北京首条中低速磁悬浮列车今年底开通试运营</a></p><hr>
+				<p><a href='announcement.html'>北京首条中低速磁悬浮列车今年底开通试运营</a></p><hr>
+				<p><a href='announcement.html'>北京首条中低速磁悬浮列车今年底开通试运营</a></p><hr>
+				<p><a href='announcement.html'>北京首条中低速磁悬浮列车今年底开通试运营</a></p><hr>
+				<p><a href='announcement.html'>北京首条中低速磁悬浮列车今年底开通试运营</a></p><hr> -->
 			</div>
-			<div class="get-more">
-				更多<span class="glyphicon glyphicon-chevron-right"></span>
-			</div>
+			<!-- <div class="get-more">
+				<a href="#">更多<span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div> -->
 		</div>
 		<div class="pull">
 			<span class="glyphicon glyphicon-hand-left"></span>
@@ -281,6 +285,7 @@
 </html>
 <script type="text/javascript" src="jquery/jquery.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript" src="jquery/jquery.waterfall.js"></script>
 <script type="text/javascript" src="jquery/mp.mansory.js"></script>
 <script type="text/javascript" src="jquery/jquery.datetimepicker.js"></script>

@@ -1,4 +1,6 @@
-
+	.announcement-titles p a{color: white;text-decoration: none;}
+	.announcement-titles p a:active{color:red;}
+	.announcement-titles p a:hover{color:red;}
 
 #header,#content  {
 			height: auto;
@@ -78,12 +80,22 @@
 	.add-data-class {
 		padding: 0;
 	}
+	
 	.content-wrap,.container{
 			width: 1250px;
 			margin:0 auto;
 			height: auto;
 			padding:0;
+			padding-bottom: 30px;
+			min-height: 200px;
 			overflow: hidden;position: relative;
+	}
+	.notfindData {
+			height: 100px;
+			line-height: 100px;
+			width: 100%;
+			text-align: center;
+			font-size: 20px;
 	}
 	.data-wrap {
 			height: auto;
@@ -169,9 +181,12 @@
 			line-height: 30px;
 			text-align: left;
 			padding-bottom: 20px;
+			text-indent: 15px;
 			background-color: rgba(0,0,0,0.8);
 			cursor: pointer;
 	}
+	.hide-show .get-more a{color: white;text-decoration: none}
+	.hide-show .get-more a:hover{color:blue;}
 	.get-more .glyphicon{margin-left: 30px;}
 	
 
@@ -191,6 +206,7 @@
 			color: white;
 			text-align: center;
 			font-size: 18px;
+			
 	}
 @media screen and (max-width: 1251px) {
 

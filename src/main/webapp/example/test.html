@@ -23,8 +23,8 @@
     	//var formData = new FormData($("#form2")[0]);
         $.ajax({
            type:"get",
-           url:"../web/getAllPicture",
-           //data:formData,
+           url:"../web/getPictureByType",
+           data:"picType="+101,
            contentType:"application/json;charser=utf-8",
            //async: false,
           // cache: false,

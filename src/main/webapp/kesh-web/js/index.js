@@ -2,7 +2,7 @@ $(window).ready(function(){
 	$.datetimepicker.setLocale('ch');
 	$('#datetimepicker').datetimepicker({
 		timepicker:false,  
-	　　autoclose:true ,//选择日期后自动关闭
+		autoclose:true ,//选择日期后自动关闭
 		format:"Y-m-d",      //格式化日期
 		maxDate:new Date(),
 		todayBtn: true 
@@ -12,33 +12,6 @@ $(window).ready(function(){
 		    width:'toggle'
 		 },"slow");
 	});
-
-	// $(".content-wrap").waterfall({
-	//     itemClass: ".data-wrap",
-	//     minColCount: 2,
-	//     spacingHeight: 10,
-	//     resizeable: true,
-				
-				
-	//     ajaxCallback: function(success, end) {
-	//         var data = {"data": [
-	//             { "src": "3.jpg" }, { "src": "4.jpg" }, { "src": "2.jpg" }, { "src": "5.jpg" }, { "src": "1.jpg" }, { "src": "6.jpg" }
-	//         ]};
-	//         var str = "";
-	//         var templ = '<div class="data-wrap"><div class="img-wrap"><img src="demo图片/{{src}}"/></div>'+
-	//         			'<div class="introduction-wrap"><div class="type-name">降水</div><hr>'+
-	// 					'<div class="name">成都信息工程大学降水量数据图</div><div class="create-time">'+
-	// 					'2017-10-22</div></div></div>';
-
-	//         for(var i = 0; i < data.data.length; i++) {
-	//             str += templ.replace("{{src}}", data.data[i].src);
-	//             console.log(i);
-	//         }
-	//         $(str).appendTo($(".content-wrap"));
-	//         success();
-	//         end();
-	//     }
-	// });
 
 	  $(".content-wrap").mpmansory(
 	    {
@@ -52,7 +25,235 @@ $(window).ready(function(){
 	      },
 	     
 	  });
-
 	  
+  	// 调用函数
+  	getAnnouncement();//获取公告
+  	getDataType();//获取数据类型
+
+  	$(".search-data").unbind('click');
+  	$(".search-data").bind('click',function(){
+
+  		$(".content-wrap").empty();
+  		if($("input[name='data-time']").val() == "" && $(".data-type").find("option:selected").val() == ""){
+
+  			swal({
+					title:"请选择需要查询的数据",
+					type:"warning",
+					showConfirmButton: true,
+				});
+
+  			return;
+  		}
+  		if($(".data-type").find("option:selected").val() == "" && $("input[name='data-time']").val() != ""){
+
+  			getDataByDate(); //根据日期获取数据
+  		}
+  		if($(".data-type").find("option:selected").val() != "" && $("input[name='data-time']").val() != ""){
+
+  			getDataByDateAndType();
+  		}
+  		
+
+  	})
+
+
+  	// 获取数据类型
+  	function getDataType(){
+  		$(".data-type").append('<option value="">选择类型</option>');
+  		$.ajax({
+  			type:"get",
+			url:"../public/getCodeByType",
+			data:"code_type="+"pic_type",
+			datatype:"json",
+			success:function(data){
+				var data = eval(data);
+				console.log(data);
+				if(data.code == '1'){
+
+					$.each(data.extend.list,function(i,type){
+
+						var type = '<option value="'+type.codeValue+'">'+type.codeName+'</option>';
+						
+						$(".data-type").append(type);
+
+					});
+
+				}
+
+			},error:function(jqXHR, textStatus, errorThrown){
+				 console.log(jqXHR);
+				 console.log(errorThrown);
+				 console.log(textStatus);
+			}
+  		})
+  	}
+
+
+  	// 获取首页公告
+  	function getAnnouncement(){
+	  $.ajax({
+			type:"get",
+			url:"../web/announcements",
+			datatype: "json",
+			success:function(data){
+				var data = eval(data);
+				// console.log(data.extend.pageInfo.list);
+
+				if(data.extend.pageInfo.list.length == 0){
+
+					$(".announcement-titles").append("<p>暂无公告</p><hr>");
+					
+				}else{
+					$.each(data.extend.pageInfo.list,function(i,ann){
+
+						if(i == 5){
+
+							return false;
+						}
+						var list = "<p><a href='announcement.html?annId="+ann.annId
+									+"'>"+ann.annTitle+"</a></p><hr>";
+			 			$(".announcement-titles").append(list);
+						
+					});
+					$(".announcement-titles").after('<div class="get-more"><a href="announcement.html?annId=more">更多<span class="glyphicon glyphicon-chevron-right"></span></a></li>');
+						
+				}
+			}
+			,error:function(jqXHR, textStatus, errorThrown){
+				 console.log(jqXHR);
+				 console.log(errorThrown);
+				 console.log(textStatus);
+			}
+
+		})
+	}
+
+	// 根据时间获取数据
+	function getDataByDate(){
+
+		 var jsonData={
+				"year":$("input[name='data-time']").val().substr(0,4),
+				"month":$("input[name='data-time']").val().substr(5,2),
+				"day":$("input[name='data-time']").val().substr(8,2)
+			}
+		$.ajax({
+			type:"post",
+			url:"../web/getPictureByDate",
+			data:JSON.stringify(jsonData),
+			dataType:"json",
+			contentType:"application/json;charser=utf-8",
+			success:function(data){
+				var data = eval(data);
+				console.log(data);
+
+			
+				if(data.code == '1'){
+
+					if(data.extend.list.length !=0){
+
+						$.each(data.extend.list,function(i,list){
+
+							console.log(list.picType);
+
+							var pic = '<div class="data-wrap"><div class="img-wrap"><img src="'+
+										list.url+'"/></div><div class="introduction-wrap"><div class="type-name">'+
+										list.picType+'</div><hr><div class="name">'+list.describe+
+										'</div><div class="create-time">'+list.creatTime+'</div></div></div>';
+							
+							$(".content-wrap").append(pic);
+
+							// 此处获取数据类型接口
+							
+						})
+					}else{
+
+						$(".content-wrap").append('<div class="notfindData">未查询到该时间段的数据，请重新选择</div>');
+					
+					}
+					
+				}else{
+					
+					$(".content-wrap").append('<div class="notfindData">未查询到该时间段的数据，请重新选择</div>');
+					
+				}
+
+				
+			}
+			,error:function(jqXHR, textStatus, errorThrown){
+				 console.log(jqXHR);
+				 console.log(errorThrown);
+				 console.log(textStatus);
+			}
+
+		})
+	}
+
+	// 根据时间和类型获取数据
+	function getDataByDateAndType(){
+
+		 var jsonData={
+				"year":$("input[name='data-time']").val().substr(0,4),
+				"month":$("input[name='data-time']").val().substr(5,2),
+				"day":$("input[name='data-time']").val().substr(8,2),
+				"picType":$(".data-type").find("option:selected").val(),
+			}
+		$.ajax({
+			type:"post",
+			url:"../web/getPictureByDateAndType",
+			data:JSON.stringify(jsonData),
+			dataType:"json",
+			contentType:"application/json;charser=utf-8",
+			success:function(data){
+				var data = eval(data);
+				console.log(data);
+
+			
+				if(data.code == '1'){
+
+					var pic = '<div class="data-wrap"><div class="img-wrap"><img src="'+
+								data.extend.returnPicture.url+'"/></div><div class="introduction-wrap"><div class="type-name">'+
+								data.extend.returnPicture.picType+'</div><hr><div class="name">'+data.extend.returnPicture.describe+
+								'</div><div class="create-time">'+data.extend.returnPicture.creatTime+'</div></div></div>';
+					
+					$(".content-wrap").append(pic);
+
+					
+				}else{
+					
+					$(".content-wrap").append('<div class="notfindData">未查询到该时间段的数据，请重新选择</div>');
+				}
+
+				
+			}
+			,error:function(jqXHR, textStatus, errorThrown){
+				 console.log(jqXHR);
+				 console.log(errorThrown);
+				 console.log(textStatus);
+			}
+
+		})
+	}
+
+	// 根据类型picType获取数据类型
+	// function getTypeByTypeId(pictype,callback()){
+
+	// 	$.ajax({
+
+	// 		type:"get",
+	// 		url:"../web/getPictureById",
+	// 		data:"id="+pictype,
+	// 		dataType:"json",
+	// 		success:function(data){
+
+	// 			var data = eval(data);
+	// 			console.log(data);
+	// 		},error:function(jqXHR, textStatus, errorThrown){
+	// 			 console.log(jqXHR);
+	// 			 console.log(errorThrown);
+	// 			 console.log(textStatus);
+	// 		}
+	// 	})
+	// }
+
 
 })

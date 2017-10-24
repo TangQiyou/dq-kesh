@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
@@ -25,7 +26,7 @@ public class WebPictureController {
 	
 	@ResponseBody
 	@RequestMapping(value="/getPictureById",method=RequestMethod.GET)
-	public Msg getPictureById(@PathVariable("p_id")Integer p_id){
+	public Msg getPictureById(@RequestParam("p_id")Integer p_id){
 		Picture picture = pictureService.getPicture(p_id);
 		return picture != null ? Msg.success().add("picture", picture) : Msg.fail();
 	}
@@ -66,5 +67,12 @@ public class WebPictureController {
 	public Msg getAllPicture(){
 		List<Picture> pictures = pictureService.getAllPicture();
 		return pictures != null ? Msg.success().add("pictures", pictures) : Msg.fail();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getPictureByType", method=RequestMethod.GET)
+	public Msg getPictureByType (@RequestParam("picType") Integer picType){
+		List<Picture> pictures = pictureService.getPictureByType(picType);
+		return pictures != null? Msg.success().add("pictures", pictures) :Msg.fail();
 	}
 }

@@ -26,4 +26,5 @@ public interface PictureMapper {
 	public Picture getOneOfEveryType(int pic_type);
 	
 	public List<Picture> getAllPicture();
+	
 }
