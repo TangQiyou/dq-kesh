@@ -15,9 +15,7 @@ public class CodeService {
 	CodeMapper codeMapper;
 	
 	public List<Code> getCodesByType(String code_type){
-		System.out.println("xxx"+code_type);
 		List<Code> list = codeMapper.getCodesByType(code_type);
-		System.out.println("xxxxxx"+list);
 		return list;
 	}
 	

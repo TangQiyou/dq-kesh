@@ -1,5 +1,6 @@
 package com.tqy.controller.back;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Map;
@@ -85,9 +86,22 @@ public class BackPictureController {
 	@ResponseBody
 	@RequestMapping(value="/getPictureByDateAndType",method=RequestMethod.POST)
 	public Msg getPictureByDateAndType(@RequestBody Picture picture){
+		PageHelper.startPage(1,5);
 		Picture returnPicture = pictureService.getPictureByDateAndType(picture);
-		return returnPicture != null ? Msg.success().add("picture", returnPicture) : Msg.fail();
+		List<Picture> list = new ArrayList<>();
+		list.add(returnPicture);
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		PageInfo pageInfo = new PageInfo(list, 5);
+		return pageInfo != null ? Msg.success().add("pageInfo", pageInfo) : Msg.fail();
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value="/getPictureByDate",method=RequestMethod.POST)
+	public Msg getPictureByDate(@RequestBody Picture picture){
+		PageHelper.startPage(1,10);
+		List<Picture> list = pictureService.getPictureByDate(picture);
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		PageInfo pageInfo = new PageInfo(list, 5);
+		return pageInfo != null ? Msg.success().add("pageInfo", pageInfo) : Msg.fail();
+	}
 }
