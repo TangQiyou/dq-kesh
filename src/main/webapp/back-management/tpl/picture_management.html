@@ -14,8 +14,11 @@
                             ng-options="type.codeName for type in types">
                         <option value="" class="">——请选择图片种类——</option>
                     </select>
-                    <button class="btn btn-sm btn-primary btn-addon" ng-disabled="flag" ng-click="add()"><i
+                    <button class="btn btn-sm btn-primary btn-addon" ng-click="add()"><i
                             class="fa fa-plus"></i>增加
+                    </button>
+                    <button class="btn btn-sm btn-primary btn-addon" ng-show="flag" ng-click="loadData(selectedType)"><i
+                            class="fa fa-reply"></i>返回
                     </button>
                 </div>
                 <div class="col-sm-6">

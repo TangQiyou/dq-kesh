@@ -5,13 +5,16 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
     $scope.pictures = {};
     $scope.types = {};
     $scope.type = {};
-    $scope.flag = true;
+    $scope.flag = false;
 
     $scope.loadType = function () {
         resource.get('../public/getCodeByType',{code_type:"pic_type"}).then(function (result) {
             if (result.code) {
                 $scope.types = {};
                 $scope.types = result.extend.list;
+                $scope.selectedType = $scope.types[0];
+                $scope.type = $scope.types[0];
+                $scope.loadData($scope.type);
             } else {
                 $scope.types = [];
                 toaster.pop('info', '提示', result.msg);
@@ -20,6 +23,10 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
 	   };
     $scope.loadType();
     $scope.loadData = function (type) {
+        $scope.flag = false;
+        $scope.searchYear = "";
+        $scope.searchMonth = "";
+        $scope.searchDay = "";
     	if ($scope.type != type){
     		$scope.currentPage = 1;
     	}
@@ -31,7 +38,6 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
         if (result.code==1) {
             $scope.pictures = result.extend.pageInfo.list;
             $scope.totalPage = result.extend.pageInfo.pages;
-            $scope.flag = false;
         } else {
             toaster.pop('info', '提示', '查找失败');
         }
@@ -72,19 +78,40 @@ app.controller('PictureManagementCtrl', ['$scope', '$modal','resource','toaster'
 
     };
     $scope.search = function (searchYear,searchMonth,searchDay,selectedType) {
-        resource.post('../back/getPictureByDateAndType', {
-            year:searchYear,
-            month:searchMonth,
-            day:searchDay,
-            picType:selectedType.codeValue
-        }).then(function (result) {
-            if (result.code==1) {
-                toaster.pop('info', '提示', '查询成功');
-                $scope.pictures = result.extend;
-            } else {
-                toaster.pop('info', '提示', '查询失败');
-            }
-        });
+        if (selectedType == null){
+            resource.post('../back/getPictureByDate', {
+                year:searchYear,
+                month:searchMonth,
+                day:searchDay
+            }).then(function (result) {
+                if (result.code==1) {
+                    toaster.pop('info', '提示', '查询成功');
+                    $scope.flag = true;
+                    $scope.currentPage = 1;
+                    $scope.totalPage = result.extend.pages
+                    $scope.pictures = result.extend.list;
+                } else {
+                    toaster.pop('info', '提示', '查询失败');
+                }
+            });
+        }else{
+            resource.post('../back/getPictureByDateAndType', {
+                year:searchYear,
+                month:searchMonth,
+                day:searchDay,
+                picType:selectedType.codeValue
+            }).then(function (result) {
+                if (result.code==1) {
+                    toaster.pop('info', '提示', '查询成功');
+                    $scope.flag = true;
+                    $scope.currentPage = 1;
+                    $scope.totalPage = result.extend.pages
+                    $scope.pictures = result.extend;
+                } else {
+                    toaster.pop('info', '提示', '查询失败');
+                }
+            });
+        }
     }
   //点击图片查看大图
     $scope.display = function (item) {
