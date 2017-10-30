@@ -9,11 +9,11 @@ public interface PictureMapper {
 	
 	public int addOnlyPicture(Picture picture);
 	
-	public int deletePicture(int p_id);
+	public int deletePicture(int picId);
 	
 	public int updatePicture(Picture picture);
 	
-	public Picture getPicture(int p_id);
+	public Picture getPicture(int picId);
 	
 	public Picture getPictureByDateAndType(Picture picture);
 	
@@ -21,10 +21,8 @@ public interface PictureMapper {
 	
 	public List<Picture> getPictureByDate(Picture picture);
 	
-	public List<Picture> getPictureByType(int pic_type);
+	public List<Picture> getPictureByType(int picType);
 	
-	public Picture getOneOfEveryType(int pic_type);
-	
-	public List<Picture> getAllPicture();
+	public Picture getOneOfEveryType(int picType);
 	
 }

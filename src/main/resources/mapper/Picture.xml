@@ -2,8 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tqy.dao.PictureMapper">
     
+    <sql id="picDetails">
+        picId,picName,picType,year,month,day,creatTime,url,des,codeName as typeName
+    </sql>
+    
     <insert id="addOnlyPicture" useGeneratedKeys="true" keyProperty="picId" parameterType="com.tqy.bean.Picture">
-        insert into sys_picture (pic_name,pic_type,url) values (#{picName},#{picType},#{url})
+        insert into sys_picture (picName,picType,url) values (#{picName},#{picType},#{url})
     </insert>
     
     <update id="addPicture" parameterType="com.tqy.bean.Picture">
@@ -12,50 +16,62 @@
         month=#{month},
         des=#{des},
         day=#{day} 
-        where pic_id=#{picId}
+        where picId=#{picId}
     </update>
     
     <delete id="deletePicture">
-        delete from sys_picture where pic_id=#{p_id}
+        delete from sys_picture where picId=#{picId}
     </delete>
 
     <update id="updatePicture" parameterType="com.tqy.bean.Picture">
         update sys_picture set 
-        pic_name=#{picName},
-        pic_type=#{picType},
+        picName=#{picName},
+        picType=#{picType},
         year=#{year},
         month=#{month},
         day=#{day},
         url=#{url},
         des=#{des}
-        where pic_id=#{picId}
+        where picId=#{picId}
     </update>
     
     <select id="getPicture" parameterType="Integer" resultType="com.tqy.bean.Picture">
-        select * from sys_picture where pic_id=#{p_id} 
+        select 
+        <include refid="picDetails"></include>
+         from sys_picture left join sys_code on sys_picture.picType = sys_code.codeValue where picId=#{picId}
     </select>
     
     <select id="getPictures" resultType="com.tqy.bean.Picture">
-        select * from sys_picture
+        select 
+        <include refid="picDetails"></include> 
+        from sys_picture left join sys_code on sys_picture.picType = sys_code.codeValue 
     </select>
     
     <select id="getPictureByDateAndType" parameterType="com.tqy.bean.Picture" resultType="com.tqy.bean.Picture">
-        select * from sys_picture where pic_type=#{picType} and year=#{year} and month=#{month} and day=#{day}
+        select 
+        <include refid="picDetails"></include>
+        from sys_picture left join sys_code on sys_picture.picType = sys_code.codeValue 
+        where picType=#{picType} and year=#{year} and month=#{month} and day=#{day}
     </select>
     
     <select id="getPictureByDate" parameterType="com.tqy.bean.Picture" resultType="com.tqy.bean.Picture">
-        select * from sys_picture where year=#{year} and month=#{month} and day=#{day}
+        select 
+        <include refid="picDetails"></include>
+        from sys_picture left join sys_code on sys_picture.picType = sys_code.codeValue  
+        where year=#{year} and month=#{month} and day=#{day}
     </select>
     
     <select id="getPictureByType" resultType="com.tqy.bean.Picture">
-        select * from sys_picture where pic_type = #{pic_type} order by pic_id DESC
+        select 
+        <include refid="picDetails"></include>
+        from sys_picture left join sys_code on sys_picture.picType = sys_code.codeValue   
+        where picType = #{picType} order by picId DESC
     </select>
     
     <select id="getOneOfEveryType" resultType="com.tqy.bean.Picture">
-        select * from sys_picture where pic_type = #{pic_type} limit 1
-    </select>
-    
-    <select id="getAllPicture" resultType="com.tqy.bean.Picture">
-        select * from sys_picture
+        select 
+        <include refid="picDetails"></include>
+        from sys_picture left join sys_code on sys_picture.picType = sys_code.codeValue
+        where picType = #{picType} limit 1
     </select>
 </mapper>

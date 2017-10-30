@@ -27,7 +27,7 @@ public class PictureService {
 	CodeMapper codeMapper;
 	
 	public boolean addPicture(Picture picture){
-		Code code = codeMapper.getCodeByvalue(picture.getPicType());
+		Code code = codeMapper.getCodeByValue(picture.getPicType());
 		String des = code.getCodeDesc();
 		String describe = picture.getYear()+"年"+picture.getMonth()+"月"+picture.getDay()+"日"+des;
 		picture.setDes(describe.toString());
@@ -36,20 +36,20 @@ public class PictureService {
 		return flag == 1 ? true : false; 
 	}
 	
-	public Map<String, Integer> addOnlyPicture(MultipartFile file, Integer pic_type){
+	public Map<String, Integer> addOnlyPicture(MultipartFile file, Integer picType){
 		long startTime = System.currentTimeMillis();
 		int pic_id = -1;
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("pic_id", pic_id);
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd HH:MM:ss");
 		System.out.println("开始时间："+format.format(new Date()));
-		boolean flag = PictureUtil.uploadPicture(file, pic_type);
+		boolean flag = PictureUtil.uploadPicture(file, picType);
 		if (!flag){
 			return map;
 		}
 		Picture picture = new Picture();
-		picture.setPicType(pic_type);
-		picture.setUrl("../img/"+pic_type+"/"+file.getOriginalFilename());
+		picture.setPicType(picType);
+		picture.setUrl("../img/"+picType+"/"+file.getOriginalFilename());
 		picture.setPicName(file.getOriginalFilename());
 		try {
 			pictureMapper.addOnlyPicture(picture);
@@ -62,17 +62,17 @@ public class PictureService {
 		System.out.println("结束时间："+format.format(new Date()));
 		System.out.println("程序运行时间："+String.valueOf(endTime-startTime)+"ms");
 		map.put("totalTime", Integer.valueOf(String.valueOf(totalTime)));
-		map.put("pic_id", pic_id);
+		map.put("picId", pic_id);
 		return map;
 	}
 	
-	public boolean deletePicture(int p_id){
-		Picture picture = pictureMapper.getPicture(p_id);
+	public boolean deletePicture(int id){
+		Picture picture = pictureMapper.getPicture(id);
 		boolean deleteOnTheDiskFlag = PictureUtil.deletePictureOnTheDisk(picture.getPicType(), picture.getUrl().substring(11));
 		if (!deleteOnTheDiskFlag){
 			return false;
 		}
-		int flag = pictureMapper.deletePicture(p_id);
+		int flag = pictureMapper.deletePicture(id);
 		return flag == 1 ? true : false; 
 	}
 	
@@ -93,7 +93,7 @@ public class PictureService {
 			picture.setUrl(oldPicture.getUrl());
 		}
 		//设置其他属性
-		Code code = codeMapper.getCodeByvalue(picture.getPicType());
+		Code code = codeMapper.getCodeByValue(picture.getPicType());
 		String des = code.getCodeDesc();
 		String describtion = picture.getYear()+"年"+picture.getMonth()+"月"+picture.getDay()+des;
 		picture.setDes(describtion);
@@ -103,50 +103,37 @@ public class PictureService {
 	
 	
 	//==============================================================================
-	public Picture getPicture(int p_id){
-		Picture picture = pictureMapper.getPicture(p_id);
-		picture.setTypeName(codeMapper.getCodeByvalue(picture.getPicType()).getCodeDesc());
+	public Picture getPicture(int id){
+		Picture picture = pictureMapper.getPicture(id);
 		return picture;
 	}
 	
 	public List<Picture> getPictures(){
 		List<Picture> list = pictureMapper.getPictures();
-		for (Picture p : list){
-			p.setTypeName(codeMapper.getCodeByvalue(p.getPicType()).getCodeDesc());
-		}
 		return list;
 	}
 	
 	public Picture getPictureByDateAndType(Picture picture){
 		Picture returnPicture = pictureMapper.getPictureByDateAndType(picture);
-		String typeName = codeMapper.getCodeByvalue(picture.getPicType()).getCodeDesc();
-		returnPicture.setTypeName(typeName);
 		return returnPicture;
 	}
 	
 	public List<Picture> getPictureByDate(Picture picture){
 		List<Picture> list = pictureMapper.getPictureByDate(picture);
-		for (Picture p : list){
-			p.setTypeName(codeMapper.getCodeByvalue(p.getPicType()).getCodeDesc());
-		}
 		return list;
 	}
 	
-	public List<Picture> getPictureByType(int pic_type){
-		List<Picture> list = pictureMapper.getPictureByType(pic_type);
-		for (Picture p : list){
-			p.setTypeName(codeMapper.getCodeByvalue(p.getPicType()).getCodeDesc());
-		}
+	public List<Picture> getPictureByType(int picType){
+		List<Picture> list = pictureMapper.getPictureByType(picType);
 		return list;
 	}
 	
 	public List<Picture> getOneOfEveryType(){
-		List<Code> codes = codeMapper.getCodesByType("pic_type");
+		List<Code> codes = codeMapper.getCodesByType("pic_type");//这个短横线不能去，表示的为code表中类型的名字，而不是列名，属性名
 		List<Picture> returnList = new ArrayList<Picture>();
 		Picture picture = new Picture();
 		for (Code code:codes){
 			picture = pictureMapper.getOneOfEveryType(code.getCodeValue());
-			picture.setTypeName(codeMapper.getCodeByvalue(picture.getPicType()).getCodeDesc());
 			if(picture != null){
 				returnList.add(picture);
 			}
@@ -156,10 +143,7 @@ public class PictureService {
 	}
 	
 	public List<Picture> getAllPicture(){
-		List<Picture> list = pictureMapper.getAllPicture();
-		for (Picture p : list){
-			p.setTypeName(codeMapper.getCodeByvalue(p.getPicType()).getCodeDesc());
-		}
+		List<Picture> list = pictureMapper.getPictures();
 		return list;
 	}
 }

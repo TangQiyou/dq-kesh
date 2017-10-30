@@ -5,9 +5,9 @@ import java.util.List;
 import com.tqy.bean.Code;
 
 public interface CodeMapper {
-	public Code getCodeByvalue(int code_value);
+	public Code getCodeByValue(int codeValue);
 	
-	public List<Code> getCodesByType(String code_type);
+	public List<Code> getCodesByType(String codeType);
 	
-	public String getNameByValue(int value);
+	public Code getCodeById(int codeId);
 }

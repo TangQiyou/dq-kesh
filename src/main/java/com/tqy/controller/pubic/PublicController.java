@@ -27,11 +27,4 @@ public class PublicController {
 		return list != null ? Msg.success().add("list", list) : Msg.fail();
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/getCodeNameByValue",method=RequestMethod.GET)
-	public Msg getCodeNameByValue(@RequestParam("codeValue")Integer codeValue){
-		String codeName = codeService.getNameByValue(codeValue);
-		System.out.println(codeName);
-		return codeName != null ? Msg.success().add("codeName", codeName) : Msg.fail();
-	}
 }

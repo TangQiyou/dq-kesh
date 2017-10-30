@@ -22,10 +22,10 @@ public class AdminService {
 		Map<String, Object> map = new HashMap<String,Object>();
 		if (admin2 == null){
 			map.put("id",-1);
-			map.put("lastTime", "");
+			map.put("adminLastLoginTime", "");
 		} else{
 			map.put("id",admin2.getAdminId());
-			map.put("lastTime", admin2.getAdminLastTime());
+			map.put("adminLastLoginTime", admin2.getAdminLastLoginTime());
 		}
 		return map;
 	}
@@ -35,7 +35,7 @@ public class AdminService {
 		admin.setAdminId(id);
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time = format.format(new Date());
-		admin.setAdminLastTime(time);
+		admin.setAdminLastLoginTime(time);
 		int flag = adminMapper.setLoginTime(admin);
 		return flag == 1? true : false;
 	}

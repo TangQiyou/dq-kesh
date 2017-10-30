@@ -11,10 +11,10 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class PictureUtil {
-	synchronized public static boolean uploadPicture(MultipartFile file, Integer pic_type){
+	synchronized public static boolean uploadPicture(MultipartFile file, Integer picType){
 		boolean flag = false;
 		try {
-			OutputStream os = new FileOutputStream(PathUtil.getRealPath()+"/src/main/webapp/img/"+pic_type+"/"+file.getOriginalFilename());
+			OutputStream os = new FileOutputStream(PathUtil.getRealPath()+"/src/main/webapp/img/"+picType+"/"+file.getOriginalFilename());
 			InputStream is = file.getInputStream();
 			int temp;
 			while ((temp=is.read())!=(-1)){

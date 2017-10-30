@@ -65,7 +65,7 @@ $(window).ready(function(){
 			type:"get",
 			datatype:"json",
 			url:"../web/announcement",
-			data:"a_id="+$id,
+			data:"id="+$id,
 			success: function(data){
 				var data = eval(data);
 				console.log(data);

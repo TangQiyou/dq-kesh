@@ -3,10 +3,10 @@
 <mapper namespace="com.tqy.dao.AdminMapper">
     
     <select id="adminLogin" resultType="com.tqy.bean.Admin">
-        select * from sys_admin where admin_account=#{adminAccount} and admin_pwd=#{adminPwd}
+        select * from sys_admin where adminAccount=#{adminAccount} and adminPwd=#{adminPwd}
     </select>
     
     <update id="setLoginTime" parameterType="com.tqy.bean.Admin">
-        update sys_admin set admin_last_time=#{adminLastTime} where admin_id=#{adminId}
+        update sys_admin set adminLastLoginTime=#{adminLastLoginTime} where adminId=#{adminId}
     </update>
 </mapper>

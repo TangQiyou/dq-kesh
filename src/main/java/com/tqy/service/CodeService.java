@@ -14,13 +14,14 @@ public class CodeService {
 	@Autowired
 	CodeMapper codeMapper;
 	
-	public List<Code> getCodesByType(String code_type){
-		List<Code> list = codeMapper.getCodesByType(code_type);
+	public List<Code> getCodesByType(String codeType){
+		List<Code> list = codeMapper.getCodesByType(codeType);
 		return list;
 	}
 	
-	public String getNameByValue(int value){
-		String name = codeMapper.getNameByValue(value);
-		return name;
+	public Code getCodeById(int codeId){
+		Code code = codeMapper.getCodeById(codeId);
+		return code;
 	}
+	
 }

@@ -25,7 +25,7 @@ public class AdminController {
 	public Msg adminLogin(@RequestBody Admin admin){
 		Map<String, Object> map = adminService.adminLogin(admin);
 		int id = (int)map.get("id");
-		String lastTime = map.get("lastTime").toString();
+		String lastTime = map.get("adminLastLoginTime").toString();
 		boolean flag = false;
 		if (id != -1){
 			 flag = adminService.setLoginTime(id);

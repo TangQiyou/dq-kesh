@@ -31,8 +31,8 @@ public class WebAnnouncemntController {
 	
 	@ResponseBody
 	@RequestMapping(value="/announcement", method=RequestMethod.GET)
-	public Msg getAnnouncement(@RequestParam("a_id") Integer id){
-		Announcement announcement = announcementService.getAnnouncement(id);
+	public Msg getAnnouncement(@RequestParam("id") Integer annId){
+		Announcement announcement = announcementService.getAnnouncement(annId);
 		return announcement != null ? Msg.success().add("announcement", announcement) : Msg.fail();
 	}
 	

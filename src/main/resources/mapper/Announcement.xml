@@ -3,24 +3,24 @@
 <mapper namespace="com.tqy.dao.AnnouncementMapper">
     
     <insert id="addAnnouncement">
-        insert into sys_announcement (ann_title,ann_content,ann_time)
+        insert into sys_announcement (annTitle, annContent, annTime)
         values(#{annTitle},#{annContent},#{annTime})
     </insert>
     
     <delete id="deleteAnnouncement">
-        delete from sys_announcement where ann_id=#{id}
+        delete from sys_announcement where annId=#{annId}
     </delete>
 
     <update id="updateAnnouncement" parameterType="com.tqy.bean.Announcement">
-        update sys_announcement set ann_title=#{annTitle},
-        ann_content=#{annContent} where ann_id=#{annId}
+        update sys_announcement set annTitle=#{annTitle},
+        annContent=#{annContent} where annId=#{annId}
     </update>
     
     <select id="getAnnouncement" parameterType="Integer" resultType="com.tqy.bean.Announcement">
-        select * from sys_announcement where ann_id=#{id} 
+        select * from sys_announcement where annId=#{annId} 
     </select>
     
     <select id="getAnnouncements" resultType="com.tqy.bean.Announcement">
-        select * from sys_announcement order by ann_id DESC
+        select * from sys_announcement order by annId DESC
     </select>
 </mapper>

@@ -5,7 +5,7 @@ public class Admin {
 	private String adminAccount;
 	private String adminPwd;
 	private String adminName;
-	private String adminLastTime;
+	private String adminLastLoginTime;
 	
 	public int getAdminId() {
 		return adminId;
@@ -31,25 +31,25 @@ public class Admin {
 	public void setAdminName(String adminName) {
 		this.adminName = adminName;
 	}
-	public String getAdminLastTime() {
-		return adminLastTime;
+	public String getAdminLastLoginTime() {
+		return adminLastLoginTime;
 	}
-	public void setAdminLastTime(String adminLastTime) {
-		this.adminLastTime = adminLastTime;
+	public void setAdminLastLoginTime(String adminLastLoginTime) {
+		this.adminLastLoginTime = adminLastLoginTime;
 	}
-	@Override
-	public String toString() {
-		return "Admin [adminId=" + adminId + ", adminAccount=" + adminAccount + ", adminPwd=" + adminPwd
-				+ ", adminName=" + adminName + ", adminLastTime=" + adminLastTime + "]";
-	}
-	public Admin(int adminId, String adminAccount, String adminPwd, String adminName, String adminLastTime) {
+	public Admin(int adminId, String adminAccount, String adminPwd, String adminName, String adminLastLoginTime) {
 		super();
 		this.adminId = adminId;
 		this.adminAccount = adminAccount;
 		this.adminPwd = adminPwd;
 		this.adminName = adminName;
-		this.adminLastTime = adminLastTime;
+		this.adminLastLoginTime = adminLastLoginTime;
 	}
+	public String toString() {
+		return "Admin [adminId=" + adminId + ", adminAccount=" + adminAccount + ", adminPwd=" + adminPwd
+				+ ", adminName=" + adminName + ", adminLastLoginTime=" + adminLastLoginTime + "]";
+	}
+
 	public Admin(){
 		super();
 	}

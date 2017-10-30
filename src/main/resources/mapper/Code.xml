@@ -3,14 +3,14 @@
 <mapper namespace="com.tqy.dao.CodeMapper">
     
     <select id="getCodeByvalue" parameterType="INTEGER" resultType="com.tqy.bean.Code">
-        select * from sys_code where code_value = #{code_value}
+        select * from sys_code where codeValue = #{codeValue}
     </select>
     
     <select id="getCodesByType" resultType="com.tqy.bean.Code">
-        select * from sys_code where code_type=#{codeType}
+        select * from sys_code where codeType=#{codeType}
     </select>
     
-    <select id="getNameByValue" resultType="java.lang.String">
-        select code_name from sys_code where code_value = #{value}
+    <select id="getCodeById" resultType="com.tqy.bean.Code">
+        select * from sys_code where codeId = #{codeId}
     </select>
 </mapper>

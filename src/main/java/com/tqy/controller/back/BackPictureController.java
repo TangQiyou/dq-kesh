@@ -31,13 +31,13 @@ public class BackPictureController {
 	
 	@ResponseBody
 	@RequestMapping(value="/addOnlyPicture",method=RequestMethod.POST)
-	public Msg addOnlyPicture(@RequestParam("file") MultipartFile file,@RequestParam("picType") Integer pic_type){
-		Map<String, Integer> map = pictureService.addOnlyPicture(file,pic_type);
+	public Msg addOnlyPicture(@RequestParam("file") MultipartFile file,@RequestParam("picType") Integer picType){
+		Map<String, Integer> map = pictureService.addOnlyPicture(file,picType);
 		Msg msg = Msg.success();
-		int pic_id = map.get("pic_id");
-		msg.add("pic_id", pic_id);
+		int picId = map.get("picId");
+		msg.add("picId", picId);   //这里的pic_id不能改，否则前端没改要出错
 		msg.add("totalTime", map.get("totalTime").toString()+"ms");
-		return pic_id != -1 ? msg : Msg.fail();
+		return picId != -1 ? msg : Msg.fail();
 	}
 	
 	@ResponseBody
@@ -49,8 +49,8 @@ public class BackPictureController {
 	
 	@ResponseBody
 	@RequestMapping(value="/picture/{id}",method=RequestMethod.DELETE)
-	public Msg deletePicture(@PathVariable("id") Integer p_id){
-		boolean flag = pictureService.deletePicture(p_id);
+	public Msg deletePicture(@PathVariable("id") Integer picId){
+		boolean flag = pictureService.deletePicture(picId);
 		return flag ? Msg.success() : Msg.fail();
 	}
 	
@@ -63,8 +63,8 @@ public class BackPictureController {
 	
 	@ResponseBody
 	@RequestMapping(value="/picture",method=RequestMethod.GET)
-	public Msg getPictureById(@RequestParam("id") Integer p_id){
-		Picture picture = pictureService.getPicture(p_id);
+	public Msg getPictureById(@RequestParam("id") Integer picId){
+		Picture picture = pictureService.getPicture(picId);
 		return picture != null ? Msg.success().add("picture", picture) : Msg.fail();
 	}
 	

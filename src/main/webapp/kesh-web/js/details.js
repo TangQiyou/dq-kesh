@@ -42,7 +42,7 @@ $(window).ready(function(){
 
 			type:"get",
 			url:"../web/getPictureById",
-			data:"p_id="+id,
+			data:"id="+id,
 			datatype:"json",
 			success:function(data){
 				var data = eval(data);

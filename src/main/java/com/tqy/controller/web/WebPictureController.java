@@ -26,8 +26,8 @@ public class WebPictureController {
 	
 	@ResponseBody
 	@RequestMapping(value="/getPictureById",method=RequestMethod.GET)
-	public Msg getPictureById(@RequestParam("p_id")Integer p_id){
-		Picture picture = pictureService.getPicture(p_id);
+	public Msg getPictureById(@RequestParam("id")Integer picId){
+		Picture picture = pictureService.getPicture(picId);
 		return picture != null ? Msg.success().add("picture", picture) : Msg.fail();
 	}
 	
