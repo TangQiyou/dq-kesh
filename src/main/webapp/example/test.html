@@ -20,19 +20,22 @@
 	<script type="text/javascript">
     
     $("#testButton").click(function(){
-    	//var formData = new FormData($("#form2")[0]);
     	var jsonData={
-    "year":2017,
-    "month":10,
-    "day":15
-}
+    			//"leaveId":5,
+    		    "leaveTitle":"update2",
+    		    "leaveContent":"update2",
+    		    "leaveUserId":1
+    		    //"pn":1,
+    		    //"leaveUserId":2
+    		}
         $.ajax({
-           type:"post",
-           url:"../back/getPictureByDate",
+           type:"get",
+           url:"../web/leaveword",
            data:JSON.stringify(jsonData),
-           contentType:"application/json;charser=utf-8",
+           data:"id="+2,
+           //contentType:"application/json;charser=utf-8",
            //async: false,
-          // cache: false,
+           //cache: false,
            //contentType: false,
            //processData: false,
            success:function(returnData){
@@ -48,4 +51,3 @@
 </script>
 </body>
 </html>
-

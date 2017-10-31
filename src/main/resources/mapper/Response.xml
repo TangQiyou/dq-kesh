@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tqy.dao.ResponseMapper">
+    
+    <insert id="addResponse" parameterType="com.tqy.bean.Response">
+        insert into sys_response (responseContent,responseTime,responseLeaveId) 
+        values (#{responseContent},#{responseTime},#{responseLeaveId})
+    </insert>
+    
+    <delete id="deleteResponse">
+        delete from sys_response where responseId=#{responseId}
+    </delete>
+    
+    <update id="updateResponse" parameterType="com.tqy.bean.Response">
+        update updateResponse set responseContent=#{responseContent}, responseTime=#{responseTime} where responseId=#{responseId}
+    </update>
+    
+    <select id="getResponse" parameterType="Integer" resultType="com.tqy.bean.Response">
+        select * from sys_response where responseId=#{responseId} 
+    </select>
+    
+    <select id="getResponseByLeaveId" parameterType="Integer" resultType="com.tqy.bean.Response">
+        select * from sys_response where responseLeaveId=#{leaveId} 
+    </select>
+    
+    <select id="getResponseByPage" resultType="com.tqy.bean.Response">
+        select * from sys_response order by responseId DESC
+    </select>
+</mapper>

@@ -10,7 +10,7 @@ returnData:已上传图片的id，上传图片的花费时间。
 
 var jsonData={
 "picId":14,(这里需要ID，不然对应不了刚刚的图片,刚刚已经传了添加了名字，所以这里不用添加了)
-	    "picType":105,(不能去掉，要获取对应的名字)
+	    "picType":105,(这个需要图片上传成功后不能变)
 	    "year":2016,
       "month":3,
       "day":2
@@ -87,10 +87,10 @@ url:"../back/announcement/"+ID
 data:无
 returnData:一个包含删除结果的Msg
 
-jsonData={
-    		"annTitle":XXX,
-    		"annContent":XXX
-    }
+var jsonData={
+    "annTitle":XXX,
+    "annContent":XXX
+}
 des:更新一个公告
 type:"put"
 url:"../back/announcement"
@@ -119,12 +119,53 @@ data:"code_type="+"pic_type"(这里暂时写死)
 returnData:包含了所有的图片种类信息的Msg
 
 =====================Admin=====================
-    	var jsonData={
-    			"adminAccount":"admin",
-    			"adminPwd":"123456"
-    	}
+ var jsonData={
+     "adminAccount":"admin",
+     "adminPwd":"123456"
+}
 des:管理员登录
 type:"POST"
 url:"../back/login"
-           data:JSON.stringify(jsonData),
+data:JSON.stringify(jsonData),
 returnData:包含了登录管理员ID的Msg
+
+=====================LeaveWord=====================
+var jsonData={
+    "leaveTitle":"test1",
+    "leaveContent":"xxx",
+    "leaveUserId":1
+}
+des:用户留言
+type:"POST"
+url:"../back/leaveword"
+data:JSON.stringify(jsonData),
+returnData:包含了留言是否成功的的Msg
+
+des:根据留言ID删除一个留言详细信息
+type:"delete"
+url:"../back/leaveword/"+1,
+data:无,
+returnData:包含了留言删除情况的的Msg
+
+var jsonData={
+    "leaveId":1,
+    "leaveTitle":"update",
+    "leaveContent":"update"
+}
+des:根据留言ID修改一个留言详细信息
+type:"put"
+url:"../back/leaveword"
+data:JSON.stringify(jsonData),
+returnData:包含了留言更新情况的的Msg
+
+des:根据留言ID查询一个留言详细信息
+type:"get"
+url:"../back/leaveword"
+data:"id="+1,
+returnData:包含了留言详细信息的的Msg
+
+des:分页查询留言信息
+type:"get"
+url:"../back/leavewords",
+data:"pn="+1,
+returnData:包含了某一页留言情况的的Msg

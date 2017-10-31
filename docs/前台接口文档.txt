@@ -61,3 +61,48 @@ type:"get"
 url:"../public/getCodeByType"
 data:"code_type="+"pic_type"(这里暂时写死)
 returnData:包含了所有的图片种类信息的Msg
+
+=====================LeaveWord=====================
+var jsonData={
+    "leaveTitle":"test1",
+    "leaveContent":"xxx",
+    "leaveUserId":1
+}
+des:用户留言
+type:"POST"
+url:"../web/leaveword"
+data:JSON.stringify(jsonData),
+returnData:包含了留言是否成功的的Msg
+
+des:根据留言ID删除一个留言详细信息
+type:"delete"
+url:"../web/leaveword/"+1,
+data:无,
+returnData:包含了留言删除情况的的Msg
+
+var jsonData={
+    "leaveId":1,
+    "leaveTitle":"update",
+    "leaveContent":"update"
+}
+des:根据留言ID修改一个留言详细信息
+type:"put"
+url:"../web/leaveword"
+data:JSON.stringify(jsonData),
+returnData:包含了留言更新情况的的Msg
+
+des:根据留言ID查询详细信息和回复
+type:"get"
+url:"../web/leaveword"
+data:"id="+1,
+returnData:包含了留言详细信息的的Msg
+
+var jsonData={
+    "pn":1,
+    "leaveUserId":1
+}
+des:根据用户ID查询分页查询留言信息（不带回复）
+type:"post"
+url:"../web/leavewords",
+data:JSON.stringify(jsonData),
+returnData:包含了某一页留言情况的的Msg
