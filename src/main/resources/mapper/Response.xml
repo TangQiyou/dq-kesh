@@ -12,7 +12,7 @@
     </delete>
     
     <update id="updateResponse" parameterType="com.tqy.bean.Response">
-        update updateResponse set responseContent=#{responseContent}, responseTime=#{responseTime} where responseId=#{responseId}
+        update sys_response set responseContent=#{responseContent}, responseTime=#{responseTime} where responseId=#{responseId}
     </update>
     
     <select id="getResponse" parameterType="Integer" resultType="com.tqy.bean.Response">

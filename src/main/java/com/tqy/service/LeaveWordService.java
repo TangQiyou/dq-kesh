@@ -28,6 +28,7 @@ public class LeaveWordService {
 	}
 	
 	public boolean updateLeaveWord(LeaveWord leaveWord){
+		leaveWord.setIsResponsed(51);
 		int flag = leaveWordMapper.updateLeaveWord(leaveWord);
 		return flag == 1 ? true : false;
 	}

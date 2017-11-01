@@ -2,11 +2,12 @@
 var formData =  new FormData()
 formData里包含图片文件和其类型值picType(int)
 des:单纯上传一张图片
-type:"post"
-url:"../back/addOnlyPicture"
-data:formData
-contentType: false
+type:"post",
+url:"../back/addOnlyPicture",
+data:formData,
+contentType: false,
 returnData:已上传图片的id，上传图片的花费时间。
+
 
 var jsonData={
 "picId":14,(这里需要ID，不然对应不了刚刚的图片,刚刚已经传了添加了名字，所以这里不用添加了)
@@ -16,16 +17,18 @@ var jsonData={
       "day":2
 };
 des:上传完图片后将其他信息写入刚刚图片所占的那条字段
-type:"post"
-url:"../back/picture"
-data:JSON.stringify(jsonData)
+type:"post",
+url:"../back/picture",
+data:JSON.stringify(jsonData),
 returnData一个包含添加信息的Msg类
 
+
 des:根据ID删除一张图片
-type:"delete"
-url:"../back/picture/"+id
-data:无
+type:"delete",
+url:"../back/picture/"+id,
+data:无,
 returnData:一个包含删除信息的Msg类
+
 
 var jsonData = {
     		"picId":,
@@ -37,26 +40,29 @@ var jsonData = {
     		"des":
 };
 des:根据图片的种类、年、月、日查询图片信息
-type:"put"
-url:"../back/picture"
-data:JSON.stringify(jsonData)
+type:"put",
+url:"../back/picture",
+data:JSON.stringify(jsonData),
 returnData:一个包含修改结果的Msg
 
+
 des:根据ID查询一个图片的详细信息
-type:"get"
+type:"get",
 url:"../back/picture",
-data:"id="+id
+data:"id="+id,
 returnData:一个Msg类，code=1表示成功，code=2表示失败，图片信息存在于Msg中
+
 
 var jsonData={
     		"pn":,
     		"picType":
 }
 des:根据种类的值分页查询一个图片的详细信息
-type:"post"
+type:"post",
 url:"../back/getPictureByType",
-data:JSON.stringify(jsonData)
+data:JSON.stringify(jsonData),
 returnData:一个Msg类，code=1表示成功，code=2表示失败，图片信息存在于Msg中
+
 
 jsonData={
   "picType":101,
@@ -65,10 +71,11 @@ jsonData={
 	"day":15
 }
 des:根据年月日查询某一天的指定种类的图片
-type:"post"
-url:"../back/getPictureByDateAndType"
-data:JSON.stringify(jsonData)
+type:"post",
+url:"../back/getPictureByDateAndType",
+data:JSON.stringify(jsonData),
 returnData:一个包含某天图片的Msg
+
 
 =====================Announcement====================
 jsonData={
@@ -76,47 +83,51 @@ jsonData={
     		"annContent":XXX
     }
 des:添加一个公告
-type:"post"
-url:"../back/announcement"
+type:"post",
+url:"../back/announcement",
 data:JSON.stringify(jsonData),
 returnData:一个包含添加结果的Msg
 
+
 des:删除一个公告
-type:"delete"
-url:"../back/announcement/"+ID
-data:无
+type:"delete",
+url:"../back/announcement/"+ID,
+data:无,
 returnData:一个包含删除结果的Msg
+
 
 var jsonData={
     "annTitle":XXX,
     "annContent":XXX
 }
 des:更新一个公告
-type:"put"
-url:"../back/announcement"
-data:JSON.stringify(jsonData)
+type:"put",
+url:"../back/announcement",
+data:JSON.stringify(jsonData),
 returnData:一个包含修改结果的Msg
 
+
 des:根据公告ID查询详细信息
-type:"get"
-url:"../back/announcement"
-data:"id="+a_id
+type:"get",
+url:"../back/announcement",
+data:"id="+a_id,
 returnData:一个包含公告详情的Msg
 
-des:分页查询，每页显示五条记录
-type:"get"
-url:"../back/announcements"
-data:"pn="+具体的页号
-returnData:一个包含五条公告信息的Msg
 
+des:分页查询，每页显示五条记录
+type:"get",
+url:"../back/announcements",
+data:"pn="+具体的页号,
+returnData:一个包含五条公告信息的Msg
 
 
 =====================PictureType=====================
 des:查询图片的所有种类，在具体查询时写入select框中
-type:"get"
-url:"../public/getCodeByType"
-data:"code_type="+"pic_type"(这里暂时写死)
+type:"get",
+url:"../public/getCodeByType",
+data:"code_type="+"pic_type"(这里暂时写死),
 returnData:包含了所有的图片种类信息的Msg
+
 
 =====================Admin=====================
  var jsonData={
@@ -124,10 +135,11 @@ returnData:包含了所有的图片种类信息的Msg
      "adminPwd":"123456"
 }
 des:管理员登录
-type:"POST"
-url:"../back/login"
+type:"POST",
+url:"../back/login",
 data:JSON.stringify(jsonData),
 returnData:包含了登录管理员ID的Msg
+
 
 =====================LeaveWord=====================
 var jsonData={
@@ -136,16 +148,18 @@ var jsonData={
     "leaveUserId":1
 }
 des:用户留言
-type:"POST"
-url:"../back/leaveword"
+type:"POST",
+url:"../back/leaveword",
 data:JSON.stringify(jsonData),
-returnData:包含了留言是否成功的的Msg
+returnData:包含了留言是否成功的Msg
+
 
 des:根据留言ID删除一个留言详细信息
-type:"delete"
+type:"delete",
 url:"../back/leaveword/"+1,
 data:无,
-returnData:包含了留言删除情况的的Msg
+returnData:包含了留言删除情况的Msg
+
 
 var jsonData={
     "leaveId":1,
@@ -153,19 +167,65 @@ var jsonData={
     "leaveContent":"update"
 }
 des:根据留言ID修改一个留言详细信息
-type:"put"
-url:"../back/leaveword"
+type:"put",
+url:"../back/leaveword",
 data:JSON.stringify(jsonData),
-returnData:包含了留言更新情况的的Msg
+returnData:包含了留言更新情况的Msg
+
 
 des:根据留言ID查询一个留言详细信息
-type:"get"
-url:"../back/leaveword"
+type:"get",
+url:"../back/leaveword",
 data:"id="+1,
-returnData:包含了留言详细信息的的Msg
+returnData:包含了留言详细信息的Msg
+
 
 des:分页查询留言信息
-type:"get"
+type:"get",
 url:"../back/leavewords",
 data:"pn="+1,
-returnData:包含了某一页留言情况的的Msg
+returnData:包含了某一页留言情况的Msg
+
+
+=====================Response=====================
+var jsonData={
+    "responseContent":"test1",
+    "responseLeaveId":3(回复的留言ID)
+}
+des:管理员回复
+type:"POST",
+url:"../back/response",
+data:JSON.stringify(jsonData),
+returnData:包含了回复是否成功的Msg
+
+
+des:管理员删除回复
+type:"delete",
+url:"../back/response/"+id,
+data:JSON.stringify(jsonData),
+returnData:包含了删除回复是否成功的Msg
+
+
+var jsonData={
+    "responseId":5,
+    "responseContent":"testUpdate2"
+}
+des:管理员修改回复
+type:"put",
+url:"../back/response",
+data:JSON.stringify(jsonData),
+returnData:包含了修改回复是否成功的Msg
+
+
+des:管理员根据回复ID查看回复
+type:"get",
+url:"../back/response",
+data:"id="+1,(这里的回复的ID)
+returnData:包含了回复详细信息的Msg
+
+
+des:分页查看回复
+type:"get",
+url:"../back/responses",
+data:"pn="+1,(这里的回复的ID)
+returnData:包含了一页详细信息的Msg

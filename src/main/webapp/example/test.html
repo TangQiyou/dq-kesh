@@ -21,19 +21,16 @@
     
     $("#testButton").click(function(){
     	var jsonData={
-    			//"leaveId":5,
-    		    "leaveTitle":"update2",
-    		    "leaveContent":"update2",
-    		    "leaveUserId":1
-    		    //"pn":1,
-    		    //"leaveUserId":2
+    			"leaveId":5,
+    		    "leaveContent":"testUpdate2",
+    		    "leaveTitle":"58"
     		}
         $.ajax({
-           type:"get",
+           type:"put",
            url:"../web/leaveword",
            data:JSON.stringify(jsonData),
-           data:"id="+2,
-           //contentType:"application/json;charser=utf-8",
+           //data:"id="+1,
+           contentType:"application/json;charser=utf-8",
            //async: false,
            //cache: false,
            //contentType: false,

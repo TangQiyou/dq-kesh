@@ -9,6 +9,7 @@ public class LeaveWord {
 	private int leaveUserId;
 	private User leaveUser;
 	private int isResponsed;
+	private String isResponsedName;
 	
 	public int getLeaveId() {
 		return leaveId;
@@ -46,9 +47,26 @@ public class LeaveWord {
 	public void setLeaveUser(User leaveUser) {
 		this.leaveUser = leaveUser;
 	}
-
+	public int getIsResponsed() {
+		return isResponsed;
+	}
+	public void setIsResponsed(int isResponsed) {
+		this.isResponsed = isResponsed;
+	}
+	public String getIsResponsedName() {
+		return isResponsedName;
+	}
+	public void setIsResponsedName(String isResponsedName) {
+		this.isResponsedName = isResponsedName;
+	}
+	@Override
+	public String toString() {
+		return "LeaveWord [leaveId=" + leaveId + ", leaveTitle=" + leaveTitle + ", leaveContent=" + leaveContent
+				+ ", leaveTime=" + leaveTime + ", leaveUserId=" + leaveUserId + ", leaveUser=" + leaveUser
+				+ ", isResponsed=" + isResponsed + ", isResponsedName=" + isResponsedName + "]";
+	}
 	public LeaveWord(int leaveId, String leaveTitle, String leaveContent, String leaveTime, int leaveUserId,
-			User leaveUser, int isResponsed) {
+			User leaveUser, int isResponsed, String isResponsedName) {
 		super();
 		this.leaveId = leaveId;
 		this.leaveTitle = leaveTitle;
@@ -57,22 +75,10 @@ public class LeaveWord {
 		this.leaveUserId = leaveUserId;
 		this.leaveUser = leaveUser;
 		this.isResponsed = isResponsed;
-	}
-	@Override
-	public String toString() {
-		return "LeaveWord [leaveId=" + leaveId + ", leaveTitle=" + leaveTitle + ", leaveContent=" + leaveContent
-				+ ", leaveTime=" + leaveTime + ", leaveUserId=" + leaveUserId + ", leaveUser=" + leaveUser
-				+ ", isResponsed=" + isResponsed + "]";
-	}
-	public int getIsResponsed() {
-		return isResponsed;
-	}
-	public void setIsResponsed(int isResponsed) {
-		this.isResponsed = isResponsed;
+		this.isResponsedName = isResponsedName;
 	}
 	public LeaveWord() {
 		super();
 	}
-	
 	
 }
