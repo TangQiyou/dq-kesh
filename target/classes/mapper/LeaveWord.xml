@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tqy.dao.LeaveWordMapper">
+
+    <resultMap type="com.tqy.bean.LeaveWord" id="leaveWordWithUser">
+        <id  column="leaveId" jdbcType="INTEGER" property="leaveId"/>
+        <result column="leaveTitle" jdbcType="VARCHAR" property="leaveTitle"/>
+        <result column="leaveContent" jdbcType="VARCHAR" property="leaveContent"/>
+        <result column="leaveTime" jdbcType="DATETIMEOFFSET" property="leaveTime"/>
+        <result column="isResponsed" jdbcType="INTEGER" property="isResponsed"/>
+        <result column="isResponsedName" jdbcType="VARCHAR" property="isResponsedName"/>
+        <result column="leaveUserId" jdbcType="INTEGER" property="leaveUserId"/>
+        <association property="leaveUser" javaType="com.tqy.bean.User">
+            <id column="userId" jdbcType="INTEGER" property="userId"/>
+            <result column="userName" jdbcType="VARCHAR" property="userName"/>
+            <result column="email" jdbcType="VARCHAR" property="email"/>
+            <result column="tel" jdbcType="VARCHAR" property="tel"/>
+            <result column="qq" jdbcType="VARCHAR" property="qq"/>
+            <result column="age" jdbcType="INTEGER" property="age"/>
+            <result column="gender" jdbcType="INTEGER" property="gender"/>
+            <result column="college" jdbcType="INTEGER" property="college"/>
+            <result column="status" jdbcType="INTEGER" property="status"/>
+            <result column="genderName" jdbcType="VARCHAR" property="genderName"/>
+            <result column="collegeName" jdbcType="VARCHAR" property="collegeName"/>
+            <result column="statusName" jdbcType="VARCHAR" property="statusName"/>
+            <result column="userLastLoginTime" jdbcType="DATETIMEOFFSET" property="userLastLoginTime"/>
+        </association>
+    </resultMap>
+    
+    <sql id="queryLeaveWithUser">
+        select l.*,u.*, a.codeName genderName, b.codeName collegeName, c.codeName statusName, d.codeName isResponsedName
+        from sys_leaveword l
+        left outer join sys_user u on l.leaveUserId = u.userId
+        left outer join sys_code a on u.gender = a.codeValue 
+        left outer join sys_code b on u.college = b.codeValue 
+        left outer join sys_code c on u.status = c.codeValue
+        left outer join sys_code d on l.isResponsed = d.codeValue
+    </sql>
+    
+    <insert id="addLeaveWord" parameterType="com.tqy.bean.LeaveWord">
+        insert into sys_leaveword (leaveTitle, leaveContent, leaveTime,leaveUserId,isResponsed)
+        values(#{leaveTitle},#{leaveContent},#{leaveTime},#{leaveUserId},#{isResponsed})
+    </insert>
+    
+    <delete id="deleteLeaveWord">
+        delete from sys_leaveword 
+        where leaveId=#{leaveId}
+    </delete>
+
+    <update id="updateLeaveWord" parameterType="com.tqy.bean.LeaveWord">
+        update sys_leaveword 
+        set leaveTitle=#{leaveTitle},leaveContent=#{leaveContent},isResponsed=#{isResponsed} 
+        where leaveId=#{leaveId}
+    </update>
+    
+    <update id="responseLeaveword">
+        update sys_leaveword 
+        set isResponsed = 50 
+        where leaveId = #{leaveId}
+    </update>
+    
+    <select id="getLeaveWord" parameterType="Integer" resultMap="leaveWordWithUser">
+        <include refid="queryLeaveWithUser"></include>
+        where leaveId=#{leaveId}
+    </select>
+    
+    <select id="getLeaveWordByPage" resultMap="leaveWordWithUser">
+        <include refid="queryLeaveWithUser"></include>
+        order by leaveId DESC
+    </select>
+    
+    <select id="getLeaveWordByPageAndUseId" resultMap="leaveWordWithUser">
+        <include refid="queryLeaveWithUser"></include>
+        where leaveUserId = #{leaveUserId} order by leaveId DESC
+    </select>
+    
+</mapper>
