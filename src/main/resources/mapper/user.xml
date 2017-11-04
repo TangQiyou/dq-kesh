@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tqy.dao.UserMapper">
+    
+    <resultMap type="com.tqy.bean.User" id="simpleUser">
+        <id column="userId" jdbcType="INTEGER" property="userId"/>
+        <result column="userLastLoginTime" jdbcType="DATETIMEOFFSET" property="userLastLoginTime"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+    </resultMap>
+    
+    <resultMap type="com.tqy.bean.User" id="completeUser">
+        <id column="userId" jdbcType="INTEGER" property="userId"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="qq" jdbcType="VARCHAR" property="qq"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="gender" jdbcType="INTEGER" property="gender"/>
+        <result column="college" jdbcType="INTEGER" property="college"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="genderName" jdbcType="VARCHAR" property="genderName"/>
+        <result column="collegeName" jdbcType="VARCHAR" property="collegeName"/>
+        <result column="statusName" jdbcType="VARCHAR" property="statusName"/>
+        <result column="userLastLoginTime" jdbcType="DATETIMEOFFSET" property="userLastLoginTime"/>
+    </resultMap>
+    
+    <sql id="getCompleteUser">
+        select u.*, a.codeName genderName, b.codeName collegeName, c.codeName statusName
+        from sys_user u
+        left outer join sys_code a on u.gender = a.codeValue 
+        left outer join sys_code b on u.college = b.codeValue 
+        left outer join sys_code c on u.status = c.codeValue
+    </sql>
+    
+    <insert id="addUser" parameterType="com.tqy.bean.User">
+        insert into sys_user
+        (userAccount,userPwd,userName,gender,age,qq,tel,college,status,email) 
+        values 
+        (#{userAccount},
+        #{userPwd},
+        #{userName},
+        #{gender},
+        #{age},
+        #{qq},
+        #{tel},
+        #{college},
+        #{status},
+        #{email})
+    </insert>
+    
+    <select id="isExist" resultType="java.lang.String">
+        select count(*) from sys_user where userAccount = #{userAccount}
+    </select>
+    
+    <update id="setLoginTime" parameterType="com.tqy.bean.User">
+        update sys_user set 
+        userLastLoginTime=#{userLastLoginTime} 
+        where userId=#{userId}
+    </update>
+    
+    <update id="updateInfomation" parameterType="com.tqy.bean.User">
+        update sys_user set 
+        userName = #{userName},
+        gender = #{gender},
+        age = #{age},
+        qq = #{qq},
+        tel = #{tel},
+        college = #{college},
+        status = #{status},
+        email = #{email}
+        where userId = #{userId}
+    </update>
+    
+    <update id="updatePwd" parameterType="com.tqy.bean.User">
+        update sys_user set 
+        userPwd = #{userPwd}
+        where userId = #{userId}
+    </update>
+    
+    <select id="userLogin" resultMap="simpleUser">
+        select userId, userLastLoginTime, userName 
+        from sys_user 
+        where userAccount=#{userAccount} and userPwd=#{userPwd}
+    </select>
+    
+    <select id="getUser" resultMap="completeUser">
+        <include refid="getCompleteUser"></include>
+        where userId = #{userId}
+    </select>
+</mapper>

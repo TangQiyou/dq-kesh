@@ -27,4 +27,16 @@ public class PublicController {
 		return list != null ? Msg.success().add("list", list) : Msg.fail();
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/getSelects",method=RequestMethod.GET)
+	public Msg getUserSelects(){
+		List<Code> genderList = codeService.getCodesByType("gender");
+		List<Code> collegeList = codeService.getCodesByType("college_type");
+		List<Code> statusList = codeService.getCodesByType("status_type");
+		Msg  success = Msg.success();
+		success.add("genderList", genderList);
+		success.add("collegeList", collegeList);
+		success.add("statusList", statusList);
+		return success;
+	}
 }
