@@ -238,7 +238,7 @@ app.controller('FileUploadCtrl', ['$scope', 'FileUploader', 'toaster', '$http', 
             enctype:"multipart/form-data"
         }).success(function (result) {
             if (result.code==1) {
-                $scope.$emit('picture', result.extend.picId);
+                $scope.$emit('picture', result.extend.pic_id);
                 toaster.pop('success', '提示', '上传成功, 耗时  '+result.extend.totalTime);
             } else {
                 toaster.pop('error', '提示', '上传失败');

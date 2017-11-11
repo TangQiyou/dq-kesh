@@ -46,6 +46,17 @@ angular.module('app')
                                 }]
                         }
                     })
+                    //用户管理
+                    .state('app.user_management', {
+                        url: '/user_management',
+                        templateUrl: 'tpl/user_management.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['toaster','js/controllers/user_management.js']);
+                                }]
+                        }
+                    })
             }
         ]
     );
