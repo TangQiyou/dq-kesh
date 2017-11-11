@@ -1,7 +1,10 @@
 package com.tqy.service;
 
+<<<<<<< HEAD
 import java.util.List;
 
+=======
+>>>>>>> parent of dbaffdd... Revert "Merge branch 'tangqy' into dev"
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +29,14 @@ public class UserService {
 		return flag == 1 ? true : false;
 	}
 	
+<<<<<<< HEAD
 	public boolean deleteUser(int userId){
 		int flag = userMapper.deleteUser(userId);
 		return flag == 1 ? true : false;
 	}
 	
+=======
+>>>>>>> parent of dbaffdd... Revert "Merge branch 'tangqy' into dev"
 	public User userLogin(User user){
 		User  user2 = userMapper.userLogin(user);
 		int flag = 1;
@@ -59,6 +65,7 @@ public class UserService {
 		return flag == 1 ? true : false;
 	}
 	
+<<<<<<< HEAD
 	public boolean updateAll(User user){
 		int flag = userMapper.updateAll(user);
 		return flag == 1 ? true : false;
@@ -69,13 +76,18 @@ public class UserService {
 		return user;
 	}
 	
+=======
+>>>>>>> parent of dbaffdd... Revert "Merge branch 'tangqy' into dev"
 	public User getUser(int userId){
 		User user = userMapper.getUser(userId);
 		return user;
 	}
+<<<<<<< HEAD
 	
 	public List<User> getUsers(){
 		List<User> list = userMapper.getUsers();
 		return list;
 	}
+=======
+>>>>>>> parent of dbaffdd... Revert "Merge branch 'tangqy' into dev"
 }

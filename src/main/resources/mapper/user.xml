@@ -23,6 +23,7 @@
         <result column="statusName" jdbcType="VARCHAR" property="statusName"/>
         <result column="userLastLoginTime" jdbcType="DATETIMEOFFSET" property="userLastLoginTime"/>
     </resultMap>
+<<<<<<< HEAD
 
     <resultMap type="com.tqy.bean.User" id="completeUserBack">
         <id column="userId" jdbcType="INTEGER" property="userId"/>
@@ -41,6 +42,8 @@
         <result column="statusName" jdbcType="VARCHAR" property="statusName"/>
         <result column="userLastLoginTime" jdbcType="DATETIMEOFFSET" property="userLastLoginTime"/>
     </resultMap>
+=======
+>>>>>>> parent of dbaffdd... Revert "Merge branch 'tangqy' into dev"
     
     <sql id="getCompleteUser">
         select u.*, a.codeName genderName, b.codeName collegeName, c.codeName statusName
@@ -52,11 +55,18 @@
     
     <insert id="addUser" parameterType="com.tqy.bean.User">
         insert into sys_user
+<<<<<<< HEAD
         (userAccount,userPwd,userLastLoginTime,userName,gender,age,qq,tel,college,status,email) 
         values 
         (#{userAccount},
         #{userPwd},
         #{userLastLoginTime},
+=======
+        (userAccount,userPwd,userName,gender,age,qq,tel,college,status,email) 
+        values 
+        (#{userAccount},
+        #{userPwd},
+>>>>>>> parent of dbaffdd... Revert "Merge branch 'tangqy' into dev"
         #{userName},
         #{gender},
         #{age},
@@ -77,10 +87,13 @@
         where userId=#{userId}
     </update>
     
+<<<<<<< HEAD
     <delete id="deleteUser">
         delete from sys_user where userId = #{userId}
     </delete>
     
+=======
+>>>>>>> parent of dbaffdd... Revert "Merge branch 'tangqy' into dev"
     <update id="updateInfomation" parameterType="com.tqy.bean.User">
         update sys_user set 
         userName = #{userName},
@@ -94,6 +107,7 @@
         where userId = #{userId}
     </update>
     
+<<<<<<< HEAD
     <update id="updateAll">
         update sys_user set 
         userName = #{userName},
@@ -108,6 +122,8 @@
         where userId = #{userId}
     </update>
     
+=======
+>>>>>>> parent of dbaffdd... Revert "Merge branch 'tangqy' into dev"
     <update id="updatePwd" parameterType="com.tqy.bean.User">
         update sys_user set 
         userPwd = #{userPwd}
@@ -124,6 +140,7 @@
         <include refid="getCompleteUser"></include>
         where userId = #{userId}
     </select>
+<<<<<<< HEAD
     
     <select id="getUserBack" resultMap="completeUserBack">
         <include refid="getCompleteUser"></include>
@@ -134,4 +151,6 @@
         <include refid="getCompleteUser"></include>
         order by userId DESC
     </select>
+=======
+>>>>>>> parent of dbaffdd... Revert "Merge branch 'tangqy' into dev"
 </mapper>

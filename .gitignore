@@ -14,4 +14,3 @@ target/classes/mapper/Picture.xml
 target/classes/mapper/Announcement.xml
 target/classes/dbconfig.properties
 target/classes/mapper/admin.xml
-target/classes/mapper/user.xml
