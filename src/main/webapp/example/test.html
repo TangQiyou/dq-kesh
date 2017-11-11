@@ -21,23 +21,15 @@
     
     $("#testButton").click(function(){
     	var jsonData={
-    		    "userAccount":"account",
-    		    "userPwd":"pwd",
-    		    "userName":"userName",
-    		    "gender":1,
-    		    "age":11,
-    		    "qq":"185075580",
-    		    "tel":"13082036138",
-    		    "college":15,
-    		    "status":3,
-    		    "email":"185075580@qq.com"
+    			"leaveId":5,
+    		    "leaveContent":"testUpdate2",
+    		    "leaveTitle":"58"
     		}
-    	var userAccount="aa";
         $.ajax({
-           type:"get",
-           url:"../web/isExist",
-           //data:JSON.stringify(jsonData),
-           data:"userAccount="+userAccount,
+           type:"put",
+           url:"../web/leaveword",
+           data:JSON.stringify(jsonData),
+           //data:"id="+1,
            contentType:"application/json;charser=utf-8",
            //async: false,
            //cache: false,

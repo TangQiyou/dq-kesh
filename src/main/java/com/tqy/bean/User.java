@@ -11,7 +11,6 @@ public class User {
 	private int age;
 	private String qq;
 	private String tel;
-	private String oldPwd;
 	
 	private int college;
 	private String collegeName;
@@ -19,11 +18,10 @@ public class User {
 	private String statusName;
 	private int gender;
 	private String genderName;
-	
 	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUseId(int userId) {
 		this.userId = userId;
 	}
 	public String getUserAccount() {
@@ -110,17 +108,9 @@ public class User {
 	public void setGenderName(String genderName) {
 		this.genderName = genderName;
 	}
-	public String getOldPwd() {
-		return oldPwd;
-	}
-	public void setOldPwd(String oldPwd) {
-		this.oldPwd = oldPwd;
-	}
-
-	
 	public User(int userId, String userAccount, String userPwd, String userLastLoginTime, String userName, String email,
-			int age, String qq, String tel, String oldPwd, int college, String collegeName, int status,
-			String statusName, int gender, String genderName) {
+			int age, String qq, String tel, int college, String collegeName, int status, String statusName, int gender,
+			String genderName) {
 		super();
 		this.userId = userId;
 		this.userAccount = userAccount;
@@ -131,7 +121,6 @@ public class User {
 		this.age = age;
 		this.qq = qq;
 		this.tel = tel;
-		this.oldPwd = oldPwd;
 		this.college = college;
 		this.collegeName = collegeName;
 		this.status = status;
@@ -139,18 +128,16 @@ public class User {
 		this.gender = gender;
 		this.genderName = genderName;
 	}
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userAccount=" + userAccount + ", userPwd=" + userPwd
-				+ ", userLastLoginTime=" + userLastLoginTime + ", userName=" + userName + ", email=" + email + ", age="
-				+ age + ", qq=" + qq + ", tel=" + tel + ", oldPwd=" + oldPwd + ", college=" + college + ", collegeName="
-				+ collegeName + ", status=" + status + ", statusName=" + statusName + ", gender=" + gender
-				+ ", genderName=" + genderName + "]";
-	}
 	public User() {
 		super();
 	}
-
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userAccount=" + userAccount + ", userPwd=" + userPwd + ", userLastLoginTime="
+				+ userLastLoginTime + ", userName=" + userName + ", email=" + email + ", age=" + age + ", qq=" + qq
+				+ ", tel=" + tel + ", college=" + college + ", collegeName=" + collegeName + ", status=" + status
+				+ ", statusName=" + statusName + ", gender=" + gender + ", genderName=" + genderName + "]";
+	}
 	
 	
 }
