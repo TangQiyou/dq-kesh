@@ -1,5 +1,7 @@
 package com.tqy.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class UserService {
 	public boolean addUser(User user){
 		user.setUserLastLoginTime(TimeUtil.getCurrentTime());
 		int flag = userMapper.addUser(user);
+		return flag == 1 ? true : false;
+	}
+	
+	public boolean deleteUser(int userId){
+		int flag = userMapper.deleteUser(userId);
 		return flag == 1 ? true : false;
 	}
 	
@@ -52,8 +59,23 @@ public class UserService {
 		return flag == 1 ? true : false;
 	}
 	
+	public boolean updateAll(User user){
+		int flag = userMapper.updateAll(user);
+		return flag == 1 ? true : false;
+	}
+	
+	public User getUserBack(int userId){
+		User user = userMapper.getUserBack(userId);
+		return user;
+	}
+	
 	public User getUser(int userId){
 		User user = userMapper.getUser(userId);
 		return user;
+	}
+	
+	public List<User> getUsers(){
+		List<User> list = userMapper.getUsers();
+		return list;
 	}
 }
