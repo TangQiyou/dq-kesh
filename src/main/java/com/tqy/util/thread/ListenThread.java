@@ -8,7 +8,7 @@ public class ListenThread extends Thread {
 	public void run(){
 		while(!this.isInterrupted()){
 			try{
-				Thread.sleep(20000);
+				Thread.sleep(200000);
 			} catch(InterruptedException e){
 				e.printStackTrace();
 			}

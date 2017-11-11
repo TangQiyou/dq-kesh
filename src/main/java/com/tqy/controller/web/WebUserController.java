@@ -65,6 +65,8 @@ public class WebUserController {
 	@RequestMapping(value="/user", method=RequestMethod.GET)
 	public Msg getUser(@RequestParam("id")Integer userId){
 		User user = userService.getUser(userId);
+		user.setUserAccount(null);
+		user.setUserPwd(null);
 		List<Code> genderList = codeService.getCodesByType("gender");
 		List<Code> collegeList = codeService.getCodesByType("college_type");
 		List<Code> statusList = codeService.getCodesByType("status_type");

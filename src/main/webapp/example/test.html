@@ -13,62 +13,17 @@
     
     $("#testButton").click(function(){
     	var jsonData={
-<<<<<<< HEAD
-<<<<<<< HEAD
-    			"leaveId":5,
-    		    "leaveContent":"testUpdate2",
-    		    "leaveTitle":"58"
-=======
-    		    "userAccount":"account",
-    		    "userPwd":"pwd",
-    		    "userName":"userName",
-    		    "gender":1,
-    		    "age":11,
-    		    "qq":"185075580",
-    		    "tel":"13082036138",
-    		    "college":15,
-    		    "status":3,
-    		    "email":"185075580@qq.com"
->>>>>>> parent of dbaffdd... Revert "Merge branch 'tangqy' into dev"
+    		    "userId":4,
+    		    "userPwd":"update",
+    		    "oldPwd":"pwd"
     		}
     	var userAccount="aa";
         $.ajax({
-<<<<<<< HEAD
-           type:"put",
-           url:"../web/leaveword",
-           data:JSON.stringify(jsonData),
-           //data:"id="+1,
-=======
-    			"userId":4,
-    		    "userAccount":"account",
-    		    "userPwd":"pwd",
-    		    "userName":"userName",
-    		    "gender":1,
-    		    "age":11,
-    		    "qq":"185075580",
-    		    "tel":"13082036138",
-    		    "college":15,
-    		    "status":3,
-    		    "email":"185075580@qq.com"
-    		}
-    	var userAccount="aaa";
-        $.ajax({
            type:"get",
-           url:"../back/users",
+           url:"../web/user",
            //data:JSON.stringify(jsonData),
-           //data:"pn="+1,
->>>>>>> tangqy
-=======
-           type:"get",
-           url:"../web/isExist",
-           //data:JSON.stringify(jsonData),
-           data:"userAccount="+userAccount,
->>>>>>> parent of dbaffdd... Revert "Merge branch 'tangqy' into dev"
+           data:"id="+4,
            contentType:"application/json;charser=utf-8",
-           //async: false,
-           //cache: false,
-           //contentType: false,
-           //processData: false,
            success:function(returnData){
               alert(returnData.code);
            },
