@@ -229,3 +229,77 @@ type:"get",
 url:"../back/responses",
 data:"pn="+1,(这里的回复的ID)
 returnData:包含了一页详细信息的Msg
+
+
+=====================User=====================
+des添加时得到各种select的值
+type:"get"
+url:"../public/getSelects",
+data:无,
+returnData:各种select的被选值
+
+
+des:检查账号是否存在
+type:"get"
+url:"../back/isExist",
+data:"userAccount="+userAccount,
+returnData:账号是否存在的结果，result.code=1表示不存在，账号可用
+
+
+var jsonData={
+    "userAccount":"account",(要检查账号是否存在)
+    "userPwd":"pwd",
+    "userName":"userName",
+    "gender":1,
+    "age":11,
+    "qq":"185075580",
+    "tel":"13082036138",
+    "college":15,
+    "status":3,
+    "email":"185075580@qq.com"
+}
+des:用户注册
+type:"post"
+url:"../back/user",
+data:JSON.stringify(jsonData),
+returnData:用户注册的结果
+
+
+des:根据userID删除一个user详细信息
+type:"delete",
+url:"../back/user/"+1,
+data:无,
+returnData:包含了user删除情况的Msg
+
+
+var jsonData={
+    "userId":4,
+    "userPwd":"pwd",
+    "userName":"userName",
+    "gender":1,
+    "age":11,
+    "qq":"185075580",
+    "tel":"13082036138",
+    "college":15,
+    "status":3,
+    "email":"185075580@qq.com"
+}
+des:管理员修改用户个人信息
+type:"put"
+url:"../back/user",
+data:JSON.stringify(jsonData),
+returnData:修改是否成功
+
+
+des:点开查看用户的详细信息
+type:"get"
+url:"../back/user",
+data:"id="+1,
+returnData:用户的个人信息以及各种code信息
+
+
+des:分页查询用户的详细信息
+type:"get"
+url:"../back/users",
+data:"pn="+1,
+returnData: 每一页的用户的个人信息以及各种code信息

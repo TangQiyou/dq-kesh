@@ -5,22 +5,15 @@
 <title>testPage</title>
 </head>
 <body>
-          参数1：<input type="text" id="parameter"><br>
-    <form action="../back/addOnlyPicture" id="form2" enctype="multipart/form-data" method="post">
-        <input type="file" name="file" id="file" accept="image/gif,image/jpeg,image/jpeg,image/png">
-        <input type="text" name="picType">
-        <input type="submit" value="上传">
-    </form>
-    <br>
-    <br>
+
 	<button id="testButton">提交</button><br>
-	<!-- <img src="../img/102/20171015102.jpg"> -->
 	
 	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
     
     $("#testButton").click(function(){
     	var jsonData={
+<<<<<<< HEAD
     			"leaveId":5,
     		    "leaveContent":"testUpdate2",
     		    "leaveTitle":"58"
@@ -30,6 +23,26 @@
            url:"../web/leaveword",
            data:JSON.stringify(jsonData),
            //data:"id="+1,
+=======
+    			"userId":4,
+    		    "userAccount":"account",
+    		    "userPwd":"pwd",
+    		    "userName":"userName",
+    		    "gender":1,
+    		    "age":11,
+    		    "qq":"185075580",
+    		    "tel":"13082036138",
+    		    "college":15,
+    		    "status":3,
+    		    "email":"185075580@qq.com"
+    		}
+    	var userAccount="aaa";
+        $.ajax({
+           type:"get",
+           url:"../back/users",
+           //data:JSON.stringify(jsonData),
+           //data:"pn="+1,
+>>>>>>> tangqy
            contentType:"application/json;charser=utf-8",
            //async: false,
            //cache: false,
