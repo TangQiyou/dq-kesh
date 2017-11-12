@@ -47,7 +47,7 @@ public class LeaveWordService {
 	}
 	
 	public List<LeaveWord> getLeaveWordByPageAndUseId(int leaveUserId){
-		return leaveWordMapper.getLeaveWordByPageAndUseId(leaveUserId);
+		return leaveWordMapper.getLeaveWordByPageAndUserId(leaveUserId);
 	}
 	
 }

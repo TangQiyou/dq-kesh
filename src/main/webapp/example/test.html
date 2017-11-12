@@ -20,9 +20,9 @@
     	var userAccount="aa";
         $.ajax({
            type:"get",
-           url:"../web/user",
+           url:"../back/leavewords",
            //data:JSON.stringify(jsonData),
-           data:"id="+4,
+           data:"pn="+1,
            contentType:"application/json;charser=utf-8",
            success:function(returnData){
               alert(returnData.code);

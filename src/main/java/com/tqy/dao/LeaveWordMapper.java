@@ -17,5 +17,5 @@ public interface LeaveWordMapper {
 	
 	public List<LeaveWord> getLeaveWordByPage();
 	
-	public List<LeaveWord> getLeaveWordByPageAndUseId(int leaveUserId);
+	public List<LeaveWord> getLeaveWordByPageAndUserId(int leaveUserId);
 }
