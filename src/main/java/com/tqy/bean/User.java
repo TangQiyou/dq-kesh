@@ -12,6 +12,7 @@ public class User {
 	private String qq;
 	private String tel;
 	private String oldPwd;
+	private String userHead;
 	
 	private int college;
 	private String collegeName;
@@ -116,10 +117,8 @@ public class User {
 	public void setOldPwd(String oldPwd) {
 		this.oldPwd = oldPwd;
 	}
-
-	
 	public User(int userId, String userAccount, String userPwd, String userLastLoginTime, String userName, String email,
-			int age, String qq, String tel, String oldPwd, int college, String collegeName, int status,
+			int age, String qq, String tel, String oldPwd, String userHead, int college, String collegeName, int status,
 			String statusName, int gender, String genderName) {
 		super();
 		this.userId = userId;
@@ -132,6 +131,7 @@ public class User {
 		this.qq = qq;
 		this.tel = tel;
 		this.oldPwd = oldPwd;
+		this.userHead = userHead;
 		this.college = college;
 		this.collegeName = collegeName;
 		this.status = status;
@@ -143,9 +143,15 @@ public class User {
 	public String toString() {
 		return "User [userId=" + userId + ", userAccount=" + userAccount + ", userPwd=" + userPwd
 				+ ", userLastLoginTime=" + userLastLoginTime + ", userName=" + userName + ", email=" + email + ", age="
-				+ age + ", qq=" + qq + ", tel=" + tel + ", oldPwd=" + oldPwd + ", college=" + college + ", collegeName="
-				+ collegeName + ", status=" + status + ", statusName=" + statusName + ", gender=" + gender
-				+ ", genderName=" + genderName + "]";
+				+ age + ", qq=" + qq + ", tel=" + tel + ", oldPwd=" + oldPwd + ", userHead=" + userHead + ", college="
+				+ college + ", collegeName=" + collegeName + ", status=" + status + ", statusName=" + statusName
+				+ ", gender=" + gender + ", genderName=" + genderName + "]";
+	}
+	public String getUserHead() {
+		return userHead;
+	}
+	public void setUserHead(String userHead) {
+		this.userHead = userHead;
 	}
 	public User() {
 		super();

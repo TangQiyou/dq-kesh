@@ -19,7 +19,7 @@
         select * from sys_response where responseId=#{responseId} 
     </select>
     
-    <select id="getResponseByLeaveId" parameterType="Integer" resultType="com.tqy.bean.Response">
+    <select id="getResponseByLeaveid" parameterType="Integer" resultType="com.tqy.bean.Response">
         select * from sys_response where responseLeaveId=#{leaveId} 
     </select>
     

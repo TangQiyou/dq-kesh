@@ -52,7 +52,7 @@
     
     <insert id="addUser" parameterType="com.tqy.bean.User">
         insert into sys_user
-        (userAccount,userPwd,userLastLoginTime,userName,gender,age,qq,tel,college,status,email) 
+        (userAccount,userPwd,userLastLoginTime,userName,gender,age,qq,tel,college,status,email,userHead) 
         values 
         (#{userAccount},
         #{userPwd},
@@ -64,7 +64,8 @@
         #{tel},
         #{college},
         #{status},
-        #{email})
+        #{email},
+        #{userHead})
     </insert>
     
     <select id="isExist" resultType="java.lang.String">

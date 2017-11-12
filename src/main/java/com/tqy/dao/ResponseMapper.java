@@ -14,7 +14,7 @@ public interface ResponseMapper {
 	
 	public Response getResponse(int responseId);
 	
-	public Response getResponseByLeaveId(int leaveId);
+	public Response getResponseByLeaveid(int leaveId);
 	
 	public List<Response> getResponseByPage();
 }
