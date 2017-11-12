@@ -19,6 +19,9 @@ app.directive('editor', function () {
                 if (attr.config == 'announcement'){
                     ue.setContent(scope.announcement.annContent);
                 }
+                if (attr.config == 'response'){
+                    ue.setContent(scope.huifu.responseContent);
+                }
             });
         }
 

@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h3 class="modal-title">留言详情</h3>
+</div>
+<div>
+    <form name="myForm" novalidate>
+        <div class="modal-body">
+            <div class="form-group ">
+                <label>留言主题</label>
+                <input type="text" class="form-control" name="item_name" ng-model="pinglun.leaveTitle" required>
+            </div>
+            <div class="form-group ">
+                <label>留言内容</label>
+                <textarea type="text" class="form-control" rows="5" name="item_name" ng-model="pinglun.leaveContent" required></textarea>
+            </div>
+            <div class="form-group ">
+                <label>留言时间</label>
+                <input type="text" class="form-control" name="item_name" ng-model="pinglun.leaveTime" required>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="cancel()">确定</button>
+</div>

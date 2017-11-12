@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h3 class="modal-title">回复留言</h3>
+</div>
+<div>
+    <form name="myForm" novalidate>
+        <div class="modal-body">
+            <div class="form-group ">
+                <label>回复内容</label>
+                <editor id="editor" config="response"></editor>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()" ng-disabled='myForm.$invalid'>确定</button>
+    <button class="btn btn-default" ng-click="cancel()">取消</button>
+</div>
