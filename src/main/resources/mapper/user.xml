@@ -109,6 +109,11 @@
         where userId = #{userId}
     </update>
     
+    <update id="updateHead">
+        update sys_user set 
+        userHead = #{userHead} 
+        where userId = #{userId}
+    </update>
 
     <update id="updatePwd" parameterType="com.tqy.bean.User">
         update sys_user set 
