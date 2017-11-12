@@ -69,7 +69,7 @@
         order by leaveId DESC
     </select>
     
-    <select id="getLeaveWordByPageAndUseId" resultMap="leaveWordWithUser">
+    <select id="getLeaveWordByPageAndUserId" resultMap="leaveWordWithUser">
         <include refid="queryLeaveWithUser"></include>
         where leaveUserId = #{leaveUserId} order by leaveId DESC
     </select>

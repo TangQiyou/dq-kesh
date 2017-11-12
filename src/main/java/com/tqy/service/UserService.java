@@ -22,6 +22,7 @@ public class UserService {
 	
 	public boolean addUser(User user){
 		user.setUserLastLoginTime(TimeUtil.getCurrentTime());
+		user.setUserHead("../img/head/default.jpg");
 		int flag = userMapper.addUser(user);
 		return flag == 1 ? true : false;
 	}

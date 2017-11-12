@@ -1,0 +1,78 @@
+<div ng-controller="ResponseManagementCtrl">
+    <div class="wrapper-md bg-light b-b">
+        <h1 class="m-n font-thin h3">留言回复管理</h1>
+    </div>
+
+    <div class="wrapper-md ng-scope">
+        <div id="toast-container" ng-class="config.position"
+             toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"
+             class="ng-scope toast-top-right"><!-- ngRepeat: toaster in toasters --></div>
+        <div class="panel panel-default">
+            <div class="row wrapper">
+                <div class="col-sm-10">
+                    <div>
+                        <button class="btn m-b-xs btn-sm btn-primary btn-addon" disabled = "true" ng-click="add()"><i
+                                class="fa fa-plus"></i>添加
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <!-- 表格 -->
+                <table class="table  b-t m-b-none">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>回复内容</th>
+                        <th>回复时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div id='content'>
+                        <!-- ngRepeat: nav in items -->
+                        <tr ng-repeat="item in responses">
+                            <td class="ng-binding">{{$index+1}}</td>
+                            <td class="ng-binding">{{item.responseContent}}</td>
+                            <td class="ng-binding">{{item.responseTime}}</td>
+                            <td>
+                                <button class="btn btn-success m-b-xs btn-sm" ng-click="see(item)">
+                                    <i class="m-r-xs fa fa-pencil"></i>查看
+                                </button>
+                                <button class="btn btn-danger m-b-xs btn-sm" ng-click="delete(item)">
+                                    <i class="m-r-xs fa fa-times fa-fw"></i>删除
+                                </button>
+                            </td>
+                        </tr>
+                    </div>
+                    </tbody>
+                </table>
+                <!-- 分页控件 -->
+                <div>
+                    <ul class="pager">
+                        <li ng-class="{disabled:currentPage == 1}">
+                            <a ng-disabled="currentPage <= 1" ng-click="Previous()">
+                                <span>上一页</span>
+                            </a>
+                        </li>
+                        <li>
+                            &nbsp;<input style="border: none;width: 14px;" type="text" ng-blur="goToPage()"
+                                         ng-model="currentPage">&nbsp;/&nbsp;{{totalPage}}
+                        </li>
+                        <li ng-class="{disabled:currentPage == totalPage}">
+                            <a ng-disabled="currentPage >= totalPage" ng-click="Next()">
+                                <span>下一页</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 分页控件 -->
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

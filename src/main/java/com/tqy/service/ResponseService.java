@@ -42,7 +42,7 @@ public class ResponseService {
 	}
 	
 	public Response getResponseByLeaeId(int leaveId){
-		return responseMapper.getResponseByLeaveId(leaveId);
+		return responseMapper.getResponseByLeaveid(leaveId);
 	}
 	
 	public List<Response> getResponseByPage(){

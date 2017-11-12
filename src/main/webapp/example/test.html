@@ -13,16 +13,15 @@
     
     $("#testButton").click(function(){
     	var jsonData={
-    		    "userId":4,
-    		    "userPwd":"update",
-    		    "oldPwd":"pwd"
+    		    "responseContent":"test1",
+    		    "responseLeaveId":3
     		}
     	var userAccount="aa";
         $.ajax({
-           type:"get",
-           url:"../web/user",
-           //data:JSON.stringify(jsonData),
-           data:"id="+4,
+           type:"post",
+           url:"../back/response",
+           data:JSON.stringify(jsonData),
+           //data:"pn="+1,
            contentType:"application/json;charser=utf-8",
            success:function(returnData){
               alert(returnData.code);

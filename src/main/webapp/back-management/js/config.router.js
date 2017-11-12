@@ -57,6 +57,28 @@ angular.module('app')
                                 }]
                         }
                     })
+                    //留言管理
+                    .state('app.leaveword_management', {
+                        url: '/leaveword_management',
+                        templateUrl: 'tpl/leaveword_management.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['toaster','js/controllers/leaveword_management.js','js/directives/editor.js']);
+                                }]
+                        }
+                    })
+                    //回复管理
+                    .state('app.response_management', {
+                        url: '/response_management',
+                        templateUrl: 'tpl/response_management.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['toaster','js/controllers/response_management.js','js/directives/editor.js']);
+                                }]
+                        }
+                    })
             }
         ]
     );
