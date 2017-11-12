@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tqy.dao.CodeMapper">
     
-    <select id="getCodeByvalue" parameterType="INTEGER" resultType="com.tqy.bean.Code">
+    <select id="getCodeByValue" parameterType="INTEGER" resultType="com.tqy.bean.Code">
         select * from sys_code where codeValue = #{codeValue}
     </select>
     

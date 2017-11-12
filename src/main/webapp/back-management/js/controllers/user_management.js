@@ -11,23 +11,30 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
     $scope.currentPage = 1;
     $scope.pageSize = 10;
     $scope.users = [];
+    
+    //定义分页获取用户信息，默认第一页
     $scope.loadData = function () {
+    	
+    	//每次获取前清空信息
         $scope.users = [];
-        // ajax请求分页获取列表
+        
+        //ajax请求分页获取列表
         resource.get('../back/users', {
             pn:$scope.currentPage
         }).then(function (result) {
             if (result.code==1) {
                 $scope.users = result.extend.pageInfo.list;
                 $scope.totalPage = result.extend.pageInfo.pages;
-
             } else {
                 toaster.pop('info', '提示','获取失败');
             }
         });
 
     };
+    
+    //左侧点击后自动执行一次
     $scope.loadData();
+    
     //上一页
     $scope.Previous = function () {
         if ($scope.currentPage <= 1) {
@@ -37,6 +44,7 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
         }
         $scope.loadData();
     }
+    
     //下一页
     $scope.Next = function () {
         if ($scope.currentPage >= $scope.totalPage) {
@@ -46,6 +54,7 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
         }
         $scope.loadData();
     };
+    
     //页面跳转
     $scope.goToPage = function () {
         //从input输入框绑定的currentPage变量中获取用户输入的值
@@ -61,31 +70,36 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
         $scope.loadData();
 
     };
+    
     // 查看用户信息
     $scope.loaduser = function(user){
-        resource.post('../findOneUserByname', {name:user.name}).then(function (result) {
-            if (result.success) {
-                $scope.user = result.user;
-                $scope.see($scope.user);
+        resource.get('../back/user', {id:user.userId}).then(function (result) {
+            if (result.code==1) {
+            	//extend里面不仅包含了user信息，还包含了相应的list
+                $scope.extend = result.extend;
+                $scope.see($scope.extend);
             } else {
-                toaster.pop('info', '提示', '获取失败');
+                toaster.pop('info', '提示', '获取用户信息失败');
             }
         });
     }
-    $scope.see = function (user) {
-    	$scope.user = user;
+    
+    //弹出模态框查看用户信息
+    $scope.see = function (extend) {
+    	$scope.extend = extend;
         var modalInstance = $modal.open({
             templateUrl: 'tpl/modal/user.html',
             controller: 'UserModalCtrl',
             backdrop: 'static',
             size: 'lg',
             resolve: {
-                user: function () {
-                    return $scope.user;
+            	content: function () {
+                    return angular.copy(extend);
                 }
             }
         });
     };
+    
     // 冻结用户
     $scope.stop = function (user) {
         $scope.user = user;
@@ -132,6 +146,7 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
             }
         });
     };
+    
     $scope.delete = function (user) {
         $scope.user = user;
 
@@ -162,12 +177,15 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
     }
 }]);
 
-app.controller('UserModalCtrl', ['$scope', '$modalInstance', 'user', function ($scope, $modalInstance, user) {
-    $scope.user = user;
-
-
+app.controller('UserModalCtrl', ['$scope', '$modalInstance', 'content', function ($scope, $modalInstance, content) {
+    $scope.content = content;
+    
+    $scope.selectedGender = content.user.gender;
+    $scope.selectedStatus = content.user.status;
+    $scope.selectedCollege = content.user.college;
+    
     $scope.ok = function () {
-        $modalInstance.close($scope.user);
+        $modalInstance.close($scope.content);
     };
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');

@@ -35,7 +35,7 @@ public class BackPictureController {
 		Map<String, Integer> map = pictureService.addOnlyPicture(file,picType);
 		Msg msg = Msg.success();
 		int picId = map.get("picId");
-		msg.add("picId", picId);   //这里的pic_id不能改，否则前端没改要出错
+		msg.add("picId", picId);   //这里的picId不能改，否则前端没改要出错
 		msg.add("totalTime", map.get("totalTime").toString()+"ms");
 		return picId != -1 ? msg : Msg.fail();
 	}

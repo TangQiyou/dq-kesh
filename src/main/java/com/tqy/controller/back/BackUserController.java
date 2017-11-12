@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.tqy.bean.Code;
 import com.tqy.bean.Msg;
 import com.tqy.bean.User;
+import com.tqy.service.CodeService;
 import com.tqy.service.UserService;
 
 @Controller
@@ -23,6 +25,9 @@ public class BackUserController {
 	
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	CodeService codeService;
 	
 	@ResponseBody
 	@RequestMapping(value="/user", method=RequestMethod.POST)
@@ -49,7 +54,15 @@ public class BackUserController {
 	@RequestMapping(value="/user", method=RequestMethod.GET)
 	public Msg getAnnouncement(@RequestParam("id") Integer userId){
 		User user = userService.getUserBack(userId);
-		return user != null ? Msg.success().add("user", user) : Msg.fail();
+		List<Code> genderList = codeService.getCodesByType("gender");
+		List<Code> collegeList = codeService.getCodesByType("college_type");
+		List<Code> statusList = codeService.getCodesByType("status_type");
+		Msg  success = Msg.success();
+		success.add("user", user);
+		success.add("genderList", genderList);
+		success.add("collegeList", collegeList);
+		success.add("statusList", statusList);
+		return user != null? success : Msg.fail();
 	}
 	
 	@SuppressWarnings("rawtypes")

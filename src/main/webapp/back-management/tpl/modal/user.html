@@ -1,0 +1,93 @@
+<div class="modal-header">
+    <h3 class="modal-title"> 用户信息</h3>
+</div>
+<div class="modal-body ng-scope">
+    <form name="userForm" novalidate="" class="ng-pristine ng-invalid ng-invalid-required">
+        <div class="form-group pull-in clearfix">
+            <div class="col-sm-6">
+                <label>姓名</label>
+                <div>
+                    <input type="text" class="form-control" name="item_userName" ng-model="content.user.userName" disabled required>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label>上次登录时间</label>
+                <div>
+                    <input type="text" class="form-control" name="item_userLastLoginTime" ng-model="content.user.userLastLoginTime" disabled required>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group pull-in clearfix">
+            <div class="col-sm-3 ">
+                <label>性别</label>
+	            <select ng-model="selectedGender" ng-options="code.codeValue as code.codeName for code in content.genderList" class="form-control"  ng-init="codeName='男'">
+                    <option  value="" >---请选择---</option>
+	            </select>
+            </div>
+            <div class="col-sm-6 col-sm-offset-3">
+                <label>年龄</label>
+                <div>
+                    <input type="text" class="form-control" name="item_age" ng-model="content.user.age" disabled required>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group pull-in clearfix">
+            <div class="col-sm-6">
+                <label>账号</label>
+                <div>
+                    <input type="text" class="form-control" name="item_userAccount" ng-model="content.user.userAccount" disabled required>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label>密码</label>
+                <div>
+                    <input type="text" class="form-control" name="item_userPwd" ng-model="content.user.userPwd" disabled required>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group pull-in clearfix">
+            <div class="col-sm-6">
+                <label>QQ</label>
+                <div>
+                    <input type="text" class="form-control" name="item_qq" ng-model="content.user.qq" disabled required>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label>联系电话</label>
+                <div>
+                    <input type="text" class="form-control" name="item_tel" ng-model="content.user.tel" disabled required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group pull-in clearfix">
+            <div class="col-sm-6">
+                <label>身份</label>
+                <select ng-model="selectedStatus" ng-options="code.codeValue as code.codeName for code in content.statusList" class="form-control">
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label>所属学院</label>
+                <select ng-model="selectedCollege" ng-options="code.codeValue as code.codeName for code in content.collegeList" class="form-control">
+                </select>
+            </div>
+        </div>
+        
+        <div class="form-group pull-in clearfix">
+            <div class="col-sm-6">
+                <label>联系邮箱</label>
+                <div>
+                    <input type="text" class="form-control" name="item_email" ng-model="content.user.email" disabled required>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="update()">修改</button>
+    <button class="btn btn-default" ng-click="cancel()">取消</button>
+</div>
