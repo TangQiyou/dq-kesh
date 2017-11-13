@@ -22,7 +22,7 @@
         <div class="form-group pull-in clearfix">
             <div class="col-sm-3 ">
                 <label>性别</label>
-	            <select ng-model="selectedGender" ng-options="code.codeValue as code.codeName for code in content.genderList" class="form-control" >
+	            <select ng-model="selectedGender" ng-options="gender.codeName for gender in content.genderList track by gender.codeValue" class="form-control" >
 	            </select>
             </div>
             <div class="col-sm-6 col-sm-offset-3">
@@ -66,12 +66,12 @@
         <div class="form-group pull-in clearfix">
             <div class="col-sm-6">
                 <label>身份</label>
-                <select ng-model="selectedStatus" ng-options="code.codeValue as code.codeName for code in content.statusList" class="form-control">
+                <select ng-model="selectedStatus" ng-options="status.codeName for status in content.statusList track by status.codeValue" class="form-control">
                 </select>
             </div>
             <div class="col-sm-6">
                 <label>所属学院</label>
-                <select ng-model="selectedCollege" ng-options="code.codeValue as code.codeName for code in content.collegeList" class="form-control">
+                <select ng-model="selectedCollege" ng-options="college.codeName for college in content.collegeList track by college.codeValue" class="form-control">
                 </select>
             </div>
         </div>

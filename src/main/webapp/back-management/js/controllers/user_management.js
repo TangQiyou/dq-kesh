@@ -98,13 +98,9 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
                 }
             }
         });
-        modalInstance.result.then(function (result, selectedGender, selectedStatus, selectedCollege) {
+        modalInstance.result.then(function (result) {
         	$scope.item = result;
-        	$scope.item.user.gender = selectedGender;
-        	console.log(selectedGender);
-        	//$scope.item.user.status = selectedStatus;
-        	//$scope.item.user.college = selectedCollege;
-            resource.put('../back/user', $scope.item.user).then(function (result) {
+            resource.put('../back/user', $scope.item).then(function (result) {
                 if (result.code==1) {
                     toaster.pop('info', '提示', '修改用户信息成功');
                     $scope.loadData();
@@ -195,14 +191,17 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
 
 app.controller('UserModalCtrl', ['$scope', '$modalInstance', 'content', function ($scope, $modalInstance, content) {
     $scope.content = content;
-    
-    $scope.selectedGender = content.user.gender;
-    $scope.selectedStatus = content.user.status;
-    $scope.selectedCollege = content.user.college;
-    
+
+    $scope.selectedGender = {codeValue:$scope.content.user.gender};
+    $scope.selectedStatus = {codeValue:$scope.content.user.status};
+    $scope.selectedCollege = {codeValue:$scope.content.user.college};
+    console.log($scope.selectedCollege);
     $scope.update = function () {
-        $modalInstance.close($scope.content, $scope.selectedGender, $scope.selectedStatus, $scope.selectedCollege);
-        console.log($scope.selectedGende);
+        $scope.content.user.gender = $scope.selectedGender.codeValue;
+        $scope.content.user.status = $scope.selectedStatus.codeValue;
+        $scope.content.user.college = $scope.selectedCollege.codeValue;
+        console.log($scope.content.user);
+        $modalInstance.close($scope.content.user);
     };
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
