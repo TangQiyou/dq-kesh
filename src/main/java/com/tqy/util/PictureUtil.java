@@ -68,4 +68,35 @@ public class PictureUtil {
 		System.out.println("程序运行时间："+String.valueOf(totalTime)+"ms");
 		return flag;
 	}
+	
+	synchronized public static boolean updateHead(MultipartFile file, Integer userId){
+		boolean flag = false;
+		try {
+			OutputStream os = new FileOutputStream(PathUtil.getRealPath()+"/src/main/webapp/img/head/"+file.getOriginalFilename());
+			InputStream is = file.getInputStream();
+			int temp;
+			while ((temp=is.read())!=(-1)){
+				os.write(temp);
+			}
+			os.flush();
+			os.close();
+			is.close();
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("头像文件失败");
+		}
+		return flag;
+	}
+	
+	synchronized public static boolean deleteHeadOnTheDisk(String picName){
+		boolean flag = false;
+		String path = PathUtil.getRealPath()+"/src/main/webapp/img/head/"+picName;
+		File file = new File(path);
+		if (file.isFile() && file.exists()){
+			file.delete();
+			flag = true;
+		} 
+		return flag;
+	}
 }

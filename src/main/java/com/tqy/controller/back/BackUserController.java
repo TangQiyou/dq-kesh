@@ -32,6 +32,7 @@ public class BackUserController {
 	@ResponseBody
 	@RequestMapping(value="/user", method=RequestMethod.POST)
 	public Msg addUser(@RequestBody User user){
+		System.out.println(user);
 		boolean flag = userService.addUser(user);
 		return flag ? Msg.success() : Msg.fail();
 	}

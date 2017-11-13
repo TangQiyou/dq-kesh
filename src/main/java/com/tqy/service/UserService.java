@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tqy.bean.User;
 import com.tqy.dao.UserMapper;
+import com.tqy.util.PictureUtil;
 import com.tqy.util.TimeUtil;
 
 @Service
@@ -60,7 +62,34 @@ public class UserService {
 		return flag == 1 ? true : false;
 	}
 	
+	public boolean updateHead(MultipartFile file, Integer userId){
+		int flag = 0;
+		boolean flag2 = false;
+		boolean flag3 = false;
+		
+		User user = new User();
+		User user2 = userMapper.getUser(userId);
+		user.setUserId(userId);
+		user.setUserHead("../img/head/"+file.getOriginalFilename());
+		flag = userMapper.updateHead(user);
+		if (flag == 0){
+			return false;
+		}
+		flag2 = PictureUtil.updateHead(file, userId);
+		if (!flag2) {
+			return false;
+		}
+		String dafaultHead = "default.jpg";
+		String oldHead = user2.getUserHead().split("/")[user.getUserHead().split("/").length-1];
+		if (oldHead.equals(dafaultHead)) {
+			return true;
+		}
+		flag3 = PictureUtil.deleteHeadOnTheDisk(oldHead);
+		return flag3;
+	}
+	
 	public boolean updateAll(User user){
+		System.out.println("这是USER:"+user);
 		int flag = userMapper.updateAll(user);
 		return flag == 1 ? true : false;
 	}

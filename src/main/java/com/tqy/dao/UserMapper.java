@@ -20,6 +20,8 @@ public interface UserMapper {
 	
 	public int updatePwd(User user);
 	
+	public int updateHead(User user);
+	
 	public int updateAll(User user);
 	
 	public User getUser(int userId);

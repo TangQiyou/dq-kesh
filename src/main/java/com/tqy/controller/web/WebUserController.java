@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tqy.bean.Code;
 import com.tqy.bean.Msg;
@@ -55,11 +56,19 @@ public class WebUserController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/updatePwd" ,method=RequestMethod.PUT)
+	@RequestMapping(value="/updatePwd" , method=RequestMethod.PUT)
 	public Msg updatePwd(@RequestBody User user){
 		boolean flag = userService.updatePwd(user);
 		return flag ? Msg.success() : Msg.fail();
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/updateHead", method=RequestMethod.POST)
+	public Msg updateHead(@RequestParam("file") MultipartFile file, @RequestParam("userId") Integer userId){
+		boolean flag = userService.updateHead(file, userId);
+		return flag ? Msg.success() : Msg.fail();
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value="/user", method=RequestMethod.GET)
@@ -77,4 +86,6 @@ public class WebUserController {
 		success.add("statusList", statusList);
 		return user != null? success : Msg.fail();
 	}
+	
+	
 }

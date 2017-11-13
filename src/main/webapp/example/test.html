@@ -5,21 +5,25 @@
 <title>testPage</title>
 </head>
 <body>
-
-	<button id="testButton">提交</button><br>
+    <form action="../web/updateHead" enctype="multipart/form-data" method="post">
+        <input type="file" name="file"/><br>
+        <input type="text" name="userId"/>
+        <input type="submit" value="上传"/>
+    </form>
+    <br><br><br><br><br><br><br><br><br><br>
+    <input type="text" name="message" id="message">
+	<button id="testButton">测试</button><br>
 	
 	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
-    
+
     $("#testButton").click(function(){
-    	var jsonData={
-    		    "responseContent":"test1",
-    		    "responseLeaveId":3
-    		}
-    	var userAccount="aa";
+        var jsonData={
+        		   "message":$("#message").val()
+            }r
         $.ajax({
            type:"post",
-           url:"../back/response",
+           url:"../public/getMessage",
            data:JSON.stringify(jsonData),
            //data:"pn="+1,
            contentType:"application/json;charser=utf-8",

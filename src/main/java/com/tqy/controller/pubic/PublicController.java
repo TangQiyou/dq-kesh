@@ -1,9 +1,12 @@
 package com.tqy.controller.pubic;
 
+import java.io.OutputStream;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,5 +41,14 @@ public class PublicController {
 		success.add("collegeList", collegeList);
 		success.add("statusList", statusList);
 		return success;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getMessage", method=RequestMethod.POST)
+	public Msg getMessage(@RequestBody Map<String, String> map){
+		String string = map.get("message");
+		//System.out.println(string);
+		
+		return Msg.success();
 	}
 }

@@ -8,16 +8,17 @@
              toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"
              class="ng-scope toast-top-right"><!-- ngRepeat: toaster in toasters --></div>
         <div class="panel panel-default">
+        
             <div class="row wrapper">
                 <div class="col-sm-10">
                     <div>
-                        <button class="btn m-b-xs btn-sm btn-primary btn-addon" disabled="false" ng-click="add()"><i
+                        <button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-click="add()"><i
                                 class="fa fa-plus"></i>添加
                         </button>
                     </div>
                 </div>
             </div>
-
+        
             <div>
                 <!-- 表格 -->
                 <table class="table  b-t m-b-none">
@@ -42,7 +43,7 @@
                             <td class="ng-binding">{{item.collegeName}}</td>
                             <td>
                                 <button class="btn btn-success m-b-xs btn-sm" ng-click="loaduser(item)">
-                                    <i class="m-r-xs glyphicon glyphicon-eye-open"></i>查看
+                                    <i class="m-r-xs glyphicon glyphicon-eye-open"></i>修改
                                 </button>
                                 <!--  
 	                                <button ng-class="item.dongjie == 0 ? 'btn btn-danger m-b-xs btn-sm' : 'btn btn-success m-b-xs btn-sm'"
