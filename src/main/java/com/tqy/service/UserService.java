@@ -89,6 +89,7 @@ public class UserService {
 	}
 	
 	public boolean updateAll(User user){
+		System.out.println("这是USER:"+user);
 		int flag = userMapper.updateAll(user);
 		return flag == 1 ? true : false;
 	}

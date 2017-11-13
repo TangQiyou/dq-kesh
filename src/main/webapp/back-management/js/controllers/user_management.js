@@ -98,7 +98,52 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
                 }
             }
         });
+        modalInstance.result.then(function (result, selectedGender, selectedStatus, selectedCollege) {
+        	$scope.item = result;
+        	$scope.item.user.gender = selectedGender;
+        	console.log(selectedGender);
+        	//$scope.item.user.status = selectedStatus;
+        	//$scope.item.user.college = selectedCollege;
+            resource.put('../back/user', $scope.item.user).then(function (result) {
+                if (result.code==1) {
+                    toaster.pop('info', '提示', '修改用户信息成功');
+                    $scope.loadData();
+                } else {
+                    toaster.pop('info', '提示',  '修改用户信息失败');
+                }
+            });
+        });
     };
+    
+    //删除用户
+    $scope.delete = function (user) {
+        $scope.user = user;
+
+        var modalInstance = $modal.open({
+            templateUrl: 'tpl/modal/delete.html',
+            controller: 'DeleteModalCtrl',
+            backdrop: 'static',
+            resolve: {
+                data: function () {
+                    return $scope.user;
+                },
+                content: function () {
+                    return "您确定要删除" + user.name + "吗？";
+                }
+            }
+        });
+        modalInstance.result.then(function (result) {
+            $scope.item = result;
+            resource.delete('../back/user/'+$scope.item.userId).then(function (result) {
+                if (result.code==1) {
+                    toaster.pop('info', '提示', '删除成功');
+                    $scope.loadData();
+                } else {
+                    toaster.pop('info', '提示','删除失败');
+                }
+            });
+        });
+    }
     
     // 冻结用户
     $scope.stop = function (user) {
@@ -146,35 +191,6 @@ app.controller('UserManagementCtrl', ['$scope', '$modal','resource','toaster', f
             }
         });
     };
-    
-    $scope.delete = function (user) {
-        $scope.user = user;
-
-        var modalInstance = $modal.open({
-            templateUrl: 'tpl/modal/delete.html',
-            controller: 'DeleteModalCtrl',
-            backdrop: 'static',
-            resolve: {
-                data: function () {
-                    return $scope.user;
-                },
-                content: function () {
-                    return "您确定要删除" + user.name + "吗？";
-                }
-            }
-        });
-        modalInstance.result.then(function (result) {
-            $scope.item = result;
-            resource.post('../deleteOneUser', {id:$scope.item.id}).then(function (result) {
-                if (result.success) {
-                    toaster.pop('info', '提示', '删除成功');
-                    $scope.loadData();
-                } else {
-                    toaster.pop('info', '提示','删除失败');
-                }
-            });
-        });
-    }
 }]);
 
 app.controller('UserModalCtrl', ['$scope', '$modalInstance', 'content', function ($scope, $modalInstance, content) {
@@ -184,8 +200,9 @@ app.controller('UserModalCtrl', ['$scope', '$modalInstance', 'content', function
     $scope.selectedStatus = content.user.status;
     $scope.selectedCollege = content.user.college;
     
-    $scope.ok = function () {
-        $modalInstance.close($scope.content);
+    $scope.update = function () {
+        $modalInstance.close($scope.content, $scope.selectedGender, $scope.selectedStatus, $scope.selectedCollege);
+        console.log($scope.selectedGende);
     };
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');

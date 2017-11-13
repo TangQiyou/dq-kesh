@@ -8,13 +8,13 @@
             <div class="col-sm-6">
                 <label>姓名</label>
                 <div>
-                    <input type="text" class="form-control" name="item_userName" ng-model="content.user.userName" disabled required>
+                    <input type="text" class="form-control" name="item_userName" ng-model="content.user.userName"  required>
                 </div>
             </div>
             <div class="col-sm-6">
                 <label>上次登录时间</label>
                 <div>
-                    <input type="text" class="form-control" name="item_userLastLoginTime" ng-model="content.user.userLastLoginTime" disabled required>
+                    <input type="text" class="form-control" name="item_userLastLoginTime" ng-model="content.user.userLastLoginTime"  required>
                 </div>
             </div>
         </div>
@@ -22,14 +22,13 @@
         <div class="form-group pull-in clearfix">
             <div class="col-sm-3 ">
                 <label>性别</label>
-	            <select ng-model="selectedGender" ng-options="code.codeValue as code.codeName for code in content.genderList" class="form-control"  ng-init="codeName='男'">
-                    <option  value="" >---请选择---</option>
+	            <select ng-model="selectedGender" ng-options="code.codeValue as code.codeName for code in content.genderList" class="form-control" >
 	            </select>
             </div>
             <div class="col-sm-6 col-sm-offset-3">
                 <label>年龄</label>
                 <div>
-                    <input type="text" class="form-control" name="item_age" ng-model="content.user.age" disabled required>
+                    <input type="text" class="form-control" name="item_age" ng-model="content.user.age"  required>
                 </div>
             </div>
         </div>
@@ -44,7 +43,7 @@
             <div class="col-sm-6">
                 <label>密码</label>
                 <div>
-                    <input type="text" class="form-control" name="item_userPwd" ng-model="content.user.userPwd" disabled required>
+                    <input type="text" class="form-control" name="item_userPwd" ng-model="content.user.userPwd"  required>
                 </div>
             </div>
         </div>
@@ -53,13 +52,13 @@
             <div class="col-sm-6">
                 <label>QQ</label>
                 <div>
-                    <input type="text" class="form-control" name="item_qq" ng-model="content.user.qq" disabled required>
+                    <input type="text" class="form-control" name="item_qq" ng-model="content.user.qq"  required>
                 </div>
             </div>
             <div class="col-sm-6">
                 <label>联系电话</label>
                 <div>
-                    <input type="text" class="form-control" name="item_tel" ng-model="content.user.tel" disabled required>
+                    <input type="text" class="form-control" name="item_tel" ng-model="content.user.tel"  required>
                 </div>
             </div>
         </div>
@@ -81,7 +80,7 @@
             <div class="col-sm-6">
                 <label>联系邮箱</label>
                 <div>
-                    <input type="text" class="form-control" name="item_email" ng-model="content.user.email" disabled required>
+                    <input type="text" class="form-control" name="item_email" ng-model="content.user.email"  required>
                 </div>
             </div>
         </div>
