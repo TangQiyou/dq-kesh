@@ -1,0 +1,261 @@
+
+#header {height: 50px;}
+#personal {width: 100%;
+			height: auto;
+			overflow: hidden;}
+.personal-bk {position: absolute;
+			z-index: -99;
+			top: 50px;
+			width: 100%;
+			margin-left: 0;
+			height: 200px;}
+.personal-bk img {height: 150px;
+					width: 100%;}
+.personal-container {width: 1200px;
+					height: auto;
+					overflow: hidden;
+					margin:0 auto;
+					min-height: 500px;}
+
+.modify-pic-click {
+			width: 174px;
+			height: 90px;
+			position: absolute;
+			top:160px;
+			left: 160px;
+			border-bottom-right-radius: 90px;
+			border-bottom-left-radius: 90px;
+			background-color: rgba(0,0,0,0.2);
+			cursor: pointer;
+		}
+.modify-pic-click .glyphicon-pencil{
+			font-size: 14px;
+			color: white;
+			margin-left: 10px;
+			margin-top: 10px;
+}
+.perrsonal-pic .user-pic-wrap {width: 185px;
+								height: 185px;
+								border-radius: 185px;
+								box-shadow: 0px 0px 2px 2px #000;
+								border: 1px  solid #000;
+								background-color: #000;
+								margin-top: 20px;
+								margin-left: 80px;}
+.perrsonal-pic .user-pic-wrap .user-pic {width: 170px;
+										height: 170px;
+										border-radius: 170px;
+										margin:0 auto;
+										margin-top: 7px;}
+.perrsonal-pic .user-pic-wrap .user-pic img {width: 169px;
+											height: 169px;
+											border-radius: 169px;}
+
+.user-pic-wrap,.user-name-wrap {float: left;}
+
+.user-name-wrap {width: 800px;
+				height: 185px;
+				color: #fff;
+				margin-top: 20px;
+				margin-left: 20px;}
+.user-name-wrap .user-name {font-size: 30px;
+							font-weight: 600;
+							margin-top: 80px;
+							font-family: "gb2312"}
+.user-name-wrap .user-status {font-size: 16px;
+							margin-top: 5px;
+							letter-spacing: 5px;}
+
+.personal-information-container {width: 100%;
+								clear: both;
+								height: auto;
+								overflow: hidden;
+								min-height: 500px;}
+
+.modify-choose ul {margin-left: 80px;
+					margin-top: 20px;
+					border-bottom: none;
+					margin-bottom: 20px;}
+.modify-choose ul li {
+			float: left;
+			width: 200px;
+			height: 52px;
+			line-height: 50px;
+			text-align: center;
+			margin-right: 30px;
+			font-size: 16px;
+			border: none;
+			border-radius: 0;
+			background-color: #000;
+						}
+.modify-choose ul li a:hover {background-color: #000;border: none;}
+#myTab .active a{background-color: #000;
+				color: red;
+				border: none;}							
+.modify-choose ul li a {width: 200px;
+						height: 50px;
+						line-height: 50px;
+						text-align: center;
+						padding:0;
+						color: #ccc;}
+/*修改个人信息*/
+
+.info-table tbody>tr>td {border: none;}
+
+.info-table,.purchased-table,.leaveWord-table {
+			width: 1000px;
+			margin-left: 80px;
+			margin-top: 10px;
+			box-shadow: 0px 0px 3px 3px #000;}
+
+.info-table tbody>tr {padding-top: 10px;}
+.info-table tbody>tr>td:nth-child(1) {width: 150px;text-align: center;}
+.info-table tbody>tr>td:nth-child(2) {width: 600px;text-align: left;}
+.info-table tbody>tr>td {height: 60px;
+						line-height: 60px;
+						font-size: 16px;
+						}
+
+.info-table tbody>tr>td input,select {
+			width: 400px;
+			margin-top: 5px;
+			height: 40px;
+			text-indent: 20px;
+			margin-left: 20px;
+			outline: none;
+			border:1px solid #000;}
+
+
+.info-table tbody>tr>td .btn {
+			width: 150px;
+			height: 40px;
+			background-color: #000;
+			margin-left: 20px;}
+
+@media only screen and (max-width:1201px){
+		
+		.personal-bk{width: 1200px;}
+		.personal-bk img{width: 1200px;}
+		#personal {width: 1200px;}
+	}
+
+.add-leaveword .add-leaveword-btn {
+			margin-left: 80px;
+			background-color: #000;
+			color: white;
+			height: 40px;
+			width: 120px; 
+}
+.leaveWord-table{
+			table-layout:fixed ;
+	}			
+.leaveWord-table thead>tr>th {
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			font-size: 16px;}
+.leaveWord-table tbody>tr>td:nth-child(1){
+			width: 200px;
+			overflow: hidden;
+			text-overflow:ellipsis;
+			white-space: nowrap;}
+.leaveWord-table tbody>tr>td {
+			height:60px;
+			line-height:60px;
+			overflow: hidden;
+			text-align:center;}
+.leaveWord-table tbody>tr>td .btn {margin-left: 10px;}
+.word-container {
+			height: auto;
+			overflow: hidden;
+}
+.word-container .word-wrap .title,.tip-con {float: left;margin-left: 30px;}
+
+.word-container .word-wrap {
+			width: 600px;
+			height: 60px;
+}
+.word-container .word-wrap .title {
+			font-size: 16px;
+			font-weight: 700;
+}
+.word-container .word-wrap input{
+			width: 400px;
+			height: 35px;
+			line-height: 35px;
+			text-indent: 15px;
+			border:1px solid #000;
+}
+.word-container .word-wrap textarea {
+			width: 400px;
+			min-height: 200px;
+			border:1px solid black;
+			outline: none;
+			text-indent: 20px;
+			height: auto;
+			overflow:hidden;
+			overflow-x: hidden;
+			font-size: 14px;
+}
+
+.word-container .word-wrap .tip-con {
+			width:400px;
+			text-indent: 20px;
+}
+
+.replay .title{
+			font-size: 16px;
+			border-top: 1px solid black;
+			padding-top: 20px;
+			margin-top: 20px;
+			font-weight: 700;
+			margin-bottom: 25px;
+}
+.replay .replay-details {
+			width: 500px;
+			min-height: 150px;
+			border:1px solid black;
+			height: auto;
+			overflow: hidden;
+			padding-top: 10px;
+			text-indent: 20px;
+			padding-bottom: 10px;
+			box-shadow: 0px 0px 2px 2px #000;
+			margin-left: 20px;
+}
+
+/*上传头像*/
+
+.picture{
+			height: 150px;
+		}
+
+.picture img {
+			width: 120px;
+			height: 120px;
+			border-radius:120px;
+			margin-top: 10px;
+			margin-left: 30px;
+		}
+
+.picture img,.fileinput-button {float: left;}
+.picture .btn {
+			height: 35px;
+			width: 100px;
+			margin-left: 30px;
+			margin-top:45px;}
+	
+													
+.fileinput-button { position: relative;
+		            display: inline-block;
+		            overflow: hidden;
+		        	}
+           
+.fileinput-button input{
+    position:absolute;
+    right: 0px;
+    top: 0px;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 50px;
+}

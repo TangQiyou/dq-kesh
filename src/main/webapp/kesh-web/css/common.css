@@ -1,0 +1,67 @@
+* {padding:0;margin:0;font-family: "Microsoft Yahei"}
+a,button,input,select{ 
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+		outline: none;}
+
+.cutline {
+		height: 55px;
+		line-height: 55px;
+		text-align: center;
+		width: 1250px;
+		color: #ccc;
+		margin:0 auto;
+}
+
+.logo-wrap {width: 100%;
+			height: 50px;
+			}
+	a {cursor:pointer;text-decoration: none;}
+	#header {height: auto;
+			overflow: hidden;
+			width: 100%;
+			background-color: black}
+	
+	/*logo*/
+	ul li {list-style: none;}
+	.kesh a{
+		height: 60px;
+		line-height: 60px;
+		text-align: center;
+		font-size: 28px;
+		font-weight: 700;
+		font-family: "STCaiyun";
+		text-decoration: none;
+	}
+	.kesh a{color: white;}
+	.kesh,.header-navbar {float: left;margin-left: 100px;}
+	.logo-wrap {width: 1250px;margin:0 auto;background-color: black;
+				color: white;}
+	.header-navbar {margin-left: 100px;}
+	#header .logo-wrap .header-navbar ul li {float: left;}
+	#header .logo-wrap .header-navbar ul li {width: 100px;
+											height: 60px;
+											line-height: 60px;
+											text-align: center;
+											font-size: 14px;}
+	#header .logo-wrap .header-navbar ul li a:hover {text-decoration: none;
+													color:red;}
+	#header .logo-wrap .header-navbar ul li a {color: white;text-decoration: none;}
+	.footer {
+				width: 100%;
+				height: 80px;
+				background-color: black;
+				line-height: 80px;
+				color: white;
+				text-align: center;
+				font-size: 18px;
+				
+	}
+
+	.btn-default:hover{background-color: black;color:white;}
+	.btn-default:active{background-color: black;color:white;}
+	.btn-default:focus{background-color: black;color:white;}
+@media screen and (max-width: 1251px) {
+
+		#login,#header,#register,.header-title{width: 1250px;}
+		.footer,.header-container {width: 1250px;}
+	}

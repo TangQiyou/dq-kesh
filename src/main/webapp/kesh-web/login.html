@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>登录页面</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="sweetalert/sweetalert.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+</head>
+<style type="text/css">
+	* {padding:0;margin:0;font-family: "Microsoft Yahei"}
+	
+</style>
+<body>
+<div id="header">
+	<div class="logo-wrap">
+		<div class="kesh"><a href="index.html">大气可视化</a></div>
+		<div class="header-navbar">
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li><a onclick="checkCookie(this)">个人</a></li>
+				<li><a href="login.html">登录</a></li>
+				<li><a href="register.html">注册</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="login">
+	<div class="login-container">
+		<div class="login-introduction">
+			<img src="../img/101/20171001101.png">
+		</div>
+		<div class="line-wrap">
+		</div>
+		<div class="login-wrap">
+			<input type="hidden" name="userid" value="">
+			<div class="login-text">
+				<input type="text" name="userAccount" placeholder="账户">
+			</div>
+			<div class="login-text">
+				<input type="password" name="password" placeholder="密码">
+			</div>
+			<div class="login-text">
+				<input type="text" id="code-input" name="code" class="code" placeholder="验证码">
+			</div>
+			<div class="codearea" id="codearea">
+
+			</div> 
+			<span class="code-tip glyphicon">
+				
+			</span>
+			<button class="btn btn-default login-btn">登录</button>
+			<div class="register-forget">
+				你还不是会员，戳这里>><a class="register-now" href="register.html">注册</a>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="footer">
+	抱紧大腿求带飞@成都信息工程大学大气可视化
+</div>
+</body>
+</html>
+<script type="text/javascript" src="jquery/jquery-3.2.0.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="jquery/gVerify.js"></script>
+<script type="text/javascript" src="sweetalert/sweetalert.min.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/checkCookie.js"></script>

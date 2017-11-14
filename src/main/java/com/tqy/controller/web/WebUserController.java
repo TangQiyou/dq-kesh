@@ -65,6 +65,7 @@ public class WebUserController {
 	@ResponseBody
 	@RequestMapping(value="/updateHead", method=RequestMethod.POST)
 	public Msg updateHead(@RequestParam("file") MultipartFile file, @RequestParam("userId") Integer userId){
+		System.out.println("开始重新上传图片");
 		boolean flag = userService.updateHead(file, userId);
 		return flag ? Msg.success() : Msg.fail();
 	}

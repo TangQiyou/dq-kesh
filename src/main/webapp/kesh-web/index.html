@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="jquery/jquery.datetimepicker.css">
 	<link rel="stylesheet" type="text/css" href="sweetalert/sweetalert.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
 </head>
 <style type="text/css">
 	* {padding: 0;margin:0;font-family: "Microsoft Yahei";}
@@ -18,29 +19,37 @@
 </style>
 <body>
 <div id="header">
-	<div class="header-container" style="background-image: url(img/index-back.jpg)">
-		<div class="header-title">
-			<a href="index.html">气象数据可视化系统</a>
+	<div class="logo-wrap">
+		<div class="kesh"><a href="index.html">大气可视化</a></div>
+		<div class="header-navbar">
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li><a onclick="checkCookie(this)">个人</a></li>
+				<li><a href="login.html">登录</a></li>
+				<li><a href="register.html">注册</a></li>
+			</ul>
 		</div>
-		<div class="header-wrap">
-			<div class="data-time">
-				<input type="text" name='data-time' class="datetimepicker" id="datetimepicker" placeholder="请选择时间" />
-			</div>
-			<div class="type-wrap">
-				<select class="data-type">
-					<!-- <option value="">选择类型</option>
-					<option value="降水">降水</option>
-					<option value="降水">降水</option>
-					<option value="降水">降水</option>
-					<option value="降水">降水</option> -->
-				</select>
-			</div>
-			<div class="search-btn">
-				<button class="btn search-data">搜索</button>
-			</div>
-		</div>
-		<div class="header-bottom"></div>
 	</div>
+</div>
+<div class="header-container" style="background-image: url(img/index-back.jpg)">
+	<div class="header-wrap">
+		<div class="data-time">
+			<input type="text" name='data-time' class="datetimepicker" id="datetimepicker" placeholder="请选择时间" />
+		</div>
+		<div class="type-wrap">
+			<select class="data-type">
+				<!-- <option value="">选择类型</option>
+				<option value="降水">降水</option>
+				<option value="降水">降水</option>
+				<option value="降水">降水</option>
+				<option value="降水">降水</option> -->
+			</select>
+		</div>
+		<div class="search-btn">
+			<a href="#content-wrap" style="color:white;"><button class="btn search-data" >搜索</button></a>
+		</div>
+	</div>
+	<div class="header-bottom"></div>
 </div>
 <div class="cutline">
 	—————————————————————————————————————&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据精选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  —————————————————————————————————————
@@ -68,7 +77,7 @@
 			—————————————————————————————————————&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据展示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  —————————————————————————————————————
 		</div>
 		<div class="container">
-		<div class="content-wrap ">
+		<div class="content-wrap " id="content-wrap">
 			<!-- <div class="notfindData">
 				未查询到该时间段的数据，请重新选择
 			</div> -->

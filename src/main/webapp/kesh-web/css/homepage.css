@@ -1,0 +1,148 @@
+
+#header {height: 180px;}
+
+.homepage-logo,.search-input {float: left;}
+
+#search{
+		width: 100%;
+		height: auto;
+		overflow: hidden;}
+.homepage-logo {margin-left: 20px;}			
+.search-container {width: 1200px;
+					margin:0 auto;}
+.search-input .search-tip {width: 60px;
+							height: 30px;
+							line-height: 30px;
+							text-align: center;
+							color: #ffffff;
+							background-color: #0066cc;}
+.search-input {margin-left: 50px;}
+.search-input input,button {float: left;}
+.search-input input {width: 600px;
+					height: 50px;
+					border:2px solid #0066cc;
+					border-radius:0;
+					outline: none;
+					text-indent: 20px;}
+.search-input .btn-search-product:active {background-color:#0066cc;
+									border:none;}
+.search-input .btn-search-product {width: 80px;
+							height: 50px;
+							background-color:#0066cc; 
+							border-radius: 0;
+							border:none;
+							outline: none;
+							font-size: 16px;}
+#homepage-banner {width: 100%;
+				height: auto;
+				margin-top: 20px;
+				overflow: hidden;
+				padding-top: 20px;
+				padding-bottom: 50px;
+				background-color: #f1f1f1;}
+.banner-container {width: 1200px;
+					margin:0 auto;}
+.banner,.system-accountment {float: left;}
+#homepage-banner .banner {width: 800px;
+							height: 400px;}
+.carousel-inner {width: 800px;
+				height: 400px;}
+.carousel-inner img {width: 800px;
+					height: 400px;}
+#homepage-banner .system-accountment {width: 348px;
+									height: 400px;
+									margin-left: 50px;
+									box-shadow: 0px 0px 2px 2px rgba(0,160,216,0.5);
+									background-color: #fff;}
+
+/*系统公告*/
+
+.system-accountment .acc-img {width: 60px;
+								height: 60px;
+								margin: 0 auto;
+								margin-top: 20px;
+								margin-bottom: 20px;}
+.system-accountment .acc-img img {width: 60px;
+								height: 60px;
+								border: 1px solid blue;
+								border-radius: 60px;
+								}
+.system-accountment .acc-title {height: 20px;
+								width: 100%;
+								line-height: 20px;
+								margin-bottom: 10px;
+								text-align: center;
+								font-size: 18px;}
+.system-accountment .register-login {height: 30px;
+									margin-left: 0px;}
+.system-accountment .register-login .btn-primary {width: 120px;
+													height: 30px;
+													border-radius: 0;
+													border: none;
+													margin-left: 35px;}
+.system-accountment .register-login .btn-primary a {color: #ffffff;
+													text-decoration: none;}
+.system-accountment hr {border: 1px solid #ccc;}
+.system-accountment .acc-content ul li a {text-decoration: none;
+											color: #000000;
+											margin-left: 10px;
+											letter-spacing: 5px;}
+.system-accountment .acc-content ul li a:hover {color: #0066cc}
+.system-accountment .acc-content ul li {height: 30px;
+										line-height: 30px;
+										text-align: left;
+										margin-left: 20px;
+										text-indent: 20px;}
+.system-accountment .acc-content ul li.more a {color: #0066cc}
+
+/*商品展示*/
+#goods {width: 100%;
+		height: auto;
+		overflow: hidden;
+		}
+.goods-container {width: 100%;
+					height: auto;
+					overflow: hidden;
+					background-color: #f1f1f1;
+					padding-bottom: 30px;}
+.goods-bk {width: 1200px;margin:0 auto;}
+.intro-wrap {width: 1200px;
+			margin:0 auto;}
+.intro-wrap .goods-intro {height: 40px;
+							width: 250px;
+							font-size: 16px;
+							line-height: 40px;
+							text-align: center;
+							margin-top: 30px;
+							color: #fff;
+							background-color:#0066ff;}
+.intro-wrap hr {border: 2px solid #0066ff;
+					margin-top: 0;}
+.goods-container .goods-wrap {height: 350px;
+								width: 230px;
+								float: left;
+								margin-left: 10px;
+								margin-top: 20px;
+								background-color: #fff;}
+.goods-container .goods-wrap .img-wrap {margin:0 auto;
+										width: 140px;
+										height: 140px;
+										margin-top: 10px;}
+.goods-container .goods-wrap .img-wrap img {width: 140px;
+											height: 140px;
+											}
+.goods-detail {text-align: center;}
+.goods-detail .detail-title {font-size: 25px;
+							font-weight: 500;
+							margin-top: 10px;}
+.goods-detail .detail-content {font-size: 16px;
+								color: #888;
+								height: 30px;
+								line-height: 30px;}
+.goods-wrap .goods-price .price-wrap {width: 130px;
+									height: 45px;
+									margin:0 auto;
+									margin-top: 10px;}
+.goods-wrap .goods-price .price {font-size: 20px;
+								text-align: center;
+								margin-top: 20px;}

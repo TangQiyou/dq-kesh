@@ -63,7 +63,7 @@ $(window).ready(function(){
 
   	// 获取数据类型
   	function getDataType(){
-  		$(".data-type").append('<option value="">选择类型</option>');
+  		$(".data-type").append('<option value="">全部类型</option>');
   		$.ajax({
   			type:"get",
 			url:"../public/getCodeByType",

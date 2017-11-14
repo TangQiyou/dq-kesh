@@ -63,127 +63,253 @@ data:"code_type="+"pic_type"(这里暂时写死)
 returnData:包含了所有的图片种类信息的Msg
 
 =====================LeaveWord=====================
+description:用户留言
 var jsonData={
-    "leaveTitle":"test1",
-    "leaveContent":"xxx",
-    "leaveUserId":1
+    "leaveTitle":（留言标题）,
+    "leaveContent":（留言内容）,
+    "leaveUserId":（留言用户ID）
 }
-des:用户留言
-type:"POST"
-url:"../web/leaveword"
-data:JSON.stringify(jsonData),
-returnData:包含了留言是否成功的的Msg
+$.ajax({
+    type:"post",
+    url:"../web/leaveword",
+    data:JSON.stringify(jsonData),
+    contentType:"application/json;charser=utf-8",
+    success:function(returnData){
+        （XXX）
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});
 
-des:根据留言ID删除一个留言详细信息
-type:"delete"
-url:"../web/leaveword/"+1,
-data:无,
-returnData:包含了留言删除情况的的Msg
 
+description：根据留言ID删除一个留言详细信息
+$.ajax({
+    type:"delete",
+    url:"../web/leaveword/"+（被删除留言的ID）,    	
+    contentType:"application/json;charser=utf-8",
+    success:function(returnData){
+        （XXX）
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});
+
+
+description：根据留言ID修改一个留言详细信息
 var jsonData={
-    "leaveId":1,
-    "leaveTitle":"update",
-    "leaveContent":"update"
+    "leaveId":（留言的ID）,
+    "leaveTitle":（修改后的标题）,
+    "leaveContent":（修改后的内容）
 }
-des:根据留言ID修改一个留言详细信息
-type:"put"
-url:"../web/leaveword"
-data:JSON.stringify(jsonData),
-returnData:包含了留言更新情况的的Msg
+$.ajax({
+    type:"put",
+    url:"../web/leaveword",
+    data:JSON.stringify(jsonData),
+    contentType:"application/json;charser=utf-8",
+    success:function(returnData){
+        （XXX）
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});
 
-des:根据留言ID查询详细信息和回复
-type:"get"
-url:"../web/leaveword"
-data:"id="+1,
-returnData:包含了留言详细信息的的Msg
 
+description:根据留言ID查询详细信息和对应回复
+$.ajax({
+    type:"get",
+    url:"../web/leaveword",
+    data:"id="+（留言ID）,
+    contentType:"application/json;charser=utf-8",
+    success:function(returnData){
+        （XXX）
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});
+
+
+description:根据用户ID查询分页查询留言信息（不带回复）
 var jsonData={
-    "pn":1,
-    "leaveUserId":1
+    "pn":（直接写死第一页就好了，）,
+    "leaveUserId":（用户ID）
 }
-des:根据用户ID查询分页查询留言信息（不带回复）
-type:"post"
-url:"../web/leavewords",
-data:JSON.stringify(jsonData),
-returnData:包含了某一页留言情况的的Msg
+$.ajax({
+    type:"post",
+    url:"../web/leavewords",
+    data:JSON.stringify(jsonData),
+    contentType:"application/json;charser=utf-8",
+    success:function(returnData){
+        （XXX）
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});
 
 
 =====================User=====================
+description:用户登录时发送的请求
 var jsonData={
-    "userAccount":"demo",
-    "userPwd":"123456"
+    "userAccount":（输入的账号）,
+    "userPwd":（输入的密码）
 }
-des:用户登录时发送的请求
-type:"post"
-url:"../web/userLogin",
-data:JSON.stringify(jsonData),
-returnData:用的ID,上次登录时间，姓名
+$.ajax({
+    type:"post",
+    url:"../web/userLogin",
+    data:JSON.stringify(jsonData),
+    contentType:"application/json;charser=utf-8",
+    success:function(returnData){
+        （XXX）
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});
 
 
-des:注册页面得到各种select的值
-type:"get"
-url:"../public/getSelects",
-data:无,
-returnData:各种select的被选值
+description:注册页面得到各种select的值
+$.ajax({
+    type:"get",
+    url:"../public/getSelects",
+    contentType:"application/json;charser=utf-8",
+    success:function(returnData){
+        （XXX）
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});
 
 
-des:检查账号是否存在
-type:"get"
-url:"../web/isExist",
-data:"userAccount="+userAccount,
-returnData:账号是否存在的结果，result.code=1表示不存在，账号可用
+description:检查账号是否存在
+var userAccount = （用户自定义账号）;
+$.ajax({
+    type:"get",
+    url:"../web/isExist",
+    data:"userAccount="+userAccount,
+    contentType:"application/json;charser=utf-8",
+    success:function(returnData){
+        （returnData:账号是否存在的结果，result.code=1表示不存在，账号可用）
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});
 
 
+
+description:用户注册
 var jsonData={
-    "userAccount":"account",(要检查账号是否存在)
-    "userPwd":"pwd",
-    "userName":"userName",
-    "gender":1,
-    "age":11,
-    "qq":"185075580",
-    "tel":"13082036138",
-    "college":15,
-    "status":3,
-    "email":"185075580@qq.com"
+    "userAccount":(用户自定义账号，要检查账号是否存在),
+    "userPwd":（用户密码）,
+    "userName":（用户姓名）,
+    "gender":（用户性别的value）,
+    "age":（用户年龄）,
+    "qq":（用户QQ，字符串）,
+    "tel":（用户手机，字符串）,
+    "college":（用户学院的value）,
+    "status":（用户身份的value）,
+    "email":（用户邮箱）
 }
-des:用户注册
-type:"post"
-url:"../web/user",
-data:JSON.stringify(jsonData),
-returnData:用户注册的结果
+$.ajax({
+    type:"post",
+    url:"../web/user",
+    data:JSON.stringify(jsonData),
+    contentType:"application/json;charser=utf-8",
+    success:function(returnData){
+        （XXX）
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});
 
 
+description:用户修改个人信息
 var jsonData={
-    "userId":4,
-    "userName":"userName",
-    "gender":1,
-    "age":11,
-    "qq":"185075580",
-    "tel":"13082036138",
-    "college":15,
-    "status":3,
-    "email":"185075580@qq.com"
+    "userId":（用户ID，数字）,
+    "userName":（用户姓名）,
+    "gender":（用户性别的value）,
+    "age":（用户年龄）,
+    "qq":（用户QQ，字符串）,
+    "tel":（用户手机，字符串）,
+    "college":（用户学院的value）,
+    "status":（用户状态的value）,
+    "email":（用户邮箱的value）
 }
-des:用户修改个人信息
-type:"put"
-url:"../web/user",
-data:JSON.stringify(jsonData),
-returnData:修改是否成功
+$.ajax({
+    type:"put",
+    url:"../web/user",
+    data:JSON.stringify(jsonData),
+    contentType:"application/json;charser=utf-8",
+    success:function(returnData){
+        （XXX）
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});
 
 
+description:用户修改密码（前端输入两次需要验证）
 var jsonData={
-    "userId":4,
-    "userPwd":"update",
-    "oldPwd":"ccc"
+    "userId":（用户ID）,
+    "userPwd":（新密码）,
+    "oldPwd":（旧密码）
 }
-des:用户修改密码（前端输入两次需要验证）
-type:"put"
-url:"../web/updatePwd",
-data:JSON.stringify(jsonData),
-returnData:修改是否成功
+$.ajax({
+    type:"put",
+    url:"../web/updatePwd",
+    data:JSON.stringify(jsonData),
+    contentType:"application/json;charser=utf-8",
+    success:function(returnData){
+        （XXX）
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});
 
-des:用户进入个人中心查看自己的信息（会带有各种列表）
-type:"get"
-url:"../web/user",
-data:"id="+1,
-returnData:用户的个人信息以及各种code信息
+
+description:用户进入个人中心查看自己的信息（会带有各种列表）
+$.ajax({
+    type:"get",
+    url:"../web/user",
+    data:"id="+（用户ID）,
+    contentType:"application/json;charser=utf-8",
+    success:function(returnData){
+        (XXX)
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});
+
+============================修改头像=============================
+description:用户修改头像
+表单例子：
+<form id="test_form" enctype="multipart/form-data">
+	    <input type="file" name="file" id="file">
+	    <input type="hidden" name="userId" value="1">
+</form>
+JS:
+var formData = new FormData($("#表单名字")[0]); 
+$.ajax({
+    type:"post",
+    url:"../web/updateHead",
+    data: formData,  
+    async: false,  
+    cache: false,  
+    contentType: false,  
+    processData: false,  
+    success:function(returnData){
+            （XXX）
+    },
+    error:function(data){
+        alert("未收到服务端响应，请稍后再试");
+    }
+});

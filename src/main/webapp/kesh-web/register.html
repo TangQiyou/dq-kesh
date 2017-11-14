@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>会员注册界面</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="sweetalert/sweetalert.css">
+	<link rel="stylesheet" type="text/css" href="css/register.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+</head>
+<style type="text/css">
+	
+</style>
+<body>
+<div id="header">
+	<div class="logo-wrap">
+		<div class="kesh"><a href="index.html">大气可视化</a></div>
+		<div class="header-navbar">
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li><a onclick="checkCookie(this)">个人</a></li>
+				<li><a href="login.html">登录</a></li>
+				<li><a href="register.html">注册</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="register">
+	<div class="register-container">
+	<form id="register-form">
+		<div class="input-wrap">
+			<input type="text" id="userAccount" name="userAccount" placeholder="账号（自定义填写）" required>
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<div class="error-tip"></div>
+		</div>
+		<div class="input-wrap">
+			<input type="text" id="name" name="name" placeholder="用户名" required>
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<div class="error-tip"></div>
+		</div>
+		<div class="input-wrap">
+			<input type="password" id="pwd" name="pwd" placeholder="密码" required>
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<div class="error-tip"></div>
+		</div>
+		<div class="input-wrap">
+			<input type="text" id="age" name="age" placeholder="年龄" maxlength="2" required>
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<div class="error-tip"></div>
+		</div>
+		
+		<div class="input-wrap">
+			<input type="text" id="email" name="email" placeholder="邮件" required>
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<div class="error-tip"></div>
+		</div>
+		<div class="input-wrap">
+			<input type="text" id="qq" name="qq" placeholder="QQ号码" maxlength="10" required> 
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<div class="error-tip"></div>
+		</div>
+		<div class="input-wrap">
+			<input type="text" id="tel" name="tel" placeholder="联系电话" maxlength="11"  required>
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<div class="error-tip"></div>
+		</div>
+		<div class="input-wrap">
+			<select name="gender" class="{required:true}">
+				<option value="">性别</option>
+				<option value="2">女</option>
+				<option value="1">男</option>
+			</select>
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<div class="error-tip"></div>
+		</div>
+		<div class="input-wrap">
+			<select name="college" class="{required:true}">
+				<option value="">学院</option>
+			</select>
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<div class="error-tip"></div>
+		</div>
+		<div class="input-wrap">
+			<select name="status" class="{required:true}">
+				<option value="">身份</option>
+			</select>
+			<span class="glyphicon glyphicon-asterisk"></span>
+			<div class="error-tip"></div>
+		</div>
+		<div class="btns">
+			<input type="submit" class="btn btn-default btn-submit" value="提交">
+			<input type="reset" class="btn btn-default" value="重写">
+		</div>
+		</form>	
+	</div>
+</div>
+<div class="footer">
+	抱紧大腿求带飞@成都信息工程大学大气可视化
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="jquery/jquery-3.2.0.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="sweetalert/sweetalert.min.js"></script>
+<script type="text/javascript" src="js/register.js"></script>
+<script type="text/javascript" src="js/checkCookie.js"></script>
+<script type="text/javascript" src="validate/jquery.validate.js"></script>
+<script type="text/javascript" src="validate/additional-methods.js"></script>
+<script type="text/javascript" src="validate/localization/messages_zh.js"></script>

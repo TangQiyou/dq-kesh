@@ -1,0 +1,62 @@
+	#login {height: auto;
+			overflow: hidden;
+			margin: 0 auto;
+			min-height: 400px;
+			padding-bottom: 40px;
+			margin-top: 30px;}
+
+	.login-container {width: 1250px;
+					margin:0 auto;}
+	.login-container .login-introduction img {width: 400px;
+											height: 400px;
+											margin-left: 120px;
+											margin-top: 20px;}
+	
+	.login-introduction,.login-wrap,.line-wrap {float: left;}
+
+	.line-wrap {width: 3px;
+				height: 450px;
+				background-color:#000; 
+				margin-left: 100px;
+				margin-right: 100px;}
+	.login-wrap {width: 450px;
+				margin-top: 20px;
+				padding-top: 10px;
+				box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.8);}
+	
+	.login-text input {width: 400px;
+						height: 45px;
+						margin-top:20px;
+						border-radius: 2px;
+						margin-bottom: 20px;}
+	.login-text,.codearea,.code-tip {float: left;}
+	.code-tip {height: 40px;
+				line-height: 40px;
+				text-align: center;
+				width: 15px;
+				margin-top: 18px;
+				font-size: 18px;}
+	.login-text input.code{width: 160px;}
+	.login-btn,.login-text,.codearea,.code-tip,.register-forget {margin-left:25px;}
+	.codearea {width: 150px;
+				height: 40px;
+				margin-top: 25px;
+				}
+	.login-btn,.btn-default {background-color: black;
+				margin-top: 20px;
+				width: 400px;
+				height: 40px;
+				text-align: center;
+				font-size: 18px;
+				letter-spacing: 20px;
+				color:white;
+				font-family: "Microsoft Yahei"}
+	.btn-default:hover{background-color: black;color:white;}
+	.btn-default:active{background-color: black;color:white;}
+	.btn-default:focus{background-color: black;color:white;}
+	.forget-pwd {float: right;
+				margin-right: 35px;}
+	.register-forget {height: 50px;
+					margin-top: 25px;}
+					
+	

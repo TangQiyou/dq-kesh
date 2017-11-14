@@ -1,6 +1,5 @@
 package com.tqy.controller.pubic;
 
-import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -47,8 +46,7 @@ public class PublicController {
 	@RequestMapping(value="/getMessage", method=RequestMethod.POST)
 	public Msg getMessage(@RequestBody Map<String, String> map){
 		String string = map.get("message");
-		//System.out.println(string);
-		
+		System.out.println(string);
 		return Msg.success();
 	}
 }

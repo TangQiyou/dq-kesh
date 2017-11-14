@@ -1,0 +1,51 @@
+	
+	#register {height: auto;
+				overflow: hidden;
+				width: 1250px;
+				margin:0 auto;
+				min-height: 500px;}
+	.register-container {width: 1000px;
+						box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.8);
+						margin:0 auto;
+						padding-top: 20px;
+						padding-bottom: 10px;
+						margin-top: 30px;
+						margin-bottom: 20px;}
+	
+	.input-wrap {float:left;}
+	
+	.input-wrap input,select {width: 400px;
+						height: 40px;
+						font-size: 14px;
+						line-height: 40px;
+						margin-top: 20px;
+						margin-bottom: 20px;
+						margin-left: 45px;
+						border-radius: 2px;}
+	/*设置提示信息位置*/
+	.error-tip {height: auto;
+				overflow:hidden;
+				margin-left: 45px;
+				color:red;}
+	.error-tip label {line-height: auto;
+					display: block;
+					margin-bottom: 0;}
+	.glyphicon-asterisk {font-size: 10px;
+						color: red;}
+	.other {width: 400px;
+			height: 100px;
+			margin-left: 45px;
+			margin-top: 10px;
+			resize:none;}
+	.btns {width: 800px;
+			margin-left: 170px;
+			}
+	.btns .btn {width: 250px;
+				height: 40px;
+				margin-top: 20px;
+				background-color: #000;
+				font-size: 16px;
+				color:white;
+				letter-spacing: 10px;}
+	.btn-submit {margin-right: 100px;}
+	
