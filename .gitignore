@@ -4,13 +4,5 @@
 .classpath
 target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
-target/classes/springmvc.xml
-target/classes/mybatis-config.xml
-target/classes/mapper/Code.xml
-target/classes/log4j.properties
-target/classes/applicationContext.xml
-target/classes/log4j.properties
-target/classes/mapper/Picture.xml
-target/classes/mapper/Announcement.xml
-target/classes/dbconfig.properties
-target/classes/mapper/admin.xml
+target/classes/*.xml
+target/classes/*.properties
