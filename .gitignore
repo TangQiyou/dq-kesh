@@ -6,3 +6,10 @@ target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 target/classes/*.xml
 target/classes/*.properties
+target/classes/mapper/admin.xml
+target/classes/mapper/Announcement.xml
+target/classes/mapper/Code.xml
+target/classes/mapper/LeaveWord.xml
+target/classes/mapper/Picture.xml
+target/classes/mapper/Response.xml
+target/classes/mapper/user.xml
