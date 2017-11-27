@@ -384,11 +384,9 @@ function getLeavewordByUserid(pn){
 							type:"success",
 							showConfirmButton: true,
 
-						},function(){
-							$('#addLeaveword').modal('hide');
-							getLeavewordByUserid();
 						});
-						
+						$('#addLeaveword').modal('hide');
+						getLeavewordByUserid();
 					}else{
 						swal({
 							title:"添加留言失败，请重试",
@@ -438,11 +436,9 @@ function getLeavewordByUserid(pn){
 							type:"success",
 							showConfirmButton: true,
 
-						},function(){
-							$('#modifyLeaveword').modal('hide');
-							getLeavewordByUserid();
 						});
-						
+						$('#modifyLeaveword').modal('hide');
+						getLeavewordByUserid();
 					}else{
 						swal({
 							title:"修改留言失败，请重试",
@@ -543,21 +539,17 @@ function getLeavewordByUserid(pn){
 						swal({
 							title:"删除留言成功",
 							type:"success",
-							showConfirmButton: true,
-
-						},function(){
-							$('#deleteLeaveword').modal('hide');
-							getLeavewordByUserid();
+							showConfirmButton: true
 						});
-						
+						$('#deleteLeaveword').modal('hide');
+						getLeavewordByUserid();
 					}else{
 						swal({
 							title:"删除留言失败，请重试",
 							type:"error",
-							showConfirmButton: true,
+							showConfirmButton: true
 						});
 					}
-					
 				},
 				error:function(jqXHR, textStatus, errorThrown){
 					 console.log(jqXHR);

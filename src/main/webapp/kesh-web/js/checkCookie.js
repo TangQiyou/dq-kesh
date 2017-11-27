@@ -47,6 +47,12 @@ function getCookie(c_name)
 	return "";
 }
 
+function delCookie(name){//为了删除指定名称的cookie，可以将其过期时间设定为一个过去的时间   
+    var date = new Date();   
+    date.setTime(date.getTime() - 10000);   
+    document.cookie = name + "=a; expires=" + date.toGMTString();   
+}  
+
 function checkCookie(el)
 {
 	userid=getCookie('userid');
