@@ -2,8 +2,85 @@ $(document).ready(function(){
 
 	// 获取各种select
 	getSelects();
+	var userAccountFlag = false;
+	
+	//异步判断
+	$("input[name='userAccount']").bind("change",function(){
+		if($("input[name='userAccount']").val() != ""){
+			// 先检查用户是否存在
+	    	$.ajax({
+				type:"get",
+				url:"../web/isExist",
+				data:"userAccount="+$("input[name='userAccount']").val(),
+				dataType: "json",
+				success:function(data){
+					var result = eval(data);
+					if(result.code==1){
+						userAccountFlag = true;
+					}
+					else{
+						swal({
+							title:"账户已存在",
+							text: "请重新填写",
+							type:"warning",
+							showConfirmButton: true,
+						})
+					}
+				}
+			});
 
+		}
+	});
 
+	$.validator.setDefaults({
+	    submitHandler: function() {
+	      // 注册
+	      if(userAccountFlag == true){
+			var jsonData={
+				"userAccount":$("input[name='userAccount']").val(),
+				"userName":$("input[name='name']").val(),
+				"userPwd":$("input[name='pwd']").val(),
+				"email":$("input[name='email']").val(),
+				"qq":$("input[name='qq']").val(),
+				"tel":$("input[name='tel']").val(),
+				"age":$("input[name='age']").val(),
+				"gender":$("select[name='gender']").find("option:selected").val(),
+				"college":$("select[name='college']").find("option:selected").val(),
+				"status":$("select[name='status']").find("option:selected").val()
+			};
+			$.ajax({
+				type:"post", 
+			 	url:"../web/user",
+			 	dataType:"json",
+				contentType:"application/json;charser=utf-8",
+				data:JSON.stringify(jsonData),
+				success:function(data){
+					var data = eval(data);
+					if(data.code == 1){
+						swal({
+							title:"您已注册成为会员",
+							text: "正在前往登录页面",
+							type:"success",
+							showConfirmButton: true,
+						},function(){
+                         	//window.location.reload();
+							location.href = "login.html";
+						});
+						
+					} else {
+						swal({
+							title:"注册失败",
+							text: "请检查信息填写",
+							type:"error",
+							showConfirmButton: true,
+						})
+					}
+				} 
+				
+			}); //---ajax
+		}
+	    }
+	});
 	$("#register-form").validate({
 	    rules: {
 	      userAccount:{
@@ -32,7 +109,7 @@ $(document).ready(function(){
 	        maxlength: 11
 	      },
 	      age: {
-	      	require:true,
+	      	required:true,
 	      	maxlength:2
 	      },
 	      gender: {
@@ -71,70 +148,15 @@ $(document).ready(function(){
 	    },
 	    errorPlacement: function(error, element) {
         	error.appendTo(element.nextAll(".error-tip"));
-		},
-	    submitHandler: function(form) {
+		}
+		// ,
+	 //    submitHandler: function(form) {
 
-	    	// 先检查用户是否存在
-	    	$.ajax({
-				type:"get",
-				url:"../web/isExist",
-				data:"userAccount="+$("input[name='userAccount']").val(),
-				dataType: "json",
-				success:function(data){
-					var result = evel(data);
-
-					if(result.code==1){
-
-						// 注册
-						var jsonData={
-							"userAccount":$("input[name='userAccount']").val(),
-							"userName":$("input[name='name']").val(),
-							"userPwd":$("input[name='pwd']").val(),
-							"email":$("input[name='email']").val(),
-							"qq":$("input[name='qq']").val(),
-							"tel":$("input[name='tel']").val(),
-							"age":$("input[name='age']").val(),
-							"gender":$("select[name='gender']").find("option:selected").val(),
-							"college":$("select[name='college']").find("option:selected").val(),
-							"status":$("select[name='status']").find("option:selected").val()
-						};
-						$.ajax({
-							type:"post", 
-						 	url:"../web/user",
-						 	dataType:"json",
-							contentType:"application/json;charser=utf-8",
-							data:JSON.stringify(jsonData),
-							success:function(data){
-								var data = eval(data);
-								if(data.code == 1){
-									swal({
-										title:"您已注册成为会员",
-										text: "正在前往登录页面",
-										type:"success",
-										showConfirmButton: true,
-									},function(){
-//										window.location.reload();
-										location.href = "login.html";
-									});
-									
-								} else {
-									swal({
-										title:"注册失败",
-										text: "请检查信息填写",
-										type:"error",
-										showConfirmButton: true,
-									})
-								}
-							} 
-							
-						}); //---ajax
-					}
-					
-				}
-			})
+			   	
 			
-		}//---submit
+		// }//---submit
 	});
 
-	
 })
+	
+

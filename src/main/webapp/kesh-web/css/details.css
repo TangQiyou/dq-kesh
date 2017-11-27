@@ -136,6 +136,9 @@
 	.btns .nextday{
 		margin-left: 50px;
 	}
+    .btns .download{
+        margin-left: 150px;
+    }
 	.btns .btn .glyphicon {
 		font-size: 20px;
 		margin-left: 10px;

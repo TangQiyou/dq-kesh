@@ -157,10 +157,10 @@ $(window).ready(function(){
 
 						$.each(data.extend.list,function(i,list){
 
-							console.log(list.picType);
+							console.log(list);
 
-							var pic = '<div class="data-wrap"><div class="img-wrap"><a href="details.html?picId='+
-										list.picId+'"><img src="'+
+							var pic = '<div class="data-wrap"><div class="img-wrap"><a href="details.html?picTime='+
+										$("input[name='data-time']").val().substr(0,11)+'&picType='+list.picType+'"><img src="'+
 										list.url+'"/></a></div><div class="introduction-wrap"><div class="type-name">'+
 										list.typeName+'</div><hr><div class="name">'+list.des+
 										'</div><div class="create-time">'+list.creatTime+'</div></div></div>';
@@ -214,9 +214,9 @@ $(window).ready(function(){
 						$.each(data.extend.pictures,function(i,list){
 
 							console.log(list.picId);
-
-							var pic = '<div class="data-wrap"><div class="img-wrap"><a href="details.html?picId='+
-										list.picId+'"><img src="'+
+					
+							var pic = '<div class="data-wrap"><div class="img-wrap"><a href="details.html?picTime='+
+										list.creatTime.substr(0,11)+'&picType='+list.picType+'"><img src="'+
 										list.url+'"/></a></div><div class="introduction-wrap"><div class="type-name">'+
 										list.typeName+'</div><hr><div class="name">'+list.des+
 										'</div><div class="create-time">'+list.creatTime+'</div></div></div>';
@@ -270,17 +270,8 @@ $(window).ready(function(){
 
 			
 				if(data.code == '1'){
-
 					
-//					var pic = '<div class="data-wrap"><div class="img-wrap"><a href="details.html?picId='+
-//								data.extend.returnPicture.picId+'"><img src="'+
-//								data.extend.returnPicture.url+'"/></a></div><div class="introduction-wrap"><div class="type-name">'+
-//								data.extend.returnPicture.typeName+'</div><hr><div class="name">'+data.extend.returnPicture.des+
-//								'</div><div class="create-time">'+data.extend.returnPicture.creatTime+'</div></div></div>';
-//					
-//					$(".content-wrap").append(pic);
-					
-					window.location.href = "details.html?picId="+data.extend.returnPicture.picId;
+					window.location.href="details.html?picTime="+$("input[name='data-time']").val().substr(0,11)+"&picType="+data.extend.returnPicture.picType;
 
 					
 				}else{

@@ -37,17 +37,18 @@
     </servlet-mapping>
     
     <!-- 在启动Web容器时，启动一个监听线程 -->
-    <!-- 完全加载成功后启动 -->
+    <!-- 完全加载成功后启动, 数字越小，启动的优先级越高，必须大于0 --> 
+	<!--  
 	<servlet>  
 	    <servlet-name>MyListener</servlet-name>  
 	    <servlet-class>com.tqy.util.thread.MyServlet</servlet-class>  
-	    <load-on-startup>2</load-on-startup><!-- 数字越小，启动的优先级越高，必须大于0 -->  
+	    <load-on-startup>2</load-on-startup>  
 	</servlet>  
 	<servlet-mapping>    
 	    <servlet-name>MyListener</servlet-name>    
 	    <url-pattern>/test</url-pattern>
 	</servlet-mapping>  
-    
+    -->
     <!-- Spring MVC过滤器-字符集过滤器 -->
     <!-- 将request、response都设置成utf-8 -->
     <filter>

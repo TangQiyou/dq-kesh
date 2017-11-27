@@ -1,6 +1,13 @@
 package com.tqy.controller.web;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +23,7 @@ import com.github.pagehelper.PageInfo;
 import com.tqy.bean.Msg;
 import com.tqy.bean.Picture;
 import com.tqy.service.PictureService;
+import com.tqy.util.PathUtil;
 
 @Controller
 @RequestMapping(value="/web")
@@ -74,5 +82,39 @@ public class WebPictureController {
 	public Msg getPictureByType (@RequestParam("picType") Integer picType){
 		List<Picture> pictures = pictureService.getPictureByType(picType);
 		return pictures != null? Msg.success().add("pictures", pictures) :Msg.fail();
+	}
+	
+
+
+	@RequestMapping(value="/downloadPicture",method=RequestMethod.POST)
+	public void download(HttpServletResponse response, HttpServletRequest request) throws IOException{
+		//获取请求中的参数
+		Picture picture = new Picture();
+		picture.setPicType(Integer.valueOf(request.getParameter("picType")));
+		picture.setYear(Integer.valueOf(request.getParameter("year")));
+		picture.setMonth(Integer.valueOf(request.getParameter("month")));
+		picture.setDay(Integer.valueOf(request.getParameter("day")));
+		
+		//根据获取的信息查询对应picture
+		Picture returnPicture = pictureService.getPictureByDateAndType(picture);
+		String url = returnPicture.getUrl();
+		String truthUrl = PathUtil.getRealPath()+"/src/main/webapp"+url.substring(2,url.length());
+		File file =  new File(truthUrl);
+		if(file.exists()){
+			response.setContentType("application/octet-stream");
+			response.addHeader("Content-Disposition", "attachment; filename="+returnPicture.getPicName());
+			FileInputStream fileInputStream = new FileInputStream(file);
+			byte[] by  = new byte[fileInputStream.available()];
+			try {
+				fileInputStream.read(by);
+				OutputStream outputStream = response.getOutputStream();
+				outputStream.write(by);
+				fileInputStream.close();
+				outputStream.close();
+			} catch (Exception e) {
+				System.out.println("文件下载失败");
+			}
+
+		}
 	}
 }

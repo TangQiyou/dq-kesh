@@ -19,23 +19,19 @@ $(document).ready(function() {
 	// 调用修改函数
 	$(".modify-info-btn").unbind("click");
 	$(".modify-info-btn").bind("click",function(){
-
 		updateInformation();
-
 	});
 
+	//调用取消修改函数
 	$(".cancel-modify-btn").unbind("click");
 	$(".cancel-modify-btn").bind("click",function(){
-
 		window.location.reload();
-
 	});
 
 
 	// 调用修改密码函数
 	$(".modify-pwd-btn").unbind("click");
 	$(".modify-pwd-btn").bind("click",function(){
-
 		if($("input[name='newpassword']").val() != $("input[name='confirmpassword']").val()){
 			swal({
 					title:"两次密码不一致，请重新确认",
@@ -48,8 +44,9 @@ $(document).ready(function() {
 		
 	});
 
-	// 调用查看已购商品函数
-	getLeavewordByUserid();
+	var currentpage = 0;
+	// 调用查看已留言的ID
+	getLeavewordByUserid(1);
 
 	/**
 	 * 根据ID获取用户信息
@@ -264,17 +261,39 @@ $(document).ready(function() {
 		});
 	});
 
-});
+function leavewordPages(pagesize){
+
+	layui.use('laypage', function(){
+	  var laypage = layui.laypage;
+	  
+	  //执行一个laypage实例
+	  laypage.render({
+	    elem: 'laypages_body', //注意，这里的 test1 是 ID，不用加 # 号
+	    count: pagesize, //数据总数，从服务端得到
+	    theme: '#000', //加载内置皮肤，也可以直接赋值16进制颜色值，如:#c00 
+	    limit: 5, //每页显示条数
+        jump: function(e){ //触发分页后的回调
+
+            if(currentpage != 0){
+            	getLeavewordByUserid(e.curr); 
+            }
+                   
+        }   
+	  });
+	  currentpage++; 
+	});
+	   
+}
 
 /**
  * 用户查看所有留言
  * 参数：用户ID
  */
-function getLeavewordByUserid(){
+function getLeavewordByUserid(pn){
 
 	$(".leaveWord-table").find("tbody").empty();
 	var jsonData={
-				"pn":1,
+				"pn":pn,
 				"leaveUserId":getCookie('userid')
 			};
 	$.ajax({
@@ -285,8 +304,19 @@ function getLeavewordByUserid(){
 		data:JSON.stringify(jsonData),
 		success: function(data){
 			var data = eval(data);
-			// console.log(data);
+			console.log(data);
 			if(data.code == 1){
+
+				if(currentpage == 0){
+					console.log(currentpage);
+					leavewordPages(data.extend.pageInfo.total);
+					currentpage ++;
+				}
+				if (data.extend.pageInfo.pages == 0){
+					var noLeavewords = '<tr><td colspan="4">该用户暂无留言</td></tr>';
+					$(".leaveWord-table").find("tbody").append(noLeavewords);
+				}
+				
 
 				$.each(data.extend.pageInfo.list,function(i,word){
 
@@ -318,6 +348,10 @@ function getLeavewordByUserid(){
 		}
 	})
 }
+
+});
+
+
 	/**
 	 * 用户添加留言
 	 * 参数：留言信息
@@ -532,4 +566,80 @@ function getLeavewordByUserid(){
 				}
 			});
 		})
-	}	
+	}
+
+
+// layui.use(['laypage', 'layer'], function(){
+//   var laypage = layui.laypage
+//   ,layer = layui.layer;
+  
+//   //自定义每页条数的选择项
+//   laypage.render({
+//     elem: 'demo11'
+//     ,count: 1000
+//     ,limit: 100
+//     ,limits: [100, 300, 500]
+//   });
+  
+  
+  //将一段数组分页展示
+  
+  //测试数据
+  var data = [
+    '北京',
+    '上海',
+    '广州',
+    '深圳',
+    '杭州',
+    '长沙',
+    '合肥',
+    '宁夏',
+    '成都',
+    '西安',
+    '南昌',
+    '上饶',
+    '沈阳',
+    '济南',
+    '厦门',
+    '福州',
+    '九江',
+    '宜春',
+    '赣州',
+    '宁波',
+    '绍兴',
+    '无锡',
+    '苏州',
+    '徐州',
+    '东莞',
+    '佛山',
+    '中山',
+    '成都',
+    '武汉',
+    '青岛',
+    '天津',
+    '重庆',
+    '南京',
+    '九江',
+    '香港',
+    '澳门',
+    '台北'
+  ];
+  
+  //调用分页
+//   laypage.render({
+//     elem: 'demo20'
+//     ,count: data.length
+//     ,jump: function(obj){
+//       //模拟渲染
+//       document.getElementById('biuuu_city_list').innerHTML = function(){
+//         var arr = []
+//         ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+//         layui.each(thisData, function(index, item){
+//           arr.push('<li>'+ item +'</li>');
+//         });
+//         return arr.join('');
+//       }();
+//     }
+//   });
+  
+// });	

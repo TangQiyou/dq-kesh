@@ -58,7 +58,7 @@ a,button,input,select{
 	}
 
 	.btn-default:hover{background-color: black;color:white;}
-	.btn-default:active{background-color: black;color:white;}
+	.btn-default:active{background-color: white;color:black;}
 	.btn-default:focus{background-color: black;color:white;}
 @media screen and (max-width: 1251px) {
 
