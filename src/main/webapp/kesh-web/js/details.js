@@ -125,7 +125,7 @@ $(window).ready(function(){
 
 				}else{
 
-					$(".details-container").append('<div class="notfindData" style="color:red;">暂无该日期数据</div> ');
+					$(".details-container").append('<div class="notfindData" style="color:red;">暂无该日期数据<br><a href="index.html">返回查询首页</a></div>');
 					
 				}
 

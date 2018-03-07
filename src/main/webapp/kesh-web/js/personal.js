@@ -19,19 +19,23 @@ $(document).ready(function() {
 	// 调用修改函数
 	$(".modify-info-btn").unbind("click");
 	$(".modify-info-btn").bind("click",function(){
+
 		updateInformation();
+
 	});
 
-	//调用取消修改函数
 	$(".cancel-modify-btn").unbind("click");
 	$(".cancel-modify-btn").bind("click",function(){
+
 		window.location.reload();
+
 	});
 
 
 	// 调用修改密码函数
 	$(".modify-pwd-btn").unbind("click");
 	$(".modify-pwd-btn").bind("click",function(){
+
 		if($("input[name='newpassword']").val() != $("input[name='confirmpassword']").val()){
 			swal({
 					title:"两次密码不一致，请重新确认",
@@ -44,8 +48,8 @@ $(document).ready(function() {
 		
 	});
 
-	var currentpage = 0;
-	// 调用查看已留言的ID
+	
+	// 调用查看已购商品函数
 	getLeavewordByUserid(1);
 
 	/**
@@ -260,7 +264,10 @@ $(document).ready(function() {
 			})
 		});
 	});
+ 
+});
 
+var currentpage = 0;
 function leavewordPages(pagesize){
 
 	layui.use('laypage', function(){
@@ -276,6 +283,7 @@ function leavewordPages(pagesize){
 
             if(currentpage != 0){
             	getLeavewordByUserid(e.curr); 
+            	console.log(e.curr);
             }
                    
         }   
@@ -312,22 +320,20 @@ function getLeavewordByUserid(pn){
 					leavewordPages(data.extend.pageInfo.total);
 					currentpage ++;
 				}
-				if (data.extend.pageInfo.pages == 0){
-					var noLeavewords = '<tr><td colspan="4">该用户暂无留言</td></tr>';
-					$(".leaveWord-table").find("tbody").append(noLeavewords);
-				}
 				
-
+				if (data.extend.pageInfo.pages == 0){
+					$(".leaveWord-table").find("tbody").append("<tr><td colspan='5'>您还没有留言....</td></tr>");
+				}
 				$.each(data.extend.pageInfo.list,function(i,word){
 
-
+					
 					var leavewords = '<tr><td><nobr>'+word.leaveTitle+
 									'</nobr></td><td>'+word.leaveTime+'</td><td>'+word.isResponsedName+
 									'</td><td><button class="btn btn-default" onclick="seeLeavewordFun('+word.leaveId+')" data-toggle="modal" data-target="#seeLeaveword">'
 									+'<span class="glyphicon glyphicon-eye-open"></span>查看</button>'
-									+'<button class="btn btn-default" onclick="modifyLeavewordFun('+word.leaveId+')" data-toggle="modal" data-target="#modifyLeaveword">'
+									+'<button class="btn btn-default" onclick="modifyLeavewordFun('+word.leaveId+','+pn+')" data-toggle="modal" data-target="#modifyLeaveword">'
 									+'<span class="glyphicon glyphicon-edit"></span>修改</button>'
-									+'<button class="btn btn-default" onclick="deleteLeavewordFun('+word.leaveId+')" data-toggle="modal" data-target="#deleteLeaveword">'
+									+'<button class="btn btn-default" onclick="deleteLeavewordFun('+word.leaveId+','+pn+','+data.extend.pageInfo.total+')" data-toggle="modal" data-target="#deleteLeaveword">'
 									+'<span class="glyphicon glyphicon-remove"></span>删除</button></td></tr>';
 					
 					$(".leaveWord-table").find("tbody").append(leavewords);
@@ -348,8 +354,6 @@ function getLeavewordByUserid(pn){
 		}
 	})
 }
-
-});
 
 
 	/**
@@ -383,10 +387,14 @@ function getLeavewordByUserid(pn){
 							title:"添加留言成功",
 							type:"success",
 							showConfirmButton: true,
+							timer:2000,
 
+						},function(){
+							$('#addLeaveword').modal('hide');
+							currentpage = 0;
+							getLeavewordByUserid(1);
 						});
-						$('#addLeaveword').modal('hide');
-						getLeavewordByUserid();
+						
 					}else{
 						swal({
 							title:"添加留言失败，请重试",
@@ -409,7 +417,7 @@ function getLeavewordByUserid(pn){
 	 * 用户修改留言
 	 * 参数：留言信息
 	 */
-	function modifyLeavewordFun(id){
+	function modifyLeavewordFun(id,pn){
 
 		seeLeavewordFun(id);
 
@@ -434,11 +442,13 @@ function getLeavewordByUserid(pn){
 						swal({
 							title:"修改留言成功",
 							type:"success",
-							showConfirmButton: true,
+							timer:2000,
 
+						},function(){
+							$('#modifyLeaveword').modal('hide');
+							getLeavewordByUserid(pn);
 						});
-						$('#modifyLeaveword').modal('hide');
-						getLeavewordByUserid();
+						
 					}else{
 						swal({
 							title:"修改留言失败，请重试",
@@ -522,7 +532,7 @@ function getLeavewordByUserid(pn){
 	 * 用户删除留言
 	 * 参数：留言ID
 	 */
-	function deleteLeavewordFun(id){
+	function deleteLeavewordFun(id,pn,total){
 
 		$('.deleteLeaveword-btn').unbind("click");
 		$('.deleteLeaveword-btn').bind("click",function(){
@@ -539,17 +549,31 @@ function getLeavewordByUserid(pn){
 						swal({
 							title:"删除留言成功",
 							type:"success",
-							showConfirmButton: true
+							showConfirmButton:true,
+							timer:2000,
+
+						},function(){
+							
+							currentpage = 0;
+							if(currentpage == 0){
+								
+								leavewordPages(total*1-1);
+								
+								$('#deleteLeaveword').modal('hide');
+								getLeavewordByUserid(1);
+								currentpage ++;
+							}
+							
 						});
-						$('#deleteLeaveword').modal('hide');
-						getLeavewordByUserid();
+						
 					}else{
 						swal({
 							title:"删除留言失败，请重试",
 							type:"error",
-							showConfirmButton: true
+							showConfirmButton: true,
 						});
 					}
+					
 				},
 				error:function(jqXHR, textStatus, errorThrown){
 					 console.log(jqXHR);
@@ -561,77 +585,4 @@ function getLeavewordByUserid(pn){
 	}
 
 
-// layui.use(['laypage', 'layer'], function(){
-//   var laypage = layui.laypage
-//   ,layer = layui.layer;
-  
-//   //自定义每页条数的选择项
-//   laypage.render({
-//     elem: 'demo11'
-//     ,count: 1000
-//     ,limit: 100
-//     ,limits: [100, 300, 500]
-//   });
-  
-  
-  //将一段数组分页展示
-  
-  //测试数据
-  var data = [
-    '北京',
-    '上海',
-    '广州',
-    '深圳',
-    '杭州',
-    '长沙',
-    '合肥',
-    '宁夏',
-    '成都',
-    '西安',
-    '南昌',
-    '上饶',
-    '沈阳',
-    '济南',
-    '厦门',
-    '福州',
-    '九江',
-    '宜春',
-    '赣州',
-    '宁波',
-    '绍兴',
-    '无锡',
-    '苏州',
-    '徐州',
-    '东莞',
-    '佛山',
-    '中山',
-    '成都',
-    '武汉',
-    '青岛',
-    '天津',
-    '重庆',
-    '南京',
-    '九江',
-    '香港',
-    '澳门',
-    '台北'
-  ];
-  
-  //调用分页
-//   laypage.render({
-//     elem: 'demo20'
-//     ,count: data.length
-//     ,jump: function(obj){
-//       //模拟渲染
-//       document.getElementById('biuuu_city_list').innerHTML = function(){
-//         var arr = []
-//         ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
-//         layui.each(thisData, function(index, item){
-//           arr.push('<li>'+ item +'</li>');
-//         });
-//         return arr.join('');
-//       }();
-//     }
-//   });
-  
-// });	
+	

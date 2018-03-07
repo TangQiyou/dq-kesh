@@ -41,7 +41,7 @@ public class PictureService {
 		int pic_id = -1;
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("pic_id", pic_id);
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd HH:MM:ss");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		System.out.println("开始时间："+format.format(new Date()));
 		boolean flag = PictureUtil.uploadPicture(file, picType);
 		if (!flag){

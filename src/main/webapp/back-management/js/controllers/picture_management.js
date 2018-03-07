@@ -256,7 +256,7 @@ app.controller('FileUploadCtrl', ['$scope', 'FileUploader', 'toaster', '$http', 
             if (result.code==1) {
                 $scope.$emit('picture', result.extend.picId);
                 toaster.pop('success', '提示', '上传成功, 耗时  '+result.extend.totalTime);
-                $scope.prop('disabled',false);
+                //$scope.prop('disabled',false);
             } else {
                 toaster.pop('error', '提示', '上传失败');
             }

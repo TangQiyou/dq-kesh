@@ -46,14 +46,14 @@ public class BackUserController {
 	
 	@ResponseBody
 	@RequestMapping(value="/user", method=RequestMethod.PUT)
-	public Msg updateAnnouncement(@RequestBody User user){
+	public Msg updateUser(@RequestBody User user){
 		boolean flag = userService.updateAll(user);
 		return flag ? Msg.success() : Msg.fail();
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/user", method=RequestMethod.GET)
-	public Msg getAnnouncement(@RequestParam("id") Integer userId){
+	public Msg getUser(@RequestParam("id") Integer userId){
 		User user = userService.getUserBack(userId);
 		List<Code> genderList = codeService.getCodesByType("gender");
 		List<Code> collegeList = codeService.getCodesByType("college_type");
@@ -69,7 +69,7 @@ public class BackUserController {
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping(value="/users",method=RequestMethod.GET)
-	public Msg getAnnouncements(@RequestParam(value="pn",defaultValue="1")Integer pn){
+	public Msg getUsers(@RequestParam(value="pn",defaultValue="1")Integer pn){
 		PageHelper.startPage(pn,5);
 		List<User> users = userService.getUsers();
 		@SuppressWarnings("unchecked")

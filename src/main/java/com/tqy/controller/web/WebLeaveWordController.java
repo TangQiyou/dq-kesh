@@ -55,7 +55,7 @@ public class WebLeaveWordController {
 	@RequestMapping(value="/leaveword",method=RequestMethod.GET)
 	public Msg getLeaveWord(@RequestParam("id")Integer id){
 		LeaveWord leaveWord = leaveWordService.getLeaveWord(id);
-		Response response = responseService.getResponse(id);
+		Response response = responseService.getResponseByLeaeId(id);
 		return leaveWord != null ? Msg.success().add("leaveword", leaveWord).add("response", response) : Msg.fail();
 	}
 	
